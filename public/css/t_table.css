@@ -1,0 +1,319 @@
+.ttable #btnTTable{
+	margin-top:5px;
+
+}
+.ttable .subsubsub{
+	list-style: none;
+	margin: 8px 0 0;
+	padding: 0;
+	font-size: 13px;
+	color: #666;
+	display: block;
+	margin-bottom: 2px;
+}
+.ttable .subsubsub li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+.ttable a{
+	color: #0073aa;
+	font-family: "Open Sans",sans-serif;
+}
+.ttable .subsubsub a {
+	line-height: 2;
+	padding: .2em;
+    padding-right:5px;
+	text-decoration: none;
+	
+}
+.ttable .subsubsub a.current {
+	color: #000;
+	font-weight: 600;
+	border: none;
+}
+.ttable .subsubsub a .count{
+	color: #999;
+	font-weight: 400;
+}
+.ttable select,.ttable .searchtable{
+	border: 1px solid #ddd;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+	background-color: #fff;
+	color: #32373c;
+	outline: 0;
+	-webkit-transition: .05s border-color ease-in-out;
+	transition: .05s border-color ease-in-out;
+}
+.ttable select:focus,.ttable .searchtable:focus{
+	border-color:#5b9dd9;-webkit-box-shadow:0 0 2px rgba(30,140,190,.8);box-shadow:0 0 2px rgba(30,140,190,.8)
+}
+.ttable .captiontable select{
+
+	margin: 1px;
+	font-size: 14px;
+	font-family: inherit;
+	padding: 2px;
+	line-height: 28px;
+	height: 28px;
+	vertical-align: middle;
+	float: left;
+	margin-right: 6px;
+	max-width: 150px;
+    margin-left:0;
+}
+.ttable .clearfloat{
+	clear:both;
+}
+.ttable .fleft{
+	float: left;
+}
+.ttable .fright{
+	float: right;
+}
+.ttable .button,.ttable .paginator a{
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 23px;
+	height: 29px;
+	margin: 0;
+	padding: 0 10px 1px;
+	cursor: pointer;
+	border-width: 1px;
+	border-style: solid;
+	-webkit-appearance: none;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: #555;
+	border-color: #ccc;
+	background: #f7f7f7;
+	-webkit-box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+	box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+	vertical-align: top;
+}
+.ttable .button:hover,.ttable .paginator a:hover{
+	background: #fafafa;
+	border-color: #999;
+	color: #23282d;
+}
+.ttable .captiontable{
+	margin-bottom:5px;
+}
+.ttable .captiontable .group-action{
+	float:left;
+	margin-right:10px;
+}
+.ttable .searchtable{
+	height: 28px;
+	margin: 0 4px 0 0;
+	padding: 2px 5px;
+	font-size: 14px;
+	line-height: normal;
+	width:200px;
+}
+.ttable .gsearchtable .searchicon {
+    position:relative;
+    width:200px;
+    float:right;
+}
+.ttable .gsearchtable .searchicon i{
+	position: absolute;
+	display: block;
+	top: 6px;
+	right: 12px;
+	color:#888;
+	line-height: normal;
+	display: none;
+    font-size:17px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+.ttable .gsearchtable i:hover{
+	color:#000;
+	cursor: pointer;
+	
+}
+
+
+.ttable table{
+	background: #fff;
+	table-layout: fixed;
+	border: 1px solid #e5e5e5;
+	
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	border-spacing: 0;
+	width: 100%;
+	clear: both;
+	margin: 0;
+
+	color: #444;
+	font-family: "Open Sans",sans-serif;
+	font-size: 13px;
+	line-height: 1.4em;
+}
+.ttable table th,.ttable table td{
+	padding: 10px 5px;
+}
+.ttable table td{
+	vertical-align: top;
+}
+.ttable tbody tr{
+	border-top:1px solid #e5e5e5;
+}
+.ttable table tfoot th {
+    border-top:1px  solid #e5e5e5;
+}
+.ttable tbody tr:nth-child(odd){
+    background-color:#F7FCFE;
+}
+.ttable .ascheckbox{
+	border: 1px solid #b4b9be;
+	background: #fff;
+	color: #555;
+	clear: none;
+	cursor: pointer;
+	display: block;
+	line-height: 0;
+	height: 13px;
+	margin: 0px 4px 0 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 13px;
+	min-width: 13px;
+	-webkit-appearance: none;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	-webkit-transition: .05s border-color ease-in-out;
+	transition: .05s border-color ease-in-out;
+	position: relative;
+}
+.ttable .ascheckbox.disabled{
+    border:1px solid #e5e5e5;
+}
+.ttable .ascheckbox.center{
+    margin-left:auto;
+    margin-right:auto
+}
+.ttable .ascheckbox.checked i{
+	display: block;
+	width:13px;
+	height: 20px;
+	position: absolute;
+	top:-2px;
+	right:-2px;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAtklEQVQ4y2P4//8/A7Ux1Q0cxoaCADIbCUgCMTvVXAoE5kA8CYidyXYpGrAH4iVAHIXiCwoMDQTimUBcBsRMlBrKCsTpUANzkC0j11BuIK6EGlgKsoAkQ4FgChD7AzELVI8YEDdDDawDYk6YQaQY6gg1oAqILYC4D8oHGcyLbBAphoJAKtQgGO4EYiHk2CLHUJAXm6AG9gCxNHoSIMdQEJCFGqiALaGSayjMxQwUGzq0S6nhZygA2ojsbh6J67kAAAAASUVORK5CYII=") 
+    no-repeat -5px -3px;
+}
+.ttable table tbody tr.checkboxcheck{
+	background-color: #ffc;
+}
+.ttable table tbody tr .row-action{
+	color: #ddd;
+	font-size: 12px;
+	visibility: hidden;
+	padding: 5px 0px 0px 0px;
+}
+.ttable table tbody tr .row-action span a{
+	font-size: 12px;
+}
+.ttable table tbody tr .row-action span small{
+    font-size:12px;
+    padding:0px 2px;
+}
+.ttable table a:hover{
+    text-decoration:none;
+    color:#00a0d2
+
+}
+.ttable table tbody tr .row-action span.delete a{
+	color: #a00;
+}
+.ttable table tbody tr:hover .row-action{
+	visibility: visible;
+}
+.ttable table thead th.tsort,.ttable table tfoot th.tsort{
+	position: relative;
+}
+.ttable table thead th.tsort:hover:after,.ttable table tfoot th.tsort:hover:after{
+	 width:0px;
+	 height:0px;
+	 content:"";
+	 border-left:5px solid transparent;
+	 border-right:5px solid transparent;
+	 border-top:5px solid #999;
+	 top: 42%;
+	left: auto;
+	position: absolute;
+	margin-left:5px;
+}
+.ttable table thead th.tsort.sortup:hover:after,.ttable table tfoot th.tsort.sortup:hover:after{
+	 width:0px;
+	 height:0px;
+	 content:"";
+	 border-left:5px solid transparent;
+	 border-right:5px solid transparent;
+	 border-top:0;
+	 border-bottom:5px solid #999;
+	 top: 42%;
+	left: auto;
+	position: absolute;
+	margin-left:5px;
+}
+.ttable table thead th.tsort:hover,.ttable table tfoot th.tsort:hover{
+	cursor: pointer;
+}
+.ttable table .cutlength a {
+    font-size:11px;
+
+}
+.ttable .paginator {
+    margin-top:10px;
+}
+.ttable .paginator a {
+    float:left;
+    margin-right:6px;
+    display:block;
+    line-height:27px;
+    background-color:#fff;
+}
+.ttable .paginator a.active{
+    background-color: #EDEDED;
+    box-shadow: inset 0 0px 0 #fff,0 0px 0 rgba(0,0,0,.08);
+    -webkit-box-shadow: inset 0 0px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+    -moz-box-shadow: inset 0 0px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+}
+.ttable table tbody tr.hidepage {
+    display:none !important;
+}
+
+.ttable table tbody .inputTable{
+	border:1px solid #fff;
+	width:96%;
+	padding:3px 2%;
+	outline: none;
+	display: block;
+	margin-top:-5px;
+	background-color: transparent;
+}
+.ttable table tbody .inputTable:hover{
+	border:1px solid #ddd;
+	width:96%;
+	padding:3px 2%;
+
+}
+
+@media (max-width: 768px) {
+
+    .ttable .captiontable .captionright {
+        display:block;
+        margin-top:10px;
+    }
+}

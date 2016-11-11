@@ -1,0 +1,33 @@
+﻿#roleuser label{
+   float:left;
+   font-weight:normal;
+   width:25%;
+   display:block;
+   padding-left:7px;
+   padding-bottom:5px;
+   padding-top:7px;
+}
+#roleuser .clearfix {
+    border:1px solid #ddd;
+    margin-bottom:10px;
+}
+#roleuser .title {
+    margin:0px 0px 5px 0px;
+    padding:10px 5px;
+    background-color:#eee
+}
+#roleuser .title label{
+    float:none;
+    width:auto;
+    display:inline;
+    padding:0;
+}
+#roleuser {
+    margin-top:-5px;
+}
+
+@media (max-width:768px) {
+    #roleuser label {
+        width:50%;
+    }
+}

@@ -1,0 +1,28 @@
+﻿.box .titlebox {
+    margin-top:15px;
+    padding-bottom:10px;
+    border-bottom:1px solid #eee;
+    margin-bottom:15px;
+}
+.box.boxhide .titlebox:hover{
+    cursor:pointer
+}
+.box .titlebox div {
+    border-bottom: 2px solid #999;
+    float:left;
+    padding-bottom:10px;
+    margin-bottom:-10px;
+    padding-right:5px;
+    font-size:15px;
+}
+.box.boxhide .titlebox span {
+    float:right;
+    margin-top:10px;
+    margin-right:10px;
+    font-size:15px;
+    color:#888;
+}
+.box.boxhide .titlebox span:hover{
+    cursor:pointer;
+    color:#000;
+}
