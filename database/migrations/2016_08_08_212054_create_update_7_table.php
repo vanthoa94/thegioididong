@@ -32,6 +32,10 @@ class CreateUpdate7Table extends Migration
                 ]
             ]
         );
+
+        Schema::table('user_online', function (Blueprint $table) {
+            $table->string('position');
+        });
     }
 
     /**

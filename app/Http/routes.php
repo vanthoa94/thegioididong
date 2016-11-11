@@ -356,63 +356,6 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 });
 
-Route::get("nojavascript.html",function(){
-    return view('backend.noscript');
+Route::group(['namespace' => 'UI'],function(){
+	Route::get('/','HomeController@index');
 });
-
-///////////////////////////////////////////////////////Route Views pages
-
-Route::get("test",function(){
-	return View('fontend.test');
-});
-
-Route::post("position_user","Auth\IndexController@position_user");
-
-
-Route::group(['middleware'=>'count_user','namespace' => 'Auth'], function()
-{
-	Route::get('/',"IndexController@getIndex");
-	Route::get('deal.html','ProductsController@getProductSelling');
-	Route::get('khuyen-mai.html','ProductsController@getProductKM');
-	Route::get("tim-kiem.html","SearchController@getTimKiem");
-	Route::get("dang-nhap.html","DangNhapController@getView");
-	Route::post("dang-nhap.html","DangNhapController@getUser");
-	Route::get("gia-si.html","DangNhapController@checkPriceCompany");
-	Route::get("doi-mat-khau","AuthController@changepass");
-	Route::post("doi-mat-khau","AuthController@post_changepass");
-	Route::get("dang-xuat","AuthController@sigout");
-	
-
-	
-
-	Route::group(['prefix'=>"video"],function(){
-		Route::get("/","VideoController@getVideo");
-		Route::get("{id}-{name}","VideoController@getDetailVideo");
-	});
-	Route::group(['prefix'=>'tin-tuc'],function(){
-		Route::get("/","NewsCateController@getNews");
-		Route::get("{id}-{name}","NewsCateController@getNewsOfCate");
-		Route::get("{catename}/{id}-{name}","NewsCateController@getDetailNews");
-	});
-	Route::group(["prefix"=>"category"],function(){
-		Route::get("{id}-{name}","ProductsController@getCategory");
-	});
-	Route::group(["prefix"=>"product"],function(){
-		Route::get("{id}-{name}","ProductsController@getProduct");
-	});
-	Route::group(["prefix"=>"app"],function(){
-		Route::group(["prefix"=>"detail"],function(){
-			Route::get("{id}-{name}","AppController@getDetailApp");
-		});
-		Route::get("{id}-{name}","AppController@getApp");
-	});
-	Route::group(["prefix"=>"dai-ly-phan-phoi"],function(){
-		Route::get("/","DaiLyController@getBranches");
-		Route::get("{id}-{name}","DaiLyController@getAgencys");
-	});
-
-	Route::get("{name}","PageController@getPages");
-
-
-});
-
