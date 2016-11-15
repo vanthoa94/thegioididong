@@ -12,8 +12,6 @@ class CreateUpdate3Table extends Migration
      */
     public function up()
     {
-        DB::statement("alter table users drop index users_email_unique;");
-        DB::statement("alter table products drop index products_pro_code_unique;");
 
         DB::table('websites')->insert(
             [

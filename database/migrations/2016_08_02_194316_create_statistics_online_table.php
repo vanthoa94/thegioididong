@@ -19,7 +19,7 @@ class CreateStatisticsOnlineTable extends Migration
             $table->tinyInteger('mday');
         });
 
-        DB::statement("INSERT INTO admin_group_role(group_id,role_id) SELECT 1 as group_id, roles.id as role_id FROM roles");
+       
         DB::table('group_role')->insert(
             [
                 [
@@ -31,27 +31,29 @@ class CreateStatisticsOnlineTable extends Migration
         DB::table('roles')->insert(
             [
                 [
-                    'group_id' => 19,
+                    'group_id' => 12,
                     'name' => 'Xem danh sách',
                     'key'=>'groupadmin/list'
                 ],
                 [
-                    'group_id' => 19,
+                    'group_id' => 12,
                     'name' => 'Thêm',
                     'key'=>'groupadmin/create'
                 ],
                 [
-                    'group_id' => 19,
+                    'group_id' => 12,
                     'name' => 'Sửa',
                     'key'=>'groupadmin/update'
                 ],
                 [
-                    'group_id' => 19,
+                    'group_id' => 12,
                     'name' => 'Xóa',
                     'key'=>'groupadmin/delete'
                 ]
             ]
         );
+
+         DB::statement("INSERT INTO admin_group_role(group_id,role_id) SELECT 1 as group_id, roles.id as role_id FROM roles");
     }
 
     /**

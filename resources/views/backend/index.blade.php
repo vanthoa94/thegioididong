@@ -36,7 +36,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 text-right">
-						<div class="huge">{{$data->oday}}</div>
+						<div class="huge">{{$data->oday or "0"}}</div>
 						<div>Khách truy cập trong ngày</div>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 				<div class="row">
 					
 					<div class="col-xs-12 text-right">
-						<div class="huge">{{$data->omonth}}</div>
+						<div class="huge">{{$data->omonth or "0"}}</div>
 						<div>Khách truy cập trong tháng</div>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 text-right">
-						<div class="huge">{{$data->s}}</div>
+						<div class="huge">{{$data->s or "0"}}</div>
 						<div>Tổng số lượt truy cập</div>
 					</div>
 				</div>
@@ -85,11 +85,11 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-3">
-						<i class="fa fa-cube fa-5x"></i>
+						<i class="fa fa-book fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
 						<div class="huge">{{$data->sanpham}}</div>
-						<div>Sản phẩm</div>
+						<div>Sách</div>
 					</div>
 				</div>
 			</div>
@@ -109,15 +109,15 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-3">
-						<i class="fa fa-globe fa-5x"></i>
+						<i class="fa fa-tag fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<div class="huge">{{$data->tintuc}}</div>
-						<div>Tin tức</div>
+						<div class="huge">{{$data->tag}}</div>
+						<div>Tag</div>
 					</div>
 				</div>
 			</div>
-			<a href="{{url('admin/news')}}">
+			<a href="{{url('admin/tag')}}">
 				<div class="panel-footer">
 					<span class="pull-left">View Details</span>
 					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -209,15 +209,15 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-3">
-						<i class="fa fa-th fa-5x"></i>
+						<i class="fa fa-user fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<div class="huge">{{$data->ungdung}}</div>
-						<div>Ứng dụng</div>
+						<div class="huge">{{$data->user}}</div>
+						<div>Người dùng</div>
 					</div>
 				</div>
 			</div>
-			<a href="{{url('admin/app')}}">
+			<a href="{{url('admin/user')}}">
 				<div class="panel-footer">
 					<span class="pull-left">View Details</span>
 					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

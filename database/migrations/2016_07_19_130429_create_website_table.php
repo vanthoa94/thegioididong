@@ -45,29 +45,6 @@ class CreateWebsiteTable extends Migration
                     'content' => 'dangcap@gmail.com'
                 ],
                 [
-                    'name' => 'sdt_mua_hang_tu_xa',
-                    'content' => '0168855447'
-                ]
-                ,
-                [
-                    'name' => 'sdt_trung_tam_bh',
-                    'content' => '0155887779'
-                ],
-                [
-                    'name' => 'sdt_dai_ly',
-                    'content' => '0168885547'
-                ]
-                ,
-                [
-                    'name' => 'open_time',
-                    'content' => 'Thứ 2 - thứ 7'
-                ],
-                [
-                    'name' => 'gio_bao_hanh',
-                    'content' => 'Thứ 2 - thứ 7'
-                ]
-                ,
-                [
                     'name' => 'address',
                     'content' => 'địa chỉ'
                 ],
@@ -96,8 +73,16 @@ class CreateWebsiteTable extends Migration
                     'content' => 'GPKD số : 41C8012283 đăng ký ngày 26 tháng 3 năm 2010'
                 ],
                 [
-                    'name' => 'twitter',
-                    'content' => 'twitter.com/'
+                    'name' => 'background_color_menu',
+                    'content' => '#000000'
+                ],
+                [
+                    'name' => 'background_header',
+                    'content' => '#ffffff'
+                ],
+                [
+                    'name' => 'background_header_top',
+                    'content' => '#000000'
                 ]
             ]
         );

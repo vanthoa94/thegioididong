@@ -12,14 +12,14 @@ class IndexController extends BaseController
 		$now=Carbon::now();
 		$dt=array();
 		$dt['data']=Admin::select(\DB::raw('(select sum(quantity) from statistics_online where id2 like "%'.$now->month.$now->year.'") as omonth,(select quantity from statistics_online where id2='.$now->day.$now->month.$now->year.') as oday,(select count(id) from user_online where TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-12:00","+10:00"))<6) as o,
-			(select sum(quantity) from statistics_online) as s,(select count(id) from products) as sanpham,
-			(select count(id) from news) as tintuc,
+			(select sum(quantity) from statistics_online) as s,(select count(id) from books) as sanpham,
 			(select count(id) from menus) as menu,
 			(select count(id) from slideshows) as slide,
 			(select count(id) from ads) as quangcao,
 			(select count(id) from videos) as video,
 			(select count(id) from pages) as page,
-			(select count(id) from apps) as ungdung'))
+			(select count(id) from tags) as tag,
+			(select count(id) from users) as user'))
 		->first();
 		try{
 			UserOnline::whereRaw('TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-12:00","+10:00"))>30')->delete();

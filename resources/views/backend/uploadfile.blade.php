@@ -193,7 +193,6 @@ if(isset($_POST['submit'])){
 								<option value="720x480">720x480(SlideShow)</option>
 								<option value="150x100">150x100(Tin Tức)</option>
 								<option value="160x120">160x120(Video)</option>
-								<option value="160x160">160x160(Ứng dụng)</option>
 								<option value="60x60">60x60(Icon box trung tâm)</option>
 								<option value="600x400">600x400(Box khuyến mãi)</option>
 							</select>
@@ -357,8 +356,6 @@ h1 small{
 				<li data-value="ads"><i class="plusfolder"></i> Quảng Cáo</li>
 				<ul></ul>
 				<li data-value="video"><i class="plusfolder"></i> Video</li>
-				<ul></ul>
-				<li data-value="app"><i class="plusfolder"></i> Ứng Dụng</li>
 				<ul></ul>
 			</div>
 			

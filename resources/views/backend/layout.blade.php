@@ -59,12 +59,12 @@
 
                     <li id="menu_product" class="dropdownmenu">
                         <a href="#">
-                            <i class="fa fa-cube"></i> <span>Quản lý sản phẩm</span>
+                            <i class="fa fa-book"></i> <span>Quản lý sách</span>
                              <small class="fa fa-chevron-down"></small>
                         </a>
                         <ul>
                             <li data-role="product/list" class="trole" data-action="list">
-                                <a href="{{url('admin/product')}}">Sản phẩm</a>
+                                <a href="{{url('admin/product')}}">Sách</a>
                             </li>
 
                             <li data-role="product/create" class="trole" data-action="new"> 
@@ -72,7 +72,7 @@
                             </li>
 
                             <li data-role="category/list" class="trole" data-action="category"> 
-                                <a href="{{url('admin/category')}}" >Loại sản phẩm</a>
+                                <a href="{{url('admin/category')}}" >Loại sách</a>
                             </li>
                         </ul>
                     </li>
@@ -81,26 +81,6 @@
                         <a href="{{url('admin/menu')}}">
                             <i class="fa fa-list"></i> <span>Quản lý menu</span>
                         </a>
-                    </li>
-
-                    <li id="menu_news" class="dropdownmenu">
-                        <a href="#">
-                            <i class="fa fa-globe"></i> <span>Quản lý tin tức</span>
-                             <small class="fa fa-chevron-down"></small>
-                        </a>
-                        <ul>
-                            <li data-role="news/list" class="trole" data-action="list">
-                                <a href="{{url('admin/news')}}">Tin tức</a>
-                            </li>
-
-                            <li data-role="news/create" class="trole" data-action="new"> 
-                                <a href="{{url('admin/news/create')}}" >Thêm mới</a>
-                            </li>
-
-                            <li data-role="newscate/list" class="trole" data-action="category"> 
-                                <a href="{{url('admin/news-category')}}" >Loại tin tức</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li id="menu_slide" data-role="slide/list" class="trole">
@@ -115,55 +95,9 @@
                         </a>
                     </li>
 
-                    <li id="menu_app" class="dropdownmenu">
-                        <a href="#">
-                            <i class="fa fa-th"></i> <span>Quản lý ứng dụng</span>
-                             <small class="fa fa-chevron-down"></small>
-                        </a>
-                        <ul>
-                            <li data-role="app/list" class="trole" data-action="list">
-                                <a href="{{url('admin/app')}}">Ứng dụng</a>
-                            </li>
-
-                            <li data-role="app/create" class="trole" data-action="new"> 
-                                <a href="{{url('admin/app/create')}}" >Thêm mới</a>
-                            </li>
-
-                            <li data-role="appcate/list" class="trole" data-action="category"> 
-                                <a href="{{url('admin/app-category')}}" >Loại ứng dụng</a>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li id="menu_video" data-role="video/list" class="trole">
                         <a href="{{url('admin/video')}}">
                             <i class="fa fa-youtube-play"></i> <span>Quản lý video</span>
-                        </a>
-                    </li>
-
-                    <li id="menu_branch" class="dropdownmenu">
-                        <a href="#">
-                            <i class="fa fa-sitemap"></i> <span>Quản lý chi nhánh</span>
-                             <small class="fa fa-chevron-down"></small>
-                        </a>
-                        <ul>
-                            <li data-role="branch/list" class="trole" data-action="list">
-                                <a href="{{url('admin/branch')}}">Chi nhánh</a>
-                            </li>
-
-                            <li data-role="branch/create" class="trole" data-action="new"> 
-                                <a href="{{url('admin/branch/create')}}" >Thêm mới</a>
-                            </li>
-
-                            <li data-role="agency/list" class="trole" data-action="agency"> 
-                                <a href="{{url('admin/agency')}}" >Đại lý</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li id="menu_support" data-role="support/list" class="trole">
-                        <a href="{{url('admin/support')}}">
-                            <i class="fa fa-question-circle"></i> <span>Quản lý hỗ trợ</span>
                         </a>
                     </li>
 

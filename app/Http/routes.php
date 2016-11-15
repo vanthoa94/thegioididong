@@ -79,25 +79,6 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 	
 	});
 
-	Route::group(['prefix'=>'news'],function(){
-		Route::get("/","NewsController@index");
-		Route::get("create","NewsController@create");
-		Route::post("create","NewsController@postCreate");
-
-		Route::get("{id}","NewsController@update")->where('id','[0-9]+');
-		Route::post("update","NewsController@postUpdate");
-
-		Route::post("delete","NewsController@postDelete");
-		Route::post("deletes","NewsController@postDeletes");
-
-		Route::post("hot","NewsController@hot");
-		Route::post("display","NewsController@display");
-
-		Route::post("hots","NewsController@hots");
-		Route::post("displays","NewsController@displays");
-	
-	});
-
 	Route::group(['prefix'=>'page'],function(){
 		Route::get("/","PageController@index");
 		Route::get("create","PageController@create");
@@ -110,86 +91,6 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 		Route::post("deletes","PageController@postDeletes");
 
 		Route::post("display","PageController@display");
-	
-	});
-
-	Route::group(['prefix'=>'app'],function(){
-		Route::get("/","AppController@index");
-		Route::get("create","AppController@create");
-		Route::post("create","AppController@postCreate");
-
-		Route::get("{id}","AppController@update")->where('id','[0-9]+');
-		Route::post("update","AppController@postUpdate");
-
-		Route::post("delete","AppController@postDelete");
-		Route::post("deletes","AppController@postDeletes");
-
-		Route::post("display","AppController@display");
-
-		Route::post("hide","AppController@hide");
-		Route::post("show","AppController@show");
-	
-	});
-
-	Route::group(['prefix'=>'branch'],function(){
-		Route::get("/","BranchController@index");
-
-		Route::get("create","BranchController@create");
-		Route::post("create","BranchController@postCreate");
-
-		Route::get("{id}","BranchController@update")->where('id','[0-9]+');
-		Route::post("update","BranchController@postUpdate");
-		
-		Route::post("delete","BranchController@postDelete");
-		Route::post("deletes","BranchController@postDeletes");
-
-		Route::post("sort","BranchController@sort");
-	});
-
-	Route::group(['prefix'=>'agency'],function(){
-		Route::get("/","AgencyController@index");
-
-		Route::get("create","AgencyController@create");
-		Route::post("create","AgencyController@postCreate");
-
-		Route::get("{id}","AgencyController@update")->where('id','[0-9]+');
-		Route::post("update","AgencyController@postUpdate");
-		
-		Route::post("delete","AgencyController@postDelete");
-		Route::post("deletes","AgencyController@postDeletes");
-
-		Route::post("display_footer","AgencyController@display_footer");
-	});
-
-	Route::group(['prefix'=>'app-category'],function(){
-		Route::get("/","AppCateController@index");
-		Route::get("create","AppCateController@create");
-		Route::post("create","AppCateController@postCreate");
-
-		Route::get("{id}","AppCateController@update")->where('id','[0-9]+');
-		Route::post("update","AppCateController@postUpdate");
-
-		Route::post("delete","AppCateController@postDelete");
-
-		Route::post("display","AppCateController@display");
-	
-
-		Route::post("sort","AppCateController@sort");
-	});
-
-	Route::group(['prefix'=>'news-category'],function(){
-		Route::get("/","NewsCateController@index");
-		Route::get("create","NewsCateController@create");
-		Route::post("create","NewsCateController@postCreate");
-
-		Route::get("{id}","NewsCateController@update")->where('id','[0-9]+');
-		Route::post("update","NewsCateController@postUpdate");
-
-		Route::post("delete","NewsCateController@postDelete");
-		Route::post("deletes","NewsCateController@postDeletes");
-
-		Route::post("display","NewsCateController@display");
-		Route::post("show_home","NewsCateController@show_home");
 	
 	});
 

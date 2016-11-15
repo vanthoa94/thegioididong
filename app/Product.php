@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table='products';
+    protected $table='books';
 
-    protected $fillable = ['pro_code','cate_id','name','url','image','images','price','price_company','price_origin','description','keywords','status','quantity','overview','specs','accessories','promotion','show_home'];
+    protected $fillable = ['cate_id','name','url','image','price','description','keywords','status','quantity','promotion','author','show_home'];
 
     public static function getStatus(){
     	return array(

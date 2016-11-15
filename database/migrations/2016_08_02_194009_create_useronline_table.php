@@ -17,6 +17,7 @@ class CreateUseronlineTable extends Migration
             $table->string('id2',15);
             $table->datetime('last_visit');
             $table->string('ip',15);
+            $table->string('position');
         });
     }
 

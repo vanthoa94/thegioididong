@@ -55,16 +55,7 @@ class CategoryController extends BaseController
 		$category->meta_description=str_replace("\"","'",trim($request->meta_description));
 		$category->meta_keywords=trim($request->meta_keywords);
 		$category->name=trim($request->name);
-		if($request->icon=="khac"){
-			$category->icon=trim($request->iconkhac);
-			if(strpos($category->icon,"fa-")===0){
-			}else{
-				$category->icon="fa-".$category->icon;
-			}
-		}else{
-			$category->icon=$request->icon;
-		}
-		$category->ads=$request->ads;
+		
 		$category->sort_home=0;
 		$category->sort_menu=0;
 		$category->display=1;
@@ -87,7 +78,7 @@ class CategoryController extends BaseController
 		$data=array();
 		$data['data']=Category::find((int)$id);
 		if($data['data']==null)
-			return redirect()->to('admin/category')->with(['message'=>'Loại sản phẩm không tồn tại.','message_type'=>'danger']);
+			return redirect()->to('admin/category')->with(['message'=>'Loại sách không tồn tại.','message_type'=>'danger']);
 		$data['listCategory']=Category::select('id','name','parent')->where('id','<>',$id)->where('parent','<>',$id)->get();
 		return view('backend.category.update',$data);
 	}
@@ -111,16 +102,7 @@ class CategoryController extends BaseController
 		$category->meta_description=str_replace("\"","'",trim($request->meta_description));
 		$category->meta_keywords=trim($request->meta_keywords);
 		$category->name=trim($request->name);
-		if($request->icon=="khac"){
-			$category->icon=trim($request->iconkhac);
-			if(strpos($category->icon,"fa-")===0){
-			}else{
-				$category->icon="fa-".$category->icon;
-			}
-		}else{
-			$category->icon=$request->icon;
-		}
-		$category->ads=$request->ads;
+		
 		$category->show_home=($request->show_home=='on')?1:0;
 		
 		if($category->save()){

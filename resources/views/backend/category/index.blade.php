@@ -1,8 +1,8 @@
 @extends('backend.layout')
-@section('title','Loại sản phẩm - ACP')
+@section('title','Loại sách - ACP')
 
 @section('breadcrumb')
-<h2>Loại sản phẩm</h2>
+<h2>Loại sách</h2>
 <h3 class="trole" data-role="category/create">
         <a href="{{url('admin/category/create')}}">Thêm Mới</a>
     </h3>
@@ -83,13 +83,12 @@ function showImage($path){
                   <th width="35px">
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                   </th>
-                  <th class="tsort">S.Xếp Tr.Chủ</th>
-                  <th class="tsort">S.Xếp menu</th>
+                  <th class="tsort" width="120px">S.Xếp Tr.Chủ</th>
+                  <th class="tsort" width="120px">S.Xếp menu</th>
                   <th width="150px">Tên</th>
                   <th width="150px">Url</th>
                   <th width="100px">Mô tả</th>
                   <th width="100px">Từ khóa</th>
-                  <th width="80px">Q.Cáo</th>
                   <th>H.Thị Tr.C</th>
                   <th>H.Thị menu</th>
               </tr>
@@ -125,7 +124,7 @@ function showImage($path){
                                           </td>
 
                                           <td>
-                                              <span><i class="fa {{$item->icon}}"></i> {{$text.' '.$item->name}}
+                                              <span>{{$text.' '.$item->name}}
                                                 </span>
                                                 <div class="row-action">
                                                     <span title="Sửa thông tin"><a href="{{url('admin/category/'.$item->id)}}">Sửa</a>
@@ -151,11 +150,6 @@ function showImage($path){
                                           </td>
                                           <td>
                                             <span class="cutlength" max-length="30">{{$item->meta_keywords}}</span>
-                                          </td>
-                                           <td>
-                                            @if($item->ads!="")
-                                            <img src="{{showImage($item->ads)}}" width="70px" />
-                                            @endif
                                           </td>
                                           <td>
                                                     <span class="ascheckbox checkboxblock {{$item->show_home==1?'checked':''}}"
