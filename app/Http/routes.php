@@ -79,6 +79,28 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 	
 	});
 
+	Route::group(['prefix'=>'muc-luc'],function(){
+		Route::get("{id}","MucLucController@index")->where('id','[0-9]+');
+		Route::get("create","MucLucController@create");
+		Route::post("create","MucLucController@postCreate");
+
+		Route::get("update/{id}","MucLucController@update")->where('id','[0-9]+');
+		Route::post("update","MucLucController@postUpdate");
+
+		Route::post("delete","MucLucController@postDelete");
+
+		Route::post("deletes","MucLucController@postDeletes");
+	
+		Route::post("display","MucLucController@display");
+
+		Route::post("sort","MucLucController@sort");
+
+		Route::post("hides","MucLucController@hides");
+		Route::post("displays","MucLucController@displays");
+		
+	
+	});
+
 	Route::group(['prefix'=>'page'],function(){
 		Route::get("/","PageController@index");
 		Route::get("create","PageController@create");

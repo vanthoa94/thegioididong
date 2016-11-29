@@ -23,7 +23,7 @@
               <span class="red">*</span>
               <input type="text" name="name" id="namec" value="{{$data->name}}" class="form-control" />
               <span class="desc">
-                Tên loại sản phẩm. Hiển thị trên web
+                Tên loại sách. Hiển thị trên web
               </span>
             </div>
           </div>
@@ -37,7 +37,7 @@
                 <span class="red">*</span>
                 <input type="text" name="url" id="urlc" value="{{$data->url}}" class="form-control" />
                 <span class="desc">
-                  Url truy cập vào trang loại sản phẩm. Không dấu và mỗi từ cách nhau 1 dấu '-'. VD: camera-giam-sat
+                  Url truy cập vào trang loại sách. Không dấu và mỗi từ cách nhau 1 dấu '-'. VD: sach-mien-phi
                 </span>
               </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-4">
-                <label>Loại sản phẩm cha:</label>
+                <label>Loại sách cha:</label>
               </div>
               <div class="col-sm-8 required">
                 <span class="red">*</span>
@@ -81,7 +81,7 @@
 
                 </select>
                 <span class="desc">
-                  Loại sản phẩm này thuộc loại sản phẩm nào?
+                  Loại sách này thuộc loại sách nào?
                 </span>
               </div>
             </div>
@@ -109,7 +109,7 @@
               <div class="col-sm-8">
                 <textarea name="meta_description" rows="4" class="form-control">{{$data->meta_description}}</textarea>
                 <span class="desc">
-                  Mô tả về loại sản phẩm này. Dùng cho SEO
+                  Mô tả về loại sách này. Dùng cho SEO
                 </span>
               </div>
             </div>
@@ -123,7 +123,7 @@
               <div class="col-sm-8">
                 <textarea name="meta_keywords" rows="4" class="form-control">{{$data->meta_keywords}}</textarea>
           <span class="desc">
-            Từ khóa tìm kiếm loại sản phẩm trên google. Dùng cho SEO
+            Từ khóa tìm kiếm loại sách trên google. Dùng cho SEO
           </span>
               </div>
             </div>

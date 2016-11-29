@@ -12,13 +12,10 @@ class Product extends Model
 
     public static function getStatus(){
     	return array(
-    		"Mới",
-    		"Khuyến mãi",
-    		"Bán chạy",
-    		"Sắp hết hàng",
-    		"Giảm giá",
-    		"Sắp có hàng",
-    		"Không còn kình doành"
+    		"Còn Tiếp",
+    		"Hoàn thành",
+    		"Tạm dừng",
+    		"Dừng xuất bản"
     	);
     }
 }

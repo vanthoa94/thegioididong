@@ -30,8 +30,7 @@
                        <b style="display:block;margin-bottom:8px">Chọn Folder:</b>
                        <div class='tabfolder'>
                         <li id="fffupload" class="active" data-value="upload">Upload</li>
-                        <li id="fffproduct" data-value="product">Sách</li>
-                        <li id="fffnews" data-value="news">Tin Tức</li>
+                        <li id="fffbook" data-value="book">Sách</li>
                         <li id="fffslide" data-value="slide">Slide</li>
                         <li id="fffads" data-value="ads">Quảng Cáo</li>
                         <li id="fffvideo" data-value="video">Video</li>
@@ -45,13 +44,9 @@
                         <small>Nếu không tải được vui lòng click vào nút tải lại.</small>
                     </div>
 
-                   <div id="productfolder" data-value='{"folder":"product"}' class="folderitem">
+                   <div id="bookfolder" data-value='{"folder":"book"}' class="folderitem">
                         Đang Tải...
                     </div> 
-
-                    <div id="newsfolder" data-value='{"folder":"news"}' class="folderitem">
-                        Đang Tải...
-                    </div>
 
                     <div id="slidefolder" data-value='{"folder":"slide"}' class="folderitem">
                         Đang Tải...

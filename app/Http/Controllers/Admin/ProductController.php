@@ -11,7 +11,7 @@ class ProductController extends BaseController
 	public function index()
 	{
 		if(!$this->checkPermission('product/list')){
-			return $this->ErrorPermission('Sản phẩm');
+			return $this->ErrorPermission('Sách');
 		}
 
 		$data=null;
@@ -22,7 +22,7 @@ class ProductController extends BaseController
 			$data=Cache::get('c_a_product');
 		}else{
 
-			$data=Product::select('id','cate_id','name','url','image','price','description','keywords','status','quantity','viewer','display','show_home','index_home','created_at','updated_at')->orderBy('id','desc')->get();
+			$data=Product::select('id','cate_id','name','url','image','price','price_pro','description','keywords','status','quantity','viewer','author','display','show_home','index_home','created_at','updated_at')->orderBy('id','desc')->get();
 			Cache::add('c_a_product',$data,5);
 		}
 
@@ -41,7 +41,7 @@ class ProductController extends BaseController
 
 	public function create(){
 		if(!$this->checkPermission('product/create')){
-			return $this->ErrorPermission('Thêm sản phẩm');
+			return $this->ErrorPermission('Thêm sách');
 		}
 
 		$data=Category::select('id','name','parent')->get();
@@ -52,7 +52,7 @@ class ProductController extends BaseController
 	public function postCreate(ProductRequest $request){
 
 		if(!$this->checkPermission('product/create')){
-			return $this->ErrorPermission('Thêm sản phẩm');
+			return $this->ErrorPermission('Thêm sách');
 		}
 
 		$product=new Product();
@@ -64,7 +64,6 @@ class ProductController extends BaseController
 			return redirect()->to('admin/product/create')->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
 		}
 
-		$product->pro_code=trim($request->pro_code);
 		$product->cate_id=$request->cate_id;
 
 		$product->image=trim($request->image);
@@ -75,40 +74,29 @@ class ProductController extends BaseController
 		
 		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
 
-		$product->price_company=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
-
-		if(trim($request->price_origin)!=""){
-			$product->price_origin=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_origin));
+		if(trim($request->price_pro)!=""){
+			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_pro));
 		}else{
-			$product->price_origin=0;
+			$product->price_pro=0;
 		}
 		$product->status=$request->status;
-		$product->quantity=$request->quantity;
+
+		if(trim($request->quantity)!=""){
+			$product->quantity=$request->quantity;
+		}else{
+			$product->quantity=0;
+		}
 		$product->viewer=0;
 		$product->sold=0;
 		$product->display=1;
 		$product->index_home=0;
 
-		$product->overview=$request->overview;
-		$product->specs=$request->specs;
-		$product->accessories=$request->accessories;
 		$product->promotion=$request->promotion;
 
-		$product->show_home=($request->show_home=='on')?1:0;
-		$images="";
-		if($request->images!=null){
-			foreach($request->images as $item){
-				if($item!=""){
-					$images.=$item.",";
-				}
-			}
-			if($images!=""){
-				$images=substr($images, 0,strlen($images)-1);
-			}
-		}
+		$product->author=trim($request->author);
 
-		$product->images=$images;
-
+		$product->show_home=1;
+		
 
 		if($product->save()){
 			if(Cache::has('c_a_product'))
@@ -121,13 +109,13 @@ class ProductController extends BaseController
 	public function update($id){
 
 		if(!$this->checkPermission('product/update')){
-			return $this->ErrorPermission('Sửa sản phẩm');
+			return $this->ErrorPermission('Sửa sách');
 		}
 
 		$data=array();
 		$data['data']=Product::find((int)$id);
 		if($data['data']==null)
-			return redirect()->to('admin/product')->with(['message'=>'Sản phẩm không tồn tại.','message_type'=>'danger']);
+			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
 		$data['listCategory']=Category::select('id','name','parent')->get();
 		return view('backend.product.update',$data);
 	}
@@ -135,12 +123,12 @@ class ProductController extends BaseController
 	public function postUpdate(ProductRequest $request){
 
 		if(!$this->checkPermission('product/update')){
-			return $this->ErrorPermission('Sửa sản phẩm');
+			return $this->ErrorPermission('Sửa sách');
 		}
 
 		$product=Product::find((int)$request->id);
 		if($product==null)
-			return redirect()->to('admin/product')->with(['message'=>'Sản phẩm không tồn tại.','message_type'=>'danger']);
+			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
 		
 		$product->name=str_replace("\"", "'", trim($request->name));
 
@@ -149,7 +137,6 @@ class ProductController extends BaseController
 			return redirect()->to('admin/product/'.$request->id)->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
 		}
 
-		$product->pro_code=trim($request->pro_code);
 		$product->cate_id=$request->cate_id;
 
 		$product->image=trim($request->image);
@@ -160,35 +147,24 @@ class ProductController extends BaseController
 		
 		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
 
-		$product->price_company=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
-
-		if(trim($request->price_origin)!=""){
-			$product->price_origin=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_origin));
+		if(trim($request->price_pro)!=""){
+			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_pro));
 		}else{
-			$product->price_origin=0;
+			$product->price_pro=0;
 		}
 		$product->status=$request->status;
-		$product->quantity=$request->quantity;
 
-		$product->overview=$request->overview;
-		$product->specs=$request->specs;
-		$product->accessories=$request->accessories;
-		$product->promotion=$request->promotion;
-
-		$product->show_home=($request->show_home=='on')?1:0;
-		$images="";
-		if($request->images!=null){
-			foreach($request->images as $item){
-				if($item!=""){
-					$images.=$item.",";
-				}
-			}
-			if($images!=""){
-				$images=substr($images, 0,strlen($images)-1);
-			}
+		if(trim($request->quantity)!=""){
+			$product->quantity=$request->quantity;
+		}else{
+			$product->quantity=0;
 		}
 
-		$product->images=$images;
+		
+		$product->promotion=$request->promotion;
+
+		$product->author=trim($request->author);
+
 		
 		if($product->save()){
 			if(Cache::has('c_a_product'))
@@ -209,9 +185,9 @@ class ProductController extends BaseController
 		if(Product::destroy($id)){
 			if(Cache::has('c_a_product'))
 				Cache::forget('c_a_product');
-			return json_encode(["success"=>true,"message"=>"Xóa thành công sản phẩm {name}"]);
+			return json_encode(["success"=>true,"message"=>"Xóa thành công sách {name}"]);
 		}
-		return json_encode(["success"=>false,"message"=>"Xóa sản phẩm {name} thất bại"]);
+		return json_encode(["success"=>false,"message"=>"Xóa sách {name} thất bại"]);
 	}
 
 	public function display(){
@@ -256,11 +232,11 @@ class ProductController extends BaseController
 		}
 		$data=\Input::get('data');
 		foreach(\Input::get('id') as $key=>$value){
-			if(Cache::has('c_a_product'))
-				Cache::forget('c_a_product');
+			
 			Product::where('id',$value)->update(['index_home'=>$data[$key]]);
 		}
-
+		if(Cache::has('c_a_product'))
+				Cache::forget('c_a_product');
 		return json_encode(["success"=>true]);
 	}
 

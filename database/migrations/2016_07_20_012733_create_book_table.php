@@ -26,7 +26,7 @@ class CreateBookTable extends Migration
             $table->integer('quantity'); //số lượng sản phẩm
             $table->integer('viewer')->default(0); //lượt xem
             $table->integer('sold')->default(0); //số lượng đã bán. Dùng cho sản phẩm bán chạy
-            $table->text('promotion'); //thông tin khuyến mãi
+            $table->string('promotion',1000); //thông tin khuyến mãi
             $table->string('author',200); //thông tin khuyến mãi
             $table->tinyInteger('display');
             $table->tinyInteger('show_home'); //có hiển thị ngoài trang chủ ko?

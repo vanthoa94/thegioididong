@@ -28,23 +28,18 @@ class ProductRequest extends Request
             'url'=>'required',
             'image'=>'required',
             'price'=>'required',
-            'price_company'=>'required',
-            'quantity'=>'required|numeric',
             'cate_id'=>'required|numeric'
         ];
     }
 
     public function messages(){
         return [
-            'name.required'=>'Vui lòng nhập tên sản phẩm',
+            'name.required'=>'Vui lòng nhập tên sách',
             'url.required'=>'Vui lòng nhập url',
             'image.required'=>'Vui lòng chọn hình ảnh',
-            'price.required'=>'Vui lòng chọn nhập giá sản phẩm',
-            'price_company.required'=>'Vui lòng chọn nhập giá công ty',
-            'quantity.required'=>'Vui lòng chọn nhập số lượng',
-            'quantity.numeric'=>'Vui lòng chọn nhập số lượng',
-            'cate_id.required'=>'Vui lòng chọn chọn loại sp',
-            'cate_id.numeric'=>'Vui lòng chọn chọn loại sp'
+            'price.required'=>'Vui lòng chọn nhập giá sách. Để 0 nếu là miễn phí',
+            'cate_id.required'=>'Vui lòng chọn chọn loại sách',
+            'cate_id.numeric'=>'Vui lòng chọn chọn loại sách'
         ];
     }
 }

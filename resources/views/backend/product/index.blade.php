@@ -1,8 +1,8 @@
 @extends('backend.layout')
-@section('title','Sản phẩm - ACP')
+@section('title','Sách - ACP')
 
 @section('breadcrumb')
-<h2>Sản phẩm</h2>
+<h2>Sách</h2>
 <h3 class="trole" data-role="product/create">
         <a href="{{url('admin/product/create')}}">Thêm Mới</a>
     </h3>
@@ -41,7 +41,7 @@ function showImage($path){
         <div class="col-sm-7 col-md-8">
 
           <div class="group-action">
-                <select id="bulk-action-selector-top" style="width:115px" class="fleft" data-ajax=".checkboxb.checked" data-href='{"hiện":"{{url('admin/product/displays')}}","ẩn":"{{url('admin/product/hides')}}","hiện thị trang chủ":"{{url('admin/product/showhomes')}}","ẩn trang chủ":"{{url('admin/product/hidehomes')}}"}' data-confirm="Bạn có chắc muốn <b>{value}</b> {item} sản phẩm?" data-success-type="option">
+                <select id="bulk-action-selector-top" style="width:115px" class="fleft" data-ajax=".checkboxb.checked" data-href='{"hiện":"{{url('admin/product/displays')}}","ẩn":"{{url('admin/product/hides')}}","hiện thị trang chủ":"{{url('admin/product/showhomes')}}","ẩn trang chủ":"{{url('admin/product/hidehomes')}}"}' data-confirm="Bạn có chắc muốn <b>{value}</b> {item} sách?" data-success-type="option">
                     <option value="-1" selected="selected">- Hành động -</option>
                     <option value="hiện" data-success="displays">Hiện</option>
                     <option value="ẩn" data-success="hides">Ẩn</option>
@@ -52,11 +52,11 @@ function showImage($path){
             </div>
 
             <div class="group-action">
-                <select id="bulk-action-selector-top" class="fleft" data-ajax=".checkboxb.checked" data-href='' data-before="action">
+                <select id="bulk-action-selector-top1" class="fleft" data-ajax=".checkboxb.checked" data-href='' data-before="action">
                     <option value="1" selected="selected">Lưu s.xếp</option>
                     
                 </select>
-                <input type="button" class="button fleft" data-target="#bulk-action-selector-top" value="Lưu">
+                <input type="button" class="button fleft" data-target="#bulk-action-selector-top1" value="Lưu">
             </div>
 
              
@@ -107,12 +107,11 @@ function showImage($path){
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                   </th>
                     <th class="tsort" width="60px">S.Xếp</th>
-                    <th width="250px">Sản phẩm</th>
+                    <th width="250px">Sách</th>
                     <th class="tsort" width="170px">Giá</th>
                    <th class="tsort">Loại</th>
-                   <th width="150px">Tính năng nổi bật</th>
+                   <th width="150px">Nội dung</th>
                    <th class="tsort" width="50px">SL</th>
-                   <th class="tsort">Xem</th>
                    <th>H.Thị</th>
                    <th>H.T TC</th>
                    <th class="tsort">Cập nhật</th>
@@ -133,15 +132,20 @@ function showImage($path){
                                           </td>
                                          <td>
                       <span class="clearfix">
-                        <img class="pull-left" style="margin-right:5px;margin-top:2px" src="{{showImage($item->image)}}" width="80" height="70" />
+                        <img class="pull-left" style="margin-right:5px;margin-top:2px" src="{{showImage($item->image)}}" height="85" />
                         <div class="pull-left" style="width:150px">
-                          <small>Mã SP: {{$item->pro_code}}</small><br />
-                          <b><a href="{{url('product/'.$item->id.'-'.$item->url)}}" target="_black">{{$item->name}}</a></b><br />
-                          <small>{{date('d/m/Y H:i',strtotime($item->created_at))}} <br />  status: {{$arr_status[$item->status]}}</small>
+                         
+                          <b><a href="{{url($item->url.'.html')}}" target="_black">{{$item->name}}</a></b><br />
+                          <small>{{date('d/m/Y H:i',strtotime($item->created_at))}} <br /> Tác giả: {{$item->author}}<br /> status: {{$arr_status[$item->status]}}
+<br />Xem: {{$item->viewer}}
+                          </small>
                         </div>
                       </span>
                                             <div class="row-action">
                                                     <span title="Sửa thông tin"><a href="{{url('admin/product/'.$item->id)}}">Sửa</a>
+                                                        <small>| </small>
+                                                    </span>
+                                                    <span title="Mục lục"><a href="{{url('admin/muc-luc/'.$item->id)}}">Mục lục</a>
                                                         <small>| </small>
                                                     </span>
                                                     <span class="delete">
@@ -151,7 +155,7 @@ function showImage($path){
                                                                  data-value="{{$item->id}}" 
                                                                 data-success-remove="true" 
                                                                 data-name="{{$item->name}}"
-                                                                data-confirm="Bạn có chắc muốn xóa sản phẩm <b>{{$item->name}}</b>?<br /><small>Một khi xóa bạn sẽ không thể khôi phục lại được</small>"
+                                                                data-confirm="Bạn có chắc muốn xóa sách <b>{{$item->name}}</b>?<br /><small>Một khi xóa bạn sẽ không thể khôi phục lại được</small>"
                                                                 href="#" title="Xóa">Xóa</a>
                                                     </span>
                                                 </div>
@@ -159,11 +163,9 @@ function showImage($path){
 
                                           <td>
                                           <div class="clearfix"> 
-                                            <b class="pull-left" style="width:68px">Giá lẻ:</b> {{number_format($item->price,0,',','.')}}<br />
-                                            <b class="pull-left" style="width:68px">Giá sỉ: </b> {{number_format($item->price_company,0,',','.')}}<br />
-                                            @if($item->price_origin!=0)
-                                            <b class="pull-left" style="width:68px">Giá nhập: </b> {{number_format($item->price_origin,0,',','.')}}
-                                            @endif
+                                            <b class="pull-left" style="width:68px">Giá:</b> {{$item->price==0?'Miển phí':number_format($item->price,0,',','.')}}<br />
+                                            <b class="pull-left" style="width:68px">Giá km: </b> {{$item->price==0?'Miển phí':number_format($item->price_company,0,',','.')}}<br />
+                                         
                                             </div>
                                           </td>
                                           
@@ -175,7 +177,6 @@ function showImage($path){
 
 
                                         <td>{{$item->quantity}}</td>
-                                        <td>{{$item->viewer}}</td>
 
                                           <td>
                                                     <span class="ascheckbox checkboxblock {{$item->display==1?'checked':''}}"
@@ -185,7 +186,7 @@ function showImage($path){
                                                 data-value="{{$item->id}}" 
                                                 data-name="{{$item->name}}"
                                                 data-success="display"
-                                                data-confirm="Bạn có chắc muốn <b>{yes=hiện thị}</b><b>{no=ẩn}</b> sản phẩm <b>{name}</b>?"></span>
+                                                data-confirm="Bạn có chắc muốn <b>{yes=hiện thị}</b><b>{no=ẩn}</b> sách <b>{name}</b>?"></span>
                                           </td>
 
                                           <td>
@@ -196,7 +197,7 @@ function showImage($path){
                                                 data-value="{{$item->id}}" 
                                                 data-name="{{$item->name}}"
                                                 data-success="show_home"
-                                                data-confirm="Bạn có chắc muốn <b>{yes=hiển thị}</b><b>{no=ẩn}</b> sản phẩm <b>{name}</b> ngoài trang chủ?"></span>
+                                                data-confirm="Bạn có chắc muốn <b>{yes=hiển thị}</b><b>{no=ẩn}</b> sách <b>{name}</b> ngoài trang chủ?"></span>
                                           </td>
 
                                           <td>
@@ -278,7 +279,7 @@ function showImage($path){
             
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(8) .checkboxblock").addClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(7) .checkboxblock").addClass("checked");
                    
                 }
             });
@@ -288,7 +289,7 @@ function showImage($path){
         "hides": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(8) .checkboxblock").removeClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(7) .checkboxblock").removeClass("checked");
                    
                 }
             });
@@ -298,7 +299,7 @@ function showImage($path){
         "displayhomes": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-showhome","1").find("td:eq(9) .checkboxblock").addClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-showhome","1").find("td:eq(8) .checkboxblock").addClass("checked");
                    
                 }
             });
@@ -309,7 +310,7 @@ function showImage($path){
         "hidehomes": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-showhome","0").find("td:eq(9) .checkboxblock").removeClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-showhome","0").find("td:eq(8) .checkboxblock").removeClass("checked");
                    
                 }
             });

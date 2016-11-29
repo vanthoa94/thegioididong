@@ -1,46 +1,9 @@
 @extends('backend.layout')
-@section('title','Sửa sản phẩm - ACP')
+@section('title','Sửa sách - ACP')
 
 @section('breadcrumb')
-<h2><a href="{{url('admin/product')}}">Sản phẩm</a></h2>
+<h2><a href="{{url('admin/product')}}">Sách</a></h2>
     <span>Cập nhật</span>
-@endsection
-
-@section('css')
-<style type="text/css">
-  .itemimages{
-    position: relative;
-  }
-  .itemimages .fa-times{
-    position: absolute;
-    top:0px;
-    right:10px;
-    font-size:20px;
-    color:#a00;
-    display: none;
-  }
-  .itemimages:hover .fa-times{
-    display: block;
-  }
-  .itemimages .fa-times:hover{
-    cursor: pointer;
-    color:red;
-  }
-  #addnewimages i{
-    font-size:120px;
-    width:60%;
-    border:1px solid #ddd;
-    padding:5px;
-     border-radius:5px;
-     text-align: center;
-     color:#999;
-  }
-  #addnewimages i:hover{
-    color:#555;
-    border:1px solid #ccc;
-    cursor: pointer;
-  }
-</style>
 @endsection
 
 
@@ -61,22 +24,16 @@ function showImage($path){
 
             <div class="col-sm-6">
                 <div class="row">
-                  <div class="col-sm-4">
-                        <label>Mã sản phẩm:</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input name="pro_code" class="form-control" value="{{$data->pro_code}}" />
-                      <span class="desc">VD: BM-800</span>
-                    </div>
+                  
                     <div class="col-sm-4">
-                        <label>Tên sản phẩm:</label>
+                        <label>Tên sách:</label>
                     </div>
                     <div class="col-sm-8 required">
                         <span class="red">*</span>
-                        <textarea name="name" rows="2" id="namec" class="form-control">{{$data->name}}</textarea>
+                        <textarea name="name" rows="3" id="namec" class="form-control">{{$data->name}}</textarea>
                     </div>
                     
-                </div><br />
+                </div>
             </div>
 
             <div class="col-sm-6">
@@ -86,18 +43,42 @@ function showImage($path){
                     </div>
                     <div class="col-md-8 required">
                         <span class="red">*</span>
-                        <textarea name="url" rows="2" id="urlc" class="form-control">{{$data->url}}</textarea>
+                        <textarea name="url" rows="3" id="urlc" class="form-control">{{$data->url}}</textarea>
                         <span class="desc">
                           Không dấu và mỗi từ cách nhau 1 dấu '-'. VD: gioi-thieu
                         </span>
                     </div>
-                    <div class="col-md-4">
-                        <label>Loại:</label>
-                    </div>
-                    <div class="col-md-8 required">
+                    
+                </div>
+            </div>
+        </div><br />
+
+        <div class="row margin">
+<div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-4">
+                <label>Tác giả:</label>
+              </div>
+              <div class="col-sm-8 required">
+                <span class="red">*</span>
+                <input type="text" name="author" value="{{$data->author}}" class="form-control" />
+                
+                <span class="desc">
+                  Tên tác giả viết sách này
+                </span>
+                <span class="pricetext"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label>Loại:</label>
+                </div>
+               <div class="col-md-8 required">
                         <span class="red">*</span>
                         <select name="cate_id" id="cate_id" class="form-control">
-                  <option value="-1">-- Chọn loại sản phẩm --</option>
+                  <option value="-1">-- Chọn loại sách --</option>
                   
                         <?php 
                                 function dequy($parentid,$arr,$text = ''){
@@ -124,87 +105,50 @@ function showImage($path){
 
                 </select>
                     </div>
-                </div><br />
-            </div>
-        </div><br />
+              </div>
+          </div>
+        </div>
 
 
         <div class="row margin">
-        <div class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-4">
-              <label>Giá lẻ:</label>
-            </div>
-            <div class="col-sm-8 required">
-              <span class="red">*</span>
-              <div class="input-group">
-                <input type="text" name="price" value="{{number_format($data->price,0,',','.')}}" class="form-control formatprice" />
-                <span class="input-group-addon">VNĐ</span>
-              </div>
-              <span class="desc">
-                Giá bán lẻ của sản phẩm. VD: 1.000.000 hoặc 1,000,000
-              </span>
-              <span class="pricetext"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
+          <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-4">
-                <label>Giá sỉ:</label>
+                <label>Giá:</label>
               </div>
               <div class="col-sm-8 required">
                 <span class="red">*</span>
                 <div class="input-group">
-                  <input type="text" name="price_company" value="{{number_format($data->price_company,0,',','.')}}" class="form-control formatprice" />
+                  <input type="text" name="price" value="{{$data->price}}" class="form-control formatprice" />
                   <span class="input-group-addon">VNĐ</span>
                 </div>
+                
                 <span class="desc">
-                  Giá sỉ khi đăng nhập vào sẽ thấy
+                  Giá gốc của sách. VD: 1.000.000 hoặc 1,000,000 hoặc 1000000.<br />
+                  <b>Để 0 nếu là miễn phí</b>
                 </span>
                 <span class="pricetext"></span>
               </div>
             </div>
-        </div>
-      </div><!--.row-->
-
-      <div class="row margin">
-        <div class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-4">
-              <label>Giá nhập:</label>
-            </div>
-            <div class="col-sm-8">
-              <div class="input-group">
-                <input type="text" name="price_origin" value="{{$data->price_origin!=0?number_format($data->price_origin,0,',','.'):""}}" class="form-control formatprice" />
-                <span class="input-group-addon">VNĐ</span>
-              </div>
-              <span class="desc">
-                Để trống nếu không có
-              </span>
-              <span class="pricetext"></span>
-            </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-4">
-                <label>Trạng thái:</label>
+          <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label>Giá KM:</label>
+                </div>
+                <div class="col-sm-8">
+                  <div class="input-group">
+                    <input type="text" name="price_company" value="{{$data->price_pro}}" class="form-control formatprice" />
+                    <span class="input-group-addon">VNĐ</span>
+                  </div>
+                  
+                  <span class="desc">
+                    Giá khuyến mãi của sách. <b>Để 0 nếu là miễn phí.</b>
+                  </span>
+                  <span class="pricetext"></span>
+                </div>
               </div>
-              <div class="col-sm-8 required">
-                <span class="red">*</span>
-                <select name="status" id="status" class="form-control">
-                  <option value="-1">--Lựa chọn--</option>
-                  @foreach(\App\Product::getStatus() as $key => $value)
-                    <option value="{{$key}}">{{$value}}</option>
-                  @endforeach
-                </select>
-                <span class="desc">
-                  .
-                </span>
-              </div>
-            </div>
-        </div>
+          </div>
       </div><!--.row-->
 
         <div class="row">
@@ -224,55 +168,23 @@ function showImage($path){
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4">
-                        <label>Tính năng nổi bật:</label>
+                        <label>Mô tả ngắn gọn về sách:</label>
                     </div>
                     <div class="col-md-8">
-                       <textarea rows="3" name="description" class="form-control">{{str_replace("<br>","\n",$data->description)}}</textarea>
-                        <span class="desc">Giới thiệu các tính năng nổi bật của sản phẩm. Khoảng 200 ký tự</span>
+                       <textarea rows="3" name="description" class="form-control">{{$data->description}}</textarea>
+                        <span class="desc">Khoảng 250 ký tự</span>
                     </div>
                     <div class="col-md-4">
                         <label>Từ khóa:</label>
                     </div>
                     <div class="col-md-8">
                        <textarea rows="2" name="keywords" class="form-control">{{$data->keywords}}</textarea>
-                        <span class="desc">Từ khóa tìm kiếm sản phẩm, dùng cho SEO</span>
+                        <span class="desc">Từ khóa tìm kiếm sách, dùng cho SEO</span>
                     </div>
                 </div><br />
             </div>
         </div><br />
 
-        <div class="row margin">
-            <div class="col-md-12">
-                <div class="row" id='imagekhac'>
-                    <div class="col-md-2">
-                        <label>Hình ảnh khác:</label>
-                    </div>
-                    <div class="col-md-10">
-                      <div class="row">
-                        <?php 
-                        $images=explode(',', $data->images);
-                         ?>
-                         @foreach($images as $item)
-                         @if($item!='')
-                         <div class='col-xs-6 col-sm-4 col-md-4 itemimages'>
-                            <img src="{{showImage($item)}}" class="img-thumbnail showupload uploadimg" href="#imageschooseval" id="imgchoose" width="100px">
-                            <br><div class="text-left desc">Copy url image từ nơi khác và paste vào textbox bên dưới<br>
-                            <input type="text" class="form-control " name="images[]" id="imageschooseval" value="{{$item}}" />Hoặc upload ảnh khác.</div>
-                            <i class="fa fa-times" title="xóa"></i>
-                          
-                          </div>
-                          @endif
-                         @endforeach
-                          <div class='col-xs-6 col-sm-4 col-md-4' id="addnewimages">
-                            <i class="fa fa-plus" title="Thêm hình"></i>
-                          </div>
-                          
-                      </div>
-                      <span class="desc">Các hình ảnh khác của sản phẩm</span>
-                    </div>
-                </div><br />
-            </div>
-        </div>
 
         <div class="row margin">
         <div class="col-sm-6">
@@ -280,24 +192,29 @@ function showImage($path){
             <div class="col-sm-4">
               <label>Số lượng:</label>
             </div>
-            <div class="col-sm-8 required">
-              <span class="red">*</span>
+            <div class="col-sm-8">
               <input type="text" name="quantity" value="{{$data->quantity}}" class="form-control" />
               <span class="desc">
-                Số lượng sản phẩm hiện có
+                Số lượng sách hiện có
               </span>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+         <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-4">
-                <label>Hiện thị trang chủ:</label>
+                <label>Trạng thái:</label>
               </div>
-              <div class="col-sm-8">
-                <input type='checkbox' id="show_home" name="show_home" />
+              <div class="col-sm-8 required">
+                <span class="red">*</span>
+                <select name="status" class="form-control" id="status">
+                  <option value="-1">--Lựa chọn--</option>
+                  @foreach(\App\Product::getStatus() as $key => $value)
+                    <option value="{{$key}}">{{$value}}</option>
+                  @endforeach
+                </select>
                 <span class="desc">
-                  Có hiện thị sản phẩm này ngoài trang chủ không?
+                  .
                 </span>
               </div>
             </div>
@@ -308,53 +225,11 @@ function showImage($path){
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2">
-                        <label>Tổng quan:</label>
-                    </div>
-                    <div class="col-md-10" id="tNicEdit" data-height="250">
-                        <textarea style="width:100%;height:250px" name="overview" id="overview">{!!$data->overview!!}</textarea>
-                      <span class="desc">Bài viết đánh giá tổng quan về sản phẩm</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Thông số kỹ thuật:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <textarea style="width:100%;height:250px" name="specs" id="specs">{!!$data->specs!!}</textarea>
-                      <span class="desc">.</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Khui hộp:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <textarea style="width:100%;height:250px" name="accessories" id="accessories">{!!$data->accessories!!}</textarea>
-                      <span class="desc">.</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
                         <label>Khuyến mãi:</label>
                     </div>
-                    <div class="col-md-10">
-                        <textarea style="width:100%;height:250px" name="promotion" id="promotion">{!!$data->promotion!!}</textarea>
-                      <span class="desc">.</span>
+                    <div class="col-md-10" id="tNicEdit" data-height="250">
+                        <textarea style="width:100%;height:250px" name="promotion" id="promotion">{{$data->promotion}}</textarea>
+                      <span class="desc">Để trống nếu không có. Khoảng 1000 ký tự</span>
                     </div>
                 </div><br />
             </div>
@@ -411,14 +286,11 @@ function showImage($path){
 }
 var cate_id="{{$data->cate_id}}";
 var status="{{$data->status}}";
-var isShowHome="{{$data->show_home}}";
     $(function(){
 
       $("#cate_id").val(cate_id);
       $("#status").val(status);
-      if(isShowHome=='1'){
-        $("#show_home").prop('checked',true);
-      }
+      
     
     $("#imagekhac").on('click','.fa-times',function(){
       $(this).parent().remove();
@@ -432,7 +304,7 @@ var isShowHome="{{$data->show_home}}";
                             '<input type="text" class="form-control " name="images[]" id="imageschooseval'+slImages+'" />Hoặc upload ảnh khác.</div><i class="fa fa-times" title="xóa"></i></div>');
     });
 
-    $("#frm").kiemtra([
+     $("#frm").kiemtra([
             {
                 'name':'name',
                 'trong':true
@@ -447,21 +319,16 @@ var isShowHome="{{$data->show_home}}";
                 'gia':true
             },
             {
-                'name':'price_company',
-                'gia':true
-            },
-            {
                 'name':'status',
                 'select':true
             },
             {
                 'name':'image',
                 'trong':true
-            }
-            ,
+            },
             {
-                'name':'quantity',
-                'so':true
+              'name':'author',
+              'trong':true
             }
       ]);
 
@@ -473,12 +340,6 @@ var isShowHome="{{$data->show_home}}";
 <script type="text/javascript" src="<?php echo Asset('public/js/nicEdit.js') ?>"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        new nicEditor({ fullPanel: true }).panelInstance("overview");
-
-        new nicEditor({ fullPanel: true }).panelInstance("specs");
-
-        new nicEditor({ fullPanel: true }).panelInstance("accessories");
-
         new nicEditor({ fullPanel: true }).panelInstance("promotion");
     });
 </script>
@@ -530,20 +391,7 @@ var isShowHome="{{$data->show_home}}";
         }}}();
 
   $(document).ready(function(){
-    var urlc=$("#urlc");
-    var isChange=true;
-    $("#namec").on('keyup',function(){
-      if(isChange){
-        urlc.val(change_alias($.trim($(this).val())));
-      }else{
-        $(this).off('keyup');
-      }
-    });
-    urlc.on('keyup',function(){
-      isChange=false;
-      $(this).off('keyup');
-    });
-
+   
     $(".formatprice").on('keyup',function(){
       var text=$.trim($(this).val());
 

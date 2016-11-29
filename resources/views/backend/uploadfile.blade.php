@@ -189,9 +189,8 @@ if(isset($_POST['submit'])){
 						<div style="float:left;width:200px">
 							<select name="resize" style="padding:3px;width:100%">
 								<option value="">Gữi nguyên kích thước gốc</option>
-								<option value="168x120">168x120(Sản Phẩm)</option>
+								<option value="115x168">115x168(Sách)</option>
 								<option value="720x480">720x480(SlideShow)</option>
-								<option value="150x100">150x100(Tin Tức)</option>
 								<option value="160x120">160x120(Video)</option>
 								<option value="60x60">60x60(Icon box trung tâm)</option>
 								<option value="600x400">600x400(Box khuyến mãi)</option>
@@ -347,9 +346,7 @@ h1 small{
 			<div id="areachoosefolder">
 				<li data-value="upload"><i class="plusfolder"></i> Upload</li>
 				<ul></ul>
-				<li data-value="product"><i class="plusfolder"></i> Sản Phẩm</li>
-				<ul></ul>
-				<li data-value="news"><i class="plusfolder"></i> Tin Tức</li>
+				<li data-value="book"><i class="plusfolder"></i> Sách</li>
 				<ul></ul>
 				<li data-value="slide"><i class="plusfolder"></i> Slide</li>
 				<ul></ul>

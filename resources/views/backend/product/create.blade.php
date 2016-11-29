@@ -1,46 +1,9 @@
 @extends('backend.layout')
-@section('title','Thêm sản phẩm - ACP')
+@section('title','Thêm Sách - ACP')
 
 @section('breadcrumb')
-<h2><a href="{{url('admin/product')}}">Sản phẩm</a></h2>
+<h2><a href="{{url('admin/product')}}">Sách</a></h2>
     <span>Tạo mới</span>
-@endsection
-
-@section('css')
-<style type="text/css">
-  .itemimages{
-    position: relative;
-  }
-  .itemimages .fa-times{
-    position: absolute;
-    top:0px;
-    right:10px;
-    font-size:20px;
-    color:#a00;
-    display: none;
-  }
-  .itemimages:hover .fa-times{
-    display: block;
-  }
-  .itemimages .fa-times:hover{
-    cursor: pointer;
-    color:red;
-  }
-  #addnewimages i{
-    font-size:120px;
-    width:60%;
-    border:1px solid #ddd;
-    padding:5px;
-     border-radius:5px;
-     text-align: center;
-     color:#999;
-  }
-  #addnewimages i:hover{
-    color:#555;
-    border:1px solid #ccc;
-    cursor: pointer;
-  }
-</style>
 @endsection
 
 
@@ -53,22 +16,16 @@
 
             <div class="col-sm-6">
                 <div class="row">
-                  <div class="col-sm-4">
-                        <label>Mã sản phẩm:</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input name="pro_code" class="form-control" value="{{old('pro_code')}}" />
-                      <span class="desc">VD: BM-800</span>
-                    </div>
+                  
                     <div class="col-sm-4">
-                        <label>Tên sản phẩm:</label>
+                        <label>Tên sách:</label>
                     </div>
                     <div class="col-sm-8 required">
                         <span class="red">*</span>
-                        <textarea name="name" rows="2" id="namec" class="form-control">{{old('name')}}</textarea>
+                        <textarea name="name" rows="3" id="namec" class="form-control">{{old('name')}}</textarea>
                     </div>
                     
-                </div><br />
+                </div>
             </div>
 
             <div class="col-sm-6">
@@ -78,18 +35,42 @@
                     </div>
                     <div class="col-md-8 required">
                         <span class="red">*</span>
-                        <textarea name="url" rows="2" id="urlc" class="form-control">{{old('url')}}</textarea>
+                        <textarea name="url" rows="3" id="urlc" class="form-control">{{old('url')}}</textarea>
                         <span class="desc">
                           Không dấu và mỗi từ cách nhau 1 dấu '-'. VD: gioi-thieu
                         </span>
                     </div>
-                    <div class="col-md-4">
-                        <label>Loại:</label>
-                    </div>
-                    <div class="col-md-8 required">
+                    
+                </div>
+            </div>
+        </div><br />
+
+        <div class="row margin">
+<div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-4">
+                <label>Tác giả:</label>
+              </div>
+              <div class="col-sm-8 required">
+                <span class="red">*</span>
+                <input type="text" name="author" value="{{old('author')}}" class="form-control" />
+                
+                <span class="desc">
+                  Tên tác giả viết sách này
+                </span>
+                <span class="pricetext"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label>Loại:</label>
+                </div>
+               <div class="col-md-8 required">
                         <span class="red">*</span>
                         <select name="cate_id" class="form-control">
-                  <option value="-1">-- Chọn loại sản phẩm --</option>
+                  <option value="-1">-- Chọn loại sách --</option>
                   
                         <?php 
                                 function dequy($parentid,$arr,$text = ''){
@@ -116,6 +97,82 @@
 
                 </select>
                     </div>
+              </div>
+          </div>
+        </div>
+
+
+        <div class="row margin">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-4">
+                <label>Giá:</label>
+              </div>
+              <div class="col-sm-8 required">
+                <span class="red">*</span>
+                <div class="input-group">
+                  <input type="text" name="price" value="{{old('price',0)}}" class="form-control formatprice" />
+                  <span class="input-group-addon">VNĐ</span>
+                </div>
+                
+                <span class="desc">
+                  Giá gốc của sách. VD: 1.000.000 hoặc 1,000,000 hoặc 1000000.<br />
+                  <b>Để 0 nếu là miễn phí</b>
+                </span>
+                <span class="pricetext"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label>Giá KM:</label>
+                </div>
+                <div class="col-sm-8">
+                  <div class="input-group">
+                    <input type="text" name="price_company" value="{{old('price_pro',0)}}" class="form-control formatprice" />
+                    <span class="input-group-addon">VNĐ</span>
+                  </div>
+                  
+                  <span class="desc">
+                    Giá khuyến mãi của sách. <b>Để 0 nếu là miễn phí.</b>
+                  </span>
+                  <span class="pricetext"></span>
+                </div>
+              </div>
+          </div>
+      </div><!--.row-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Hình Ảnh:</label>
+                    </div>
+                    <div class="col-md-8 required boxupload">
+                        <span class="red">*</span>
+                        <img src="{{Asset('public/images/uploadimg.png')}}" class="img-thumbnail showupload uploadimg" href="#imagechooseval" id="imgchoose" width="100px">
+                        <br><div class="text-left desc">Copy url image từ nơi khác và paste vào textbox bên dưới<br>
+                        <input type="text" class="form-control " name="image" id="imagechooseval" value="{{old('image')}}" />Hoặc upload ảnh khác. Kích thước chuẩn 168x120</div>
+                    </div>
+                </div><br />
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Mô tả ngắn gọn về sách:</label>
+                    </div>
+                    <div class="col-md-8">
+                       <textarea rows="3" name="description" class="form-control">{{old('description')}}</textarea>
+                        <span class="desc">Khoảng 250 ký tự</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Từ khóa:</label>
+                    </div>
+                    <div class="col-md-8">
+                       <textarea rows="2" name="keywords" class="form-control">{{old('keywords')}}</textarea>
+                        <span class="desc">Từ khóa tìm kiếm sách, dùng cho SEO</span>
+                    </div>
                 </div><br />
             </div>
         </div><br />
@@ -125,63 +182,17 @@
         <div class="col-sm-6">
           <div class="row">
             <div class="col-sm-4">
-              <label>Giá lẻ:</label>
-            </div>
-            <div class="col-sm-8 required">
-              <span class="red">*</span>
-              <div class="input-group">
-                <input type="text" name="price" value="{{old('price')}}" class="form-control formatprice" />
-                <span class="input-group-addon">VNĐ</span>
-              </div>
-              
-              <span class="desc">
-                Giá bán lẻ của sản phẩm. VD: 1.000.000 hoặc 1,000,000 hoặc 1000000
-              </span>
-              <span class="pricetext"></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-4">
-                <label>Giá sỉ:</label>
-              </div>
-              <div class="col-sm-8 required">
-                <span class="red">*</span>
-                <div class="input-group">
-                  <input type="text" name="price_company" value="{{old('price_company')}}" class="form-control formatprice" />
-                  <span class="input-group-addon">VNĐ</span>
-                </div>
-                
-                <span class="desc">
-                  Giá sỉ khi đăng nhập vào sẽ thấy
-                </span>
-                <span class="pricetext"></span>
-              </div>
-            </div>
-        </div>
-      </div><!--.row-->
-
-      <div class="row margin">
-        <div class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-4">
-              <label>Giá nhập:</label>
+              <label>Số lượng:</label>
             </div>
             <div class="col-sm-8">
-              <div class="input-group">
-                <input type="text" name="price_origin" value="" class="form-control formatprice" />
-                <span class="input-group-addon">VNĐ</span>
-              </div>
-              
+              <input type="text" name="quantity" value="{{old('quantity',0)}}" class="form-control" />
               <span class="desc">
-                Để trống nếu không có
+                Số lượng sách hiện có
               </span>
-              <span class="pricetext"></span>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+         <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-4">
                 <label>Trạng thái:</label>
@@ -203,139 +214,14 @@
       </div><!--.row-->
 
         <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Hình Ảnh:</label>
-                    </div>
-                    <div class="col-md-8 required boxupload">
-                        <span class="red">*</span>
-                        <img src="{{Asset('public/images/uploadimg.png')}}" class="img-thumbnail showupload uploadimg" href="#imagechooseval" id="imgchoose" width="100px">
-                        <br><div class="text-left desc">Copy url image từ nơi khác và paste vào textbox bên dưới<br>
-                        <input type="text" class="form-control " name="image" id="imagechooseval" value="{{old('image')}}" />Hoặc upload ảnh khác. Kích thước chuẩn 168x120</div>
-                    </div>
-                </div><br />
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Tính năng nổi bật:</label>
-                    </div>
-                    <div class="col-md-8">
-                       <textarea rows="3" name="description" class="form-control">{{old('description')}}</textarea>
-                        <span class="desc">Giới thiệu các tính năng nổi bật của sản phẩm. Khoảng 200 ký tự</span>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Từ khóa:</label>
-                    </div>
-                    <div class="col-md-8">
-                       <textarea rows="2" name="keywords" class="form-control">{{old('keywords')}}</textarea>
-                        <span class="desc">Từ khóa tìm kiếm sản phẩm, dùng cho SEO</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row margin">
-            <div class="col-md-12">
-                <div class="row" id='imagekhac'>
-                    <div class="col-md-2">
-                        <label>Hình ảnh khác:</label>
-                    </div>
-                    <div class="col-md-10">
-                      <div class="row">
-                          <div class='col-xs-6 col-sm-4 col-md-4' id="addnewimages">
-                            <i class="fa fa-plus" title="Thêm hình"></i>
-                          </div>
-                          
-                      </div>
-                      <span class="desc">Các hình ảnh khác của sản phẩm</span>
-                    </div>
-                </div><br />
-            </div>
-        </div>
-
-        <div class="row margin">
-        <div class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-4">
-              <label>Số lượng:</label>
-            </div>
-            <div class="col-sm-8 required">
-              <span class="red">*</span>
-              <input type="text" name="quantity" value="{{old('quantity')}}" class="form-control" />
-              <span class="desc">
-                Số lượng sản phẩm hiện có
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-4">
-                <label>Hiện thị trang chủ:</label>
-              </div>
-              <div class="col-sm-8">
-                <input type='checkbox' name="show_home" checked="checked" />
-                <span class="desc">
-                  Có hiện thị sản phẩm này ngoài trang chủ không?
-                </span>
-              </div>
-            </div>
-        </div>
-      </div><!--.row-->
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Tổng quan:</label>
-                    </div>
-                    <div class="col-md-10" id="tNicEdit" data-height="250">
-                        <textarea style="width:100%;height:250px" name="overview" id="overview">{{old('overview')}}</textarea>
-                      <span class="desc">Bài viết đánh giá tổng quan về sản phẩm</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Thông số kỹ thuật:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <textarea style="width:100%;height:250px" name="specs" id="specs">{{old('specs')}}</textarea>
-                      <span class="desc">.</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Khui hộp:</label>
-                    </div>
-                    <div class="col-md-10">
-                        <textarea style="width:100%;height:250px" name="accessories" id="accessories">{{old('accessories')}}</textarea>
-                      <span class="desc">.</span>
-                    </div>
-                </div><br />
-            </div>
-        </div><br />
-
-        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2">
                         <label>Khuyến mãi:</label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-10" id="tNicEdit" data-height="250">
                         <textarea style="width:100%;height:250px" name="promotion" id="promotion">{{old('promotion')}}</textarea>
-                      <span class="desc">.</span>
+                      <span class="desc">Để trống nếu không có. Khoảng 1000 ký tự</span>
                     </div>
                 </div><br />
             </div>
@@ -390,17 +276,6 @@
 }
     $(function(){
     
-    $("#imagekhac").on('click','.fa-times',function(){
-      $(this).parent().remove();
-    });
-
-    $("#addnewimages").on('click',function(){
-      slImages++;
-      $(this).before('<div class="col-xs-6 col-sm-4 col-md-4 itemimages">'+
-                            '<img src="'+asset_path+'images/uploadimg.png" class="img-thumbnail showupload uploadimg" href="#imageschooseval'+(slImages)+'" id="imgchoose" width="100px">'+
-                            '<br><div class="text-left desc">Copy url image từ nơi khác và paste vào textbox bên dưới<br>'+
-                            '<input type="text" class="form-control " name="images[]" id="imageschooseval'+slImages+'" />Hoặc upload ảnh khác.</div><i class="fa fa-times" title="xóa"></i></div>');
-    });
 
     $("#frm").kiemtra([
             {
@@ -417,21 +292,16 @@
                 'gia':true
             },
             {
-                'name':'price_company',
-                'gia':true
-            },
-            {
                 'name':'status',
                 'select':true
             },
             {
                 'name':'image',
                 'trong':true
-            }
-            ,
+            },
             {
-                'name':'quantity',
-                'so':true
+              'name':'author',
+              'trong':true
             }
       ]);
 
@@ -443,11 +313,7 @@
 <script type="text/javascript" src="<?php echo Asset('public/js/nicEdit.js') ?>"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        new nicEditor({ fullPanel: true }).panelInstance("overview");
-
-        new nicEditor({ fullPanel: true }).panelInstance("specs");
-
-        new nicEditor({ fullPanel: true }).panelInstance("accessories");
+        
 
         new nicEditor({ fullPanel: true }).panelInstance("promotion");
     });
