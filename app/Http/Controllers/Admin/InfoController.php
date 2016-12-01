@@ -38,19 +38,6 @@ class InfoController extends BaseController
 		$info->where('name','meta_keywords')->update(array('content'=>str_replace("\"", "'", trim(Input::get('meta_keywords')))));
 		$info->where('name','copyright')->update(array('content'=>str_replace("\n","<br>",trim(Input::get('copyright')))));
 
-
-		$info->where('name','giay_phep')->update(array('content'=>str_replace("\n","<br>",trim(Input::get('giay_phep')))));
-
-		try{
-			$info->where('name','slide_top')->delete();
-			$arr=explode("\n", trim(Input::get('slide_top')));
-			foreach($arr as $item){
-				if(trim($item)!="")
-				$info->insert(['name'=>'slide_top','content'=>trim($item)]);
-			}
-		}catch(\Expression $e){
-
-		}
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công thông tin chung.']);
 	}
 
@@ -60,41 +47,43 @@ class InfoController extends BaseController
 		}
 		$info=new Website();
 		$info->where('name','hotline')->update(array('content'=>str_replace("\"", "'", trim(Input::get('hotline')))));
-		$info->where('name','phone')->update(array('content'=>str_replace("\"", "'", trim(Input::get('phone')))));
 		$info->where('name','facebook')->update(array('content'=>str_replace("\"", "'", trim(Input::get('facebook')))));
 		$info->where('name','skype')->update(array('content'=>trim(Input::get('skype'))));
+
+
+		$info->where('name','zalo')->update(array('content'=>trim(Input::get('zalo'))));
 
 
 		$info->where('name','google')->update(array('content'=>trim(Input::get('google'))));
 
 		$info->where('name','email')->update(array('content'=>trim(Input::get('email'))));
-		$info->where('name','twitter')->update(array('content'=>trim(Input::get('twitter'))));
+
+		$info->where('name','address')->update(array('content'=>trim(Input::get('address'))));
+
+		$info->where('name','GPKD')->update(array('content'=>trim(Input::get('GPKD'))));
+
 
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công thông tin liên hệ.']);
 	}
 
-	public function banhang(){
+	public function setting(){
 		if(!$this->checkPermission('info/update')){
 			return $this->ErrorPermission('Cập nhật thông tin website');
 		}
 		$info=new Website();
-		$info->where('name','open_time')->update(array('content'=>str_replace("\n","<br>",str_replace("\"", "'", trim(Input::get('open_time'))))));
-		$info->where('name','gio_bao_hanh')->update(array('content'=>str_replace("\n","<br>",str_replace("\"", "'", trim(Input::get('gio_bao_hanh'))))));
-		$info->where('name','sdt_dai_ly')->update(array('content'=>str_replace("\"", "'", trim(Input::get('sdt_dai_ly')))));
-		$info->where('name','sdt_mua_hang_tu_xa')->update(array('content'=>trim(Input::get('sdt_mua_hang_tu_xa'))));
+		
 
-		$info->where('name','email_dai_ly')->update(array('content'=>trim(Input::get('email_dai_ly'))));
+		$info->where('name','email_send')->update(array('content'=>trim(Input::get('email_send'))));
 
-		$info->where('name','email_trung_tam_bao_hanh')->update(array('content'=>trim(Input::get('email_trung_tam_bao_hanh'))));
+		$info->where('name','password_send')->update(array('content'=>trim(Input::get('password_send'))));
 
-		$info->where('name','email_mua_hang_tu_xa')->update(array('content'=>trim(Input::get('email_mua_hang_tu_xa'))));
+		$info->where('name','host_send')->update(array('content'=>trim(Input::get('host_send'))));
 
 
-		$info->where('name','sdt_trung_tam_bh')->update(array('content'=>trim(Input::get('sdt_trung_tam_bh'))));
-		$info->where('name','address')->update(array('content'=>str_replace("\n","<br>",trim(Input::get('address')))));
+		$info->where('name','port_send')->update(array('content'=>trim(Input::get('port_send'))));
 
 
-		return redirect('admin/info')->with(['message'=>'Cập nhật thành công thông tin mua/ban hàng.']);
+		return redirect('admin/info')->with(['message'=>'Cập nhật thành công cấu hình send mail.']);
 	}
 
 

@@ -348,6 +348,8 @@ h1 small{
 				<ul></ul>
 				<li data-value="book"><i class="plusfolder"></i> Sách</li>
 				<ul></ul>
+				<li data-value="mucluc"><i class="plusfolder"></i> Mục lục</li>
+				<ul></ul>
 				<li data-value="slide"><i class="plusfolder"></i> Slide</li>
 				<ul></ul>
 				<li data-value="ads"><i class="plusfolder"></i> Quảng Cáo</li>

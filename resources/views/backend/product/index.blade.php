@@ -137,7 +137,7 @@ function showImage($path){
                          
                           <b><a href="{{url($item->url.'.html')}}" target="_black">{{$item->name}}</a></b><br />
                           <small>{{date('d/m/Y H:i',strtotime($item->created_at))}} <br /> Tác giả: {{$item->author}}<br /> status: {{$arr_status[$item->status]}}
-<br />Xem: {{$item->viewer}}
+| Xem: {{$item->viewer}}
                           </small>
                         </div>
                       </span>
@@ -163,8 +163,8 @@ function showImage($path){
 
                                           <td>
                                           <div class="clearfix"> 
-                                            <b class="pull-left" style="width:68px">Giá:</b> {{$item->price==0?'Miển phí':number_format($item->price,0,',','.')}}<br />
-                                            <b class="pull-left" style="width:68px">Giá km: </b> {{$item->price==0?'Miển phí':number_format($item->price_company,0,',','.')}}<br />
+                                            <b class="pull-left" style="width:60px">Giá:</b> {{$item->price==0?'Miển phí':number_format($item->price,0,',','.')}}<br />
+                                            <b class="pull-left" style="width:60px">Giá km: </b> {{$item->price==0?'Miển phí':number_format($item->price_company,0,',','.')}}<br />
                                          
                                             </div>
                                           </td>

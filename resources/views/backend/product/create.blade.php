@@ -135,7 +135,7 @@
                   </div>
                   
                   <span class="desc">
-                    Giá khuyến mãi của sách. <b>Để 0 nếu là miễn phí.</b>
+                    Giá khuyến mãi của sách. <b>Để 0 nếu giống giá gốc.</b>
                   </span>
                   <span class="pricetext"></span>
                 </div>

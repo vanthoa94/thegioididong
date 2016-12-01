@@ -20,6 +20,7 @@ function showImage($path){
  ?>
 
 @include('backend._message')
+
 <div>
 <h4 style="margin-bottom:0px;padding-bottom:0px">Thông Tin Chung</h4>
 	<hr style="margin-top:10px;padding-top:0px" />
@@ -32,7 +33,7 @@ function showImage($path){
 				</div>
 				<div class="col-md-8 required">
 					<div class="red">*</div>
-					<textarea rows="4" class="form-control" name="title">{{$data['title']}}</textarea>
+					<textarea rows="3" class="form-control" name="title"><?php echo $data['title'] ?></textarea>
 					<span class="desc">Tên website</span>
 				</div>
 			</div><br />
@@ -43,7 +44,7 @@ function showImage($path){
 					<label>Mô Tả:</label>
 				</div>
 				<div class="col-md-8">
-					<textarea rows="4" class="form-control" name="meta_description">{{$data['meta_description']}}</textarea>
+					<textarea rows="3" class="form-control" name="meta_description"><?php echo $data['meta_description']?></textarea>
 					<span class="desc">Dùng cho SEO</span>
 				</div>
 			</div><br />
@@ -57,7 +58,7 @@ function showImage($path){
 					<label>Từ Khóa:</label>
 				</div>
 				<div class="col-md-8">
-					<textarea rows="3" class="form-control" name="meta_keywords">{{$data['meta_keywords']}}</textarea>
+					<textarea rows="3" class="form-control" name="meta_keywords"><?php echo $data['meta_keywords']?></textarea>
 					<span class="desc">Mỗi từ khóa cách nhau 1 dấu ','</span>
 				</div>
 			</div><br />
@@ -69,35 +70,8 @@ function showImage($path){
 					<label>Copyright:</label>
 				</div>
 				<div class="col-md-8">
-					<textarea rows="3" class="form-control" name="copyright">{{str_replace("<br>","\n",$data['copyright'])}}</textarea>
+					<textarea rows="3" class="form-control" name="copyright"><?php echo str_replace("<br>","\n",$data['copyright'])?></textarea>
 					<span class="desc">Thông tin bản quyền</span>
-				</div>
-			</div><br />
-		</div>
-	</div>
-
-	<div class="row margin">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Giấy phép:</label>
-				</div>
-				<div class="col-md-8">
-					<textarea rows="3" class="form-control" name="giay_phep">{{str_replace("<br>","\n",$data['giay_phep'])}}</textarea>
-					<span class="desc">Thông tin giấy phép kinh doanh</span>
-				</div>
-			</div><br />
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				
-				<div class="col-md-4">
-					<label>Slogan:</label>
-				</div>
-				<div class="col-md-8 required">
-					<span class="red">*</span>
-					<textarea rows="3" class="form-control" name="slide_top">{{$data['slide_top']}}</textarea>
-					<span class="desc">Mỗi Slogan cách 1 hàng</span>
 				</div>
 			</div><br />
 		</div>
@@ -109,16 +83,15 @@ function showImage($path){
 	<div class="row">
     		<div class="col-md-12 text-right">
     			<input type="submit" class="btn btn-success" value="Lưu Lại" />
-    			<input type="button" class="btn btn-default" value="Nhập Lại" />
+    			<input type="reset" class="btn btn-default" value="Nhập Lại" />
     		</div>
     	</div><br />
     	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 </form>
 </div><!--//Thông Tin Chung-->
 
-
 <div>
-<h4 style="margin-bottom:0px;padding-bottom:0px">Thông Tin Liên Hệ</h4>
+<h4 style="margin-bottom:0px;padding-bottom:0px">Thông Tin Liên hệ</h4>
 	<hr style="margin-top:10px;padding-top:0px" />
 <form method="post" id="frm-contact" action="{{Asset('admin/info/contact')}}">
 	<div class="row">
@@ -129,7 +102,7 @@ function showImage($path){
 				</div>
 				<div class="col-md-8 required">
 					<div class="red">*</div>
-					<input type="text" class="form-control" name="hotline" value="{{$data['hotline']}}" />
+					<input type="text" class="form-control" name="hotline" value="<?php echo $data['hotline']?>" />
 					<span class="desc">Các số điện thoại nóng</span>
 				</div>
 			</div><br />
@@ -137,12 +110,12 @@ function showImage($path){
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Số điện thoại:</label>
+					<label>Email:</label>
 				</div>
 				<div class="col-md-8 required">
-					<span class="red">*</span>
-					<input type="text" class="form-control" name="phone" value="{{$data['phone']}}" />
-					<span class="desc">Số điện thoại chính của website</span>
+					<div class="red">*</div>
+					<input type="text" class="form-control" name="email" value="<?php echo $data['email']?>" />
+					<span class="desc">Email</span>
 				</div>
 			</div><br />
 		</div>
@@ -152,12 +125,11 @@ function showImage($path){
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Email:</label>
+					<label>Zalo:</label>
 				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="email" value="{{$data['email']}}" />
-					<span class="desc">Email chính</span>
+				<div class="col-md-8">
+					<input type="text" class="form-control" name="zalo" value="<?php echo $data['zalo']?>" />
+					<span class="desc">Link zalo</span>
 				</div>
 			</div><br />
 		</div>
@@ -167,7 +139,7 @@ function showImage($path){
 					<label>Facebook:</label>
 				</div>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="facebook" value="{{$data['facebook']}}" />
+					<input type="text" class="form-control" name="facebook" value="<?php echo $data['facebook']?>" />
 					<span class="desc">Link facebook</span>
 				</div>
 			</div><br />
@@ -181,7 +153,7 @@ function showImage($path){
 					<label>Skype:</label>
 				</div>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="skype" value="{{$data['skype']}}" />
+					<input type="text" class="form-control" name="skype" value="<?php echo $data['skype']?>" />
 					<span class="desc">Link skype</span>
 				</div>
 			</div><br />
@@ -192,7 +164,7 @@ function showImage($path){
 					<label>Google:</label>
 				</div>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="google" value="{{$data['google']}}" />
+					<input type="text" class="form-control" name="google" value="<?php echo $data['google']?>" />
 					<span class="desc">Link google</span>
 				</div>
 			</div><br />
@@ -203,11 +175,24 @@ function showImage($path){
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Twitter:</label>
+					<label>Địa chỉ:</label>
 				</div>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="twitter" value="{{$data['twitter']}}" />
-					<span class="desc">Link Twitter</span>
+					<textarea class="form-control" name="address"><?php echo $data['address']?></textarea>
+					<span class="desc">Địa chỉ công ty</span>
+				</div>
+			</div><br />
+		</div>
+
+
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Giấy phép kinh doanh:</label>
+				</div>
+				<div class="col-md-8">
+					<textarea class="form-control" name="GPKD"><?php echo $data['GPKD']?></textarea>
+					<span class="desc">Thông tin giấy phép kinh doanh</span>
 				</div>
 			</div><br />
 		</div>
@@ -219,7 +204,80 @@ function showImage($path){
 	<div class="row">
     		<div class="col-md-12 text-right">
     			<input type="submit" class="btn btn-success" value="Lưu Lại" />
-    			<input type="button" class="btn btn-default" value="Nhập Lại" />
+    			<input type="reset" class="btn btn-default" value="Nhập Lại" />
+    		</div>
+    	</div><br />
+    	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+</form>
+</div><!--//Thông Tin Chung-->
+
+
+<div>
+<h4 style="margin-bottom:0px;padding-bottom:0px">Cấu hình email nhận liên hệ</h4>
+	<hr style="margin-top:10px;padding-top:0px" />
+<form method="post" id="frm-setting" action="{{Asset('admin/info/setting')}}">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Email:</label>
+				</div>
+				<div class="col-md-8 required">
+					<div class="red">*</div>
+					<input type="text" class="form-control" name="email_send" value="<?php echo $data['email_send']?>" />
+					<span class="desc">Email nhận liên hệ khi có khách gửi liên hệ. Nếu là gmail thì <a target="_black" href="https://thachpham.com/wordpress/wordpress-tutorials/smtp-gmail-wordpress.html">vào đây</a> xem cách tắt bảo mật</span>
+				</div>
+			</div><br />
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Password:</label>
+				</div>
+				<div class="col-md-8 required">
+					<span class="red">*</span>
+					<input type="password" class="form-control" name="password_send" value="<?php echo $data['password_send']?>" />
+					<span class="desc">Password của email</span>
+				</div>
+			</div><br />
+		</div>
+	</div>
+
+	<div class="row margin">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>SMTP Email Server:</label>
+				</div>
+				<div class="col-md-8 required">
+					<div class="red">*</div>
+					<input type="text" class="form-control" name="host_send" value="<?php echo $data['host_send']?>" />
+					<span class="desc">VD: của gmail là: smtp.gmail.com, yahoo là: smtp.mail.yahoo.com. <a target="_black" href="http://kienthuc.pavietnam.vn/article/Email-Server/Huong-dan-Thu-thuat/Danh-sach-port-POP3---SMTP-Email-Server.html">Vào đây</a> để xem thêm</span>
+				</div>
+			</div><br />
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Port SMTP Server:</label>
+				</div>
+				<div class="col-md-8 required">
+					<span class="red">*</span>
+					<input type="text" class="form-control" name="port_send" value="<?php echo $data['port_send']?>" />
+					<span class="desc">VD: của gmail là: 465 hoặc 587, yahoo là: 465, 995. <a target="_black" href="http://kienthuc.pavietnam.vn/article/Email-Server/Huong-dan-Thu-thuat/Danh-sach-port-POP3---SMTP-Email-Server.html">Vào đây</a> để xem thêm</span>
+				</div>
+			</div><br />
+		</div>
+	</div>
+		
+	</div>
+	
+
+
+	<div class="row">
+    		<div class="col-md-12 text-right">
+    			<input type="submit" class="btn btn-success" value="Lưu Lại" />
+    			<input type="reset" class="btn btn-default" value="Nhập Lại" />
     		</div>
     	</div><br />
     	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
@@ -228,143 +286,8 @@ function showImage($path){
 
 
 
-<div>
-<h4 style="margin-bottom:0px;padding-bottom:0px">Thông Tin Mua/Bán Hàng</h4>
-	<hr style="margin-top:10px;padding-top:0px" />
-<form method="post" id="frm-banhang" action="{{Asset('admin/info/banhang')}}">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>SĐT mùa hàng từ xa:</label>
-				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="sdt_mua_hang_tu_xa" value="{{$data['sdt_mua_hang_tu_xa']}}" />
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
 
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Email mua hàng từ xa:</label>
-				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="email_mua_hang_tu_xa" value="{{$data['email_mua_hang_tu_xa']}}" />
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-
-		
-	</div>
-
-	<div class="row margin">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>SĐT trung tâm bảo hành:</label>
-				</div>
-				<div class="col-md-8 required">
-					<span class="red">*</span>
-					<input type="text" class="form-control" name="sdt_trung_tam_bh" value="{{$data['sdt_trung_tam_bh']}}" />
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Email trung tâm bảo hành:</label>
-				</div>
-				<div class="col-md-8 required">
-					<span class="red">*</span>
-					<input type="text" class="form-control" name="email_trung_tam_bao_hanh" value="{{$data['email_trung_tam_bao_hanh']}}" />
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-		
-	</div>
-
-	<div class="row">
-		
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>SĐT đại lý:</label>
-				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="sdt_dai_ly" value="{{$data['sdt_dai_ly']}}" />
-					<span class="desc">.</span>
-				</div>
-
-				<div class="col-md-4">
-					<label>Email đại lý:</label>
-				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="email_dai_ly" value="{{$data['email_dai_ly']}}" />
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Địa chỉ:</label>
-				</div>
-				<div class="col-md-8">
-					<textarea style="height:106px" class="form-control" name="address">{{str_replace("<br>","\n",$data['address'])}}</textarea>
-					<span class="desc">Có thể viết mã HTML.</span>
-				</div>
-			</div><br />
-		</div>
-		
-	</div>
-
-	<div class="row margin">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Giờ mở cửa:</label>
-				</div>
-				<div class="col-md-8">
-					<textarea rows="4" class="form-control" name="open_time">{{str_replace("<br>","\n",$data['open_time'])}}</textarea>
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Giờ bảo hành:</label>
-				</div>
-				<div class="col-md-8">
-					<textarea rows="4" class="form-control" name="gio_bao_hanh">{{str_replace("<br>","\n",$data['gio_bao_hanh'])}}</textarea>
-					<span class="desc">.</span>
-				</div>
-			</div><br />
-		</div>
-	</div>
-
-
-	<div class="row">
-    		<div class="col-md-12 text-right">
-    			<input type="submit" class="btn btn-success" value="Lưu Lại" />
-    			<input type="button" class="btn btn-default" value="Nhập Lại" />
-    		</div>
-    	</div><br />
-    	<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-</form>
-</div><!--//Thông Tin ban hang-->
-
-
-<div id="logofavicon">
+<div id="logofavicon" class="padding-content">
 <h4>
 	Logo & Favicon
 	 
@@ -377,7 +300,7 @@ function showImage($path){
 				<form method="post" action="<?php echo Asset('admin/info/changelogo') ?>" id="frmchangelogo" enctype="multipart/form-data">
 				<label for="logo" class="uploadimg">
 					<div>
-						<img class="img-thumbnail" src="{{Asset('public/images/logo.jpg')}}" data-old="logo.png" />
+						<img class="img-thumbnail" src="{{Asset('public/images/logo.jpg')}}" data-old="logo.jpg" />
 					</div>
 					<br />
 					<input type="file" name="logo" class="hide" id="logo" />
@@ -393,7 +316,7 @@ function showImage($path){
 				<form method="post" action="<?php echo Asset('admin/info/changefavicon') ?>"  enctype="multipart/form-data">
 				<label for="favicon" class="uploadimg">
 					<div>
-						<img class="img-thumbnail" src="{{Asset('public/images/favicon.ico')}}" data-old="favicon.png" />
+						<img class="img-thumbnail" src="{{Asset('public/images/favicon.ico')}}" data-old="favicon.ico" />
 					</div>
 					<br />
 					<input type="file" name="favicon" class="hide" id="favicon" />
@@ -419,6 +342,7 @@ function showImage($path){
 
 <script type="text/javascript">
 var currentPage = "#menu_info";
+var subPage='info';
 var asset_path="{{Asset('public')}}/";
 function isImage(file) {
     file = file.split(".").pop();
@@ -453,9 +377,6 @@ $(document).ready(function(){
 		{
 			'name':'title',
 			'trong':true
-		},{
-			'name':'slide_top',
-			'trong':true
 		}
 
 	]);
@@ -465,34 +386,25 @@ $(document).ready(function(){
 			'name':'hotline',
 			'trong':true
 		},{
-			'name':'phone',
-			'trong':true
-		},{
 			'name':'email',
 			'email':true
 		}
 
 	]);
 
-	$("#frm-banhang").kiemtra([
+	$("#frm-setting").kiemtra([
 		{
-			'name':'sdt_mua_hang_tu_xa',
+			'name':'email_send',
+			'email':true
+		},{
+			'name':'password_send',
 			'trong':true
 		},{
-			'name':'sdt_trung_tam_bh',
+			'name':'host_send',
 			'trong':true
 		},{
-			'name':'sdt_dai_ly',
-			'trong':true
-		},{
-			'name':'email_mua_hang_tu_xa',
-			'trong':true
-		},{
-			'name':'email_trung_tam_bao_hanh',
-			'trong':true
-		},{
-			'name':'email_dai_ly',
-			'trong':true
+			'name':'port_send',
+			'so':true
 		}
 
 	]);

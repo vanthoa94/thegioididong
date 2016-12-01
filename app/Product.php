@@ -18,4 +18,10 @@ class Product extends Model
     		"Dừng xuất bản"
     	);
     }
+
+    public static function showImage($path){
+        if(strpos($path, "http")===0)
+            return $path;
+        return Asset('public/images/'.$path);
+    }
 }

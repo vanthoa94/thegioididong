@@ -1,0 +1,126 @@
+#slide, #slide a, #slide a img {
+    width: 780px;
+    height: 350px;
+}
+
+#slide {
+    position: relative;
+}
+
+#slide {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+#slide #prev {
+    background-position: top left;
+    left: 30px;
+}
+
+#slide #next {
+    background-position: top right;
+    right: 30px;
+}
+
+#slide #next, #slide #prev {
+    background-image: url("../images/arrows.png");
+    background-repeat: no-repeat;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+}
+
+#slide .slidehide {
+    display: none;
+}
+
+#slide #arrow {
+    position: absolute;
+    right: 30px;
+    bottom: 0px;
+}
+
+#slide:hover .slidehide {
+    display: block;
+}
+
+.box {
+    margin-bottom: 20px;
+}
+
+.box h2 {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+    color: #3b5998;
+        font-size: 1.5em;
+        font-weight: bold;
+}
+
+.box .contentbox .item {
+    height: 250px;
+    float: left;
+    margin-top: 15px;
+}
+
+.box h2 a {
+    float: right;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.box .contentbox .item .image, .box .contentbox .item .image img {
+        width: 115px;
+    height: 168px;
+    margin: 0px auto;
+}
+
+.box .contentbox .item .image {
+    margin-bottom: 15px;
+}
+
+.box .contentbox .item a {
+    color: #555;
+    font-weight: 550;
+    font-size: 12px;
+}
+
+.box .contentbox .item h3 {
+    height: 35px;
+    overflow: hidden;
+    width: 70%;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 1.28em;
+    font-weight: bold;
+}
+
+.box .contentbox .item a:hover {
+    text-decoration: underline;
+}
+
+.box .contentbox .item .tacgia {
+    height: 18px !important;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    line-height: 18px;
+    color: #747474;
+    font-size: 11px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.box .contentbox .item p {
+    color: #c02026;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+.box .contentbox .item p s{
+	color:#999;
+	font-size:11px;
+}

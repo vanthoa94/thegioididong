@@ -2,9 +2,9 @@
 @section('title','Mục lục - ACP')
 
 @section('breadcrumb')
-<h2>Mục lục "{{$sach}}"</h2>
+<h2><a href="{{url('admin/product')}}">Mục lục "{{$sach->name}}"</a></h2>
 <h3 class="trole" data-role="product/create">
-        <a href="{{url('admin/product/create')}}">Thêm Mới</a>
+        <a href="{{url('admin/muc-luc/create/'.$sach->id)}}">Thêm Mới</a>
     </h3>
 @endsection
 
@@ -71,17 +71,17 @@
     </div>
     <!--.captiontable-->
   <div style="overflow-x:auto;">
-      <table style="min-width:1100px">
+      <table style="min-width:900px">
           <thead>
               <tr>
                   <th width="35px">
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                   </th>
                     <th class="tsort" width="60px">S.Xếp</th>
-                    <th width="250px">Mục lục</th>
-                   
+                    <th width="300px">Mục lục</th>
+                   <th class="tsort">Xem</th>
                    <th>Hiển Thị</th>
-                   <th>Ngày tạo</th>
+                   <th class="tsort">Ngày tạo</th>
                    <th class="tsort">Ngày cập nhật</th>
               </tr>
           </thead>
@@ -101,7 +101,7 @@
                                          <td>
                                           {{$item->name}}
                                             <div class="row-action">
-                                                    <span title="Sửa thông tin"><a href="{{url('admin/muc-luc/'.$item->id)}}">Sửa</a>
+                                                    <span title="Sửa thông tin"><a href="{{url('admin/muc-luc/update/'.$item->id)}}">Sửa</a>
                                                         <small>| </small>
                                                     </span>
                                                   
@@ -118,7 +118,7 @@
                                                 </div>
                                           </td>
 
-                                         
+                                         <td>{{$item->viewer}}</td>
                                           <td>
                                                     <span class="ascheckbox checkboxblock {{$item->display==1?'checked':''}}"
                                                 data-background="none" 
@@ -129,6 +129,7 @@
                                                 data-success="display"
                                                 data-confirm="Bạn có chắc muốn <b>{yes=hiện thị}</b><b>{no=ẩn}</b> mục lục <b>{name}</b>?"></span>
                                           </td>
+
 <td>
                                     {{date('d/m/Y H:i',strtotime($item->created_at))}}
                                 </td>
@@ -156,9 +157,7 @@
   
 	$(document).ready(function(){
     
-    if ($(window).width()>769 && !$("#col-left").hasClass("hidemenu")) {
-                $("#togglemenu").click();
-            }
+    
     new TTable($("#ttable"),{
       'token':"{{csrf_token()}}",
       'alert':getAlert,
@@ -208,7 +207,7 @@
             
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(7) .checkboxblock").addClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(3) .checkboxblock").addClass("checked");
                    
                 }
             });
@@ -218,7 +217,7 @@
         "hides": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(7) .checkboxblock").removeClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(3) .checkboxblock").removeClass("checked");
                    
                 }
             });

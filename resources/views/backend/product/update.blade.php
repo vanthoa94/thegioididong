@@ -119,7 +119,7 @@ function showImage($path){
               <div class="col-sm-8 required">
                 <span class="red">*</span>
                 <div class="input-group">
-                  <input type="text" name="price" value="{{$data->price}}" class="form-control formatprice" />
+                  <input type="text" name="price" value="{{number_format($data->price,0,'.',',')}}" class="form-control formatprice" />
                   <span class="input-group-addon">VNĐ</span>
                 </div>
                 
@@ -138,12 +138,12 @@ function showImage($path){
                 </div>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input type="text" name="price_company" value="{{$data->price_pro}}" class="form-control formatprice" />
+                    <input type="text" name="price_company" value="{{number_format($data->price_pro,0,'.',',')}}" class="form-control formatprice" />
                     <span class="input-group-addon">VNĐ</span>
                   </div>
                   
                   <span class="desc">
-                    Giá khuyến mãi của sách. <b>Để 0 nếu là miễn phí.</b>
+                    Giá khuyến mãi của sách. <b>Để 0 nếu giống giá gốc.</b>
                   </span>
                   <span class="pricetext"></span>
                 </div>

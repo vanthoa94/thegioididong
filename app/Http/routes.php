@@ -81,7 +81,7 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 	Route::group(['prefix'=>'muc-luc'],function(){
 		Route::get("{id}","MucLucController@index")->where('id','[0-9]+');
-		Route::get("create","MucLucController@create");
+		Route::get("create/{id}","MucLucController@create")->where('id','[0-9]+');
 		Route::post("create","MucLucController@postCreate");
 
 		Route::get("update/{id}","MucLucController@update")->where('id','[0-9]+');
@@ -236,7 +236,7 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 		Route::get("/","InfoController@index");
 		Route::post("postinfoall","InfoController@postinfoall");
 		Route::post("contact","InfoController@contact");
-		Route::post("banhang","InfoController@banhang");
+		Route::post("setting","InfoController@setting");
 		Route::post("changefavicon","InfoController@changefavicon");
 		Route::post("changelogo","InfoController@changelogo");
 	});

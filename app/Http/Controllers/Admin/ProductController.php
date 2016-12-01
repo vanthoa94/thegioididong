@@ -74,8 +74,8 @@ class ProductController extends BaseController
 		
 		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
 
-		if(trim($request->price_pro)!=""){
-			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_pro));
+		if(trim($request->price_company)!=""){
+			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
 		}else{
 			$product->price_pro=0;
 		}
@@ -147,8 +147,8 @@ class ProductController extends BaseController
 		
 		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
 
-		if(trim($request->price_pro)!=""){
-			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_pro));
+		if(trim($request->price_company)!=""){
+			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
 		}else{
 			$product->price_pro=0;
 		}

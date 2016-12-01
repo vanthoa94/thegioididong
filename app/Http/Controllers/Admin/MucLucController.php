@@ -13,16 +13,16 @@ class MucLucController extends BaseController
 			return $this->ErrorPermission('Mục lục');
 		}
 
-		$sach=Product::select('name')->where('id',$id)->first();
-if($sach==null)
-		return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
+		$sach=Product::select('id','name')->where('id',$id)->first();
+		if($sach==null)
+			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
 
 
 		
-		$data=MucLuc::select('muclucs.id','muclucs.sort_index','muclucs.name','muclucs.url','muclucs.display','muclucs.created_at','muclucs.updated_at')->where('muclucs.book_id',$id)->orderBy('id','desc')->get();
+		$data=MucLuc::select('id','sort_index','name','url','display','created_at','updated_at','viewer')->where('muclucs.book_id',$id)->orderBy('sort_index')->get();
 		
 		
-		return view("backend.mucluc.index",array('data'=>$data,'sach'=>$sach->name));
+		return view("backend.mucluc.index",array('data'=>$data,'sach'=>$sach));
 	}
 
 
@@ -31,8 +31,11 @@ if($sach==null)
 			return $this->ErrorPermission('Thêm mục lục');
 		}
 
+		$sach=Product::select('id','name')->where('id',$id)->first();
+		if($sach==null)
+			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
 
-		return view("backend.product.create",array('data'=>$data));
+		return view("backend.mucluc.create",array('sach'=>$sach));
 	}
 
 	public function postCreate(MucLucRequest $request){
@@ -43,13 +46,60 @@ if($sach==null)
 
 		$mucluc=new MucLuc();
 
-		
+		$mucluc->name=str_replace("\"", "'", trim($request->name));
 
+		$mucluc->url=$this->formatToUrl(trim($request->url));
+		if(MucLuc::select('id')->where('book_id',$request->idsach)->where('url',$mucluc->url)->count()>0){
+			return redirect()->to('admin/muc-luc/create/'.$request->idsach)->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
+		}
+
+		$mucluc->book_id=$request->idsach;
+
+		$mucluc->sort_index=0;
+
+		$mucluc->viewer=0;
+
+		$mucluc->image=trim($request->image);
+
+		$mucluc->audio=trim($request->audio);
+
+		$mucluc->content=$request->content;
+
+		$mucluc->display=1;
+
+
+		$idyoutu=trim($request->video);
+		if($idyoutu!=""){
+			$arrid=array();
+			$ferror=false;
+			if(strpos("a".$idyoutu, "youtube.com")==false && strpos("a".$idyoutu, "youtu.be")==false){
+					$ferror=true;
+			}else{
+				if(strpos("a".$idyoutu, "youtube.com")!=false){
+					$arrid=preg_split("/watch\\?v=|\/embed\\//", $idyoutu);
+							
+				}else{
+					$arrid=explode("youtu.be/", $idyoutu);
+				}
+			}
+
+			if($ferror || count($arrid)<=1){
+				return redirect()->to('admin/muc-luc/create/'.$request->idsach)->with(['message'=>'Link Video Youtube không hợp lệ. Vui lòng copy url video của youtube dán vào.','message_type'=>'danger'])->withInput($request->all());
+			}
+
+			$idyoutube=preg_split("/(&|#|\\?)+/", $arrid[1]);
+			
+			$mucluc->video=$idyoutube[0];
+
+		}else{
+			$mucluc->video="";
+		}
+		
 		if($mucluc->save()){
 			
-			return redirect()->to('admin/muc-luc/create/1')->with('message','Thêm thành công.');
+			return redirect()->to('admin/muc-luc/create/'.$request->idsach)->with('message','Thêm thành công.');
 		}
-		return redirect()->to('admin/muc-luc/create/1')->with(['message'=>'Có lỗi. Thêm thất bại','message_type'=>'danger']);
+		return redirect()->to('admin/muc-luc/create/'.$request->idsach)->with(['message'=>'Có lỗi. Thêm thất bại','message_type'=>'danger']);
 	}
 
 	public function update($id){
@@ -62,8 +112,12 @@ if($sach==null)
 		$data['data']=MucLuc::find((int)$id);
 		if($data['data']==null)
 			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
-		$data['listCategory']=Category::select('id','name','parent')->get();
-		return view('backend.product.update',$data);
+
+		$data['sach']=Product::select('id','name')->where('id',$data['data']->book_id)->first();
+		if($data['sach']==null)
+			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
+	
+		return view('backend.mucluc.update',$data);
 	}
 
 	public function postUpdate(MucLucRequest $request){
@@ -74,14 +128,54 @@ if($sach==null)
 
 		$mucluc=MucLuc::find((int)$request->id);
 		if($mucluc==null)
-			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
+			return redirect()->to('admin/muc-luc/'.$request->idsach)->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
+		
+		$mucluc->name=str_replace("\"", "'", trim($request->name));
+
+		$mucluc->url=$this->formatToUrl(trim($request->url));
+		if(MucLuc::select('id')->where('book_id',$request->idsach)->where('id','<>',$request->id)->where('url',$mucluc->url)->count()>0){
+			return redirect()->to('admin/muc-luc/update/'.$request->id)->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
+		}
+
+		$mucluc->image=trim($request->image);
+
+		$mucluc->audio=trim($request->audio);
+
+		$mucluc->content=$request->content;
+
+		$idyoutu=trim($request->video);
+		if($idyoutu!=""){
+			$arrid=array();
+			$ferror=false;
+			if(strpos("a".$idyoutu, "youtube.com")==false && strpos("a".$idyoutu, "youtu.be")==false){
+					$ferror=true;
+			}else{
+				if(strpos("a".$idyoutu, "youtube.com")!=false){
+					$arrid=preg_split("/watch\\?v=|\/embed\\//", $idyoutu);
+							
+				}else{
+					$arrid=explode("youtu.be/", $idyoutu);
+				}
+			}
+
+			if($ferror || count($arrid)<=1){
+				return redirect()->to('admin/muc-luc/update/'.$request->id)->with(['message'=>'Link Video Youtube không hợp lệ. Vui lòng copy url video của youtube dán vào.','message_type'=>'danger'])->withInput($request->all());
+			}
+
+			$idyoutube=preg_split("/(&|#|\\?)+/", $arrid[1]);
+			
+			$mucluc->video=$idyoutube[0];
+
+		}else{
+			$mucluc->video="";
+		}
 		
 		
 		if($mucluc->save()){
 		
-			return redirect()->to('admin/muc-luc/'.$request->id)->with('message','Cập nhật thành công.');
+			return redirect()->to('admin/muc-luc/update/'.$request->id)->with('message','Cập nhật thành công.');
 		}
-		return redirect()->to('admin/muc-luc/'.$request->id)->with(['message'=>'Có lỗi. Cập nhật thất bại','message_type'=>'danger']);
+		return redirect()->to('admin/muc-luc/update/'.$request->id)->with(['message'=>'Có lỗi. Cập nhật thất bại','message_type'=>'danger']);
 	}
 
 	public function postDelete(){
@@ -97,6 +191,20 @@ if($sach==null)
 			return json_encode(["success"=>true,"message"=>"Xóa thành công mục lục {name}"]);
 		}
 		return json_encode(["success"=>false,"message"=>"Xóa mục lục {name} thất bại"]);
+	}
+
+	public function postDeletes(){
+
+		if(!$this->checkPermission('product/delete')){
+			return json_encode(["success"=>false,"message"=>"Bạn không có quyền xóa"]);
+		}
+
+		$id=explode(',',\Input::get('data'));
+
+		if(MucLuc::destroy($id)){
+			return json_encode(["success"=>true,"message"=>"Xóa thành công ".count($id)." Mục lục."]);
+		}
+		return json_encode(["success"=>false,"message"=>"Xóa mục lục thất bại"]);
 	}
 
 	public function display(){
@@ -123,7 +231,7 @@ if($sach==null)
 		$data=\Input::get('data');
 		foreach(\Input::get('id') as $key=>$value){
 		
-			MucLuc::where('id',$value)->update(['index_home'=>$data[$key]]);
+			MucLuc::where('id',$value)->update(['sort_index'=>$data[$key]]);
 		}
 
 		return json_encode(["success"=>true]);
