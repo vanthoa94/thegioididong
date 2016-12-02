@@ -73,7 +73,7 @@ class VideoController extends BaseController
 		
 		$video->video_url="https://www.youtube.com/embed/".$idyoutube[0];
 		if(trim($request->image)==""){
-			$video->image="http://img.youtube.com/vi/".$idyoutube[0]."/1.jpg";
+			$video->image="https://img.youtube.com/vi/".$idyoutube[0]."/mqdefault.jpg";
 		}else{
 			$video->image=$request->image;
 		}
@@ -144,7 +144,7 @@ class VideoController extends BaseController
 		
 		$video->video_url="https://www.youtube.com/embed/".$idyoutube[0];
 		if(trim($request->image)==""){
-			$video->image="http://img.youtube.com/vi/".$idyoutube[0]."/1.jpg";
+			$video->image="https://img.youtube.com/vi/".$idyoutube[0]."/mqdefault.jpg";
 		}else{
 			$video->image=$request->image;
 		}

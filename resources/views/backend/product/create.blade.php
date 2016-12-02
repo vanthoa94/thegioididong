@@ -160,11 +160,11 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4">
-                        <label>Mô tả ngắn gọn về sách:</label>
+                        <label>Mô tả về sách:</label>
                     </div>
                     <div class="col-md-8">
                        <textarea rows="3" name="description" class="form-control">{{old('description')}}</textarea>
-                        <span class="desc">Khoảng 250 ký tự</span>
+                        <span class="desc">Dùng cho SEO. Khoảng 250 ký tự</span>
                     </div>
                     <div class="col-md-4">
                         <label>Từ khóa:</label>
@@ -217,11 +217,11 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2">
-                        <label>Khuyến mãi:</label>
+                        <label>Nội dung sách:</label>
                     </div>
                     <div class="col-md-10" id="tNicEdit" data-height="250">
                         <textarea style="width:100%;height:250px" name="promotion" id="promotion">{{old('promotion')}}</textarea>
-                      <span class="desc">Để trống nếu không có. Khoảng 1000 ký tự</span>
+                      <span class="desc">Nội dung giới thiệu tóm tắt về sách</span>
                     </div>
                 </div><br />
             </div>

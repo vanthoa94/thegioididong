@@ -161,11 +161,11 @@ function showImage($path){
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Google:</label>
+					<label>Youtube:</label>
 				</div>
 				<div class="col-md-8">
 					<input type="text" class="form-control" name="google" value="<?php echo $data['google']?>" />
-					<span class="desc">Link google</span>
+					<span class="desc">Link kênh youtube</span>
 				</div>
 			</div><br />
 		</div>

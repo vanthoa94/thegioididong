@@ -8,23 +8,25 @@
 
 @section('content')
 
-<div class="banner clearfix">
-	<div style="width:300px;height:1px" class="pull-left">
+<div class="row">
 
+	<div id="slide" class="col-xs-offset-0 col-sm-offset-4 col-md-offset-3" style="padding-right:15px">
+		@foreach($slideshow as $item)
+			<a href="{{$item->url==''?'#':$item->url}}" title="{{$item->title}}"><img src="{{\App\Product::showImage($item->image)}}" alt="{{$item->title}}"></a>
+		@endforeach
+		
 	</div>
-	<div id="slide" class="pull-left"><div id="contentslide" style="width: 780px; margin-left: 0px;"><a href="http://www.tienghoadidong.com"><img src="http://www.tienghoadidong.com/style/images/slide/qc%203.jpg" alt=""></a></div><div id="prev" class="slidehide"></div><div id="next" class="slidehide"></div><div id="arrow" class=""><li class="active"></li></div></div>
 </div>
 
-
 <div class="row contentmain">
-	<div class="col-xs-12 col-sm-8 col-md-6">
+	<div class="col-xs-12 col-sm-6 col-md-6">
 		<div class="box">
 			<h2>Sách Tiếng Hoa <a href=""> Xem thêm &gt;&gt;</a></h2>
 			<div class="contentbox clearfix">
 				<div class="row">
 					@foreach($listBookNew as $item)
 
-					<div class="item col-xs-6 col-sm-4 col-md-4">
+					<div class="item col-xs-6 col-sm-6 col-md-4">
 						<div class="image">
 							<a href="{{url($item->url.'.html')}}"><img src="{{\App\Product::showImage($item->image)}}" alt="﻿{{$item->name}}"></a>
 						</div>
@@ -50,7 +52,7 @@
 		</div>
 	</div><!--colleft-->
 
-	<div class="col-xs-12 col-sm-4 col-md-6">
+	<div class="col-xs-12 col-sm-6 col-md-6 hidden-xs">
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>

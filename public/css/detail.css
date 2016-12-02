@@ -1,0 +1,156 @@
+.title {
+    font-size: 18px;
+    color: #555;
+    line-height: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#infobook p,#infobook #likefb{
+	display: block;
+	font-size: 13px;
+}
+
+#infobook p b,
+#infobook #likefb b{
+	display: block;
+	float:left;
+	width:75px;
+	margin-right: 10px;
+	text-align: right;
+}
+#noidung{
+	margin-top: 20px;
+}
+
+
+#ttt{
+	display: block;
+}
+
+#ttt span,#ttt1 span{
+	padding:5px 10px;
+	border:1px solid #ccc;
+	background-color: #eee;
+}
+#ttt span:hover,#ttt1 span:hover{
+	cursor: pointer;
+	background-color: #ddd;
+}
+
+#ttt1,#ttt{
+	margin-top:15px;
+}
+
+#ttt1 span{
+	display: block;
+	float: left;
+	width:50%;
+
+}
+
+.boxchuong{
+	    border: solid #e6e6e6 2px;
+	margin-top: 15px;
+}
+
+.titleboxx{
+	font-size: 14px;
+	margin: 0px;
+	font-weight: bold;
+	color:#2980b9;
+	
+	padding:10px 10px 7px 10px;
+	border: #DCDCDC solid 1px;
+	border-bottom: 1px dotted #ddd;
+}
+
+.boxchuong .contentboxx{
+    border: #DCDCDC solid 1px;
+
+	padding:5px 7px;
+	border-top:0px;
+}
+
+#list-chapter li {
+    border-bottom: 1px dashed #e5e6e9;
+    list-style: none;
+    padding:7px 5px 5px 5px;
+}
+
+#list-chapter li:last-child{
+	border-bottom: 0;
+}
+
+#list-chapter h4 {
+    font-size: 15px;
+    margin: 0;
+    display: inline;
+    font-weight: normal;
+}
+
+#list-chapter a {
+    color: #444;
+}
+
+#list-chapter a:visited {
+    color: #999;
+}
+
+#list-chapter > li > span {
+    color: #999;
+    font-size: 12px;
+    font-style: italic;
+    margin-right: 10px;
+    float: right;
+}
+
+#list-chapter a:hover {
+	text-decoration: none;
+    color: #2980b9;
+}
+
+@media (max-width: 768px){
+#infobook p{
+	display: block;
+	margin-bottom:7px;
+}
+#noidung{
+	display: none;
+}
+#likefb{
+	width:142px;
+	margin: 0px auto;
+}
+}
+
+@media (min-width: 768px) and (max-width:992px){
+	#ttt span{
+		display: block;
+		margin-bottom: 5px;
+	}
+}
+.phantrang {
+	margin-top:5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.pagination li{
+	float: left
+}
+.pagination li a,.pagination li.active span{
+	display: block;
+	padding:7px 15px;
+	font-size: 13px;
+	font-weight: bold;
+	color:#333;
+	margin:0px 2px;
+}
+.pagination li.disabled{
+	display: none;
+}
+.pagination li.active span,.pagination li a:hover{
+	background-color: #3498db;
+	color:white;
+	text-decoration: none;
+}

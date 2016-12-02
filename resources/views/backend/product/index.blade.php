@@ -100,18 +100,17 @@ function showImage($path){
     </div>
     <!--.captiontable-->
   <div style="overflow-x:auto;">
-      <table style="min-width:1100px">
+      <table style="min-width:1000px">
           <thead>
               <tr>
                   <th width="35px">
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                   </th>
                     <th class="tsort" width="60px">S.Xếp</th>
-                    <th width="250px">Sách</th>
+                    <th width="280px">Sách</th>
                     <th class="tsort" width="170px">Giá</th>
                    <th class="tsort">Loại</th>
-                   <th width="150px">Nội dung</th>
-                   <th class="tsort" width="50px">SL</th>
+                   <th class="tsort" width="70px">SL</th>
                    <th>H.Thị</th>
                    <th>H.T TC</th>
                    <th class="tsort">Cập nhật</th>
@@ -132,12 +131,12 @@ function showImage($path){
                                           </td>
                                          <td>
                       <span class="clearfix">
-                        <img class="pull-left" style="margin-right:5px;margin-top:2px" src="{{showImage($item->image)}}" height="85" />
-                        <div class="pull-left" style="width:150px">
+                        <img class="pull-left" style="margin-right:5px;margin-top:2px;max-width:80px" src="{{showImage($item->image)}}" height="85" />
+                        <div class="pull-left" style="width:200px">
                          
                           <b><a href="{{url($item->url.'.html')}}" target="_black">{{$item->name}}</a></b><br />
                           <small>{{date('d/m/Y H:i',strtotime($item->created_at))}} <br /> Tác giả: {{$item->author}}<br /> status: {{$arr_status[$item->status]}}
-| Xem: {{$item->viewer}}
+<br /> Xem: {{$item->viewer}}
                           </small>
                         </div>
                       </span>
@@ -170,10 +169,7 @@ function showImage($path){
                                           </td>
                                           
                                           <td><span class="cate_id" data-id="{{$item->cate_id}}"></span></td>
-                                          <td>
-
-                                          <span class="cutlength" max-length="50">{!!$item->description!!}</span>
-                                        </td>
+                                         
 
 
                                         <td>{{$item->quantity}}</td>
@@ -279,7 +275,7 @@ function showImage($path){
             
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(7) .checkboxblock").addClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","1").find("td:eq(6) .checkboxblock").addClass("checked");
                    
                 }
             });
@@ -289,7 +285,7 @@ function showImage($path){
         "hides": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(7) .checkboxblock").removeClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-display","0").find("td:eq(6) .checkboxblock").removeClass("checked");
                    
                 }
             });
@@ -299,7 +295,7 @@ function showImage($path){
         "displayhomes": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-showhome","1").find("td:eq(8) .checkboxblock").addClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-showhome","1").find("td:eq(7) .checkboxblock").addClass("checked");
                    
                 }
             });
@@ -310,7 +306,7 @@ function showImage($path){
         "hidehomes": function (message, target, data, value, result) {
             target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                 if ($(this).hasClass("checked")) {
-                    $(this).parents("tr").eq(0).attr("data-showhome","0").find("td:eq(8) .checkboxblock").removeClass("checked");
+                    $(this).parents("tr").eq(0).attr("data-showhome","0").find("td:eq(7) .checkboxblock").removeClass("checked");
                    
                 }
             });

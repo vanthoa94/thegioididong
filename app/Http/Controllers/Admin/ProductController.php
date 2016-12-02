@@ -22,7 +22,7 @@ class ProductController extends BaseController
 			$data=Cache::get('c_a_product');
 		}else{
 
-			$data=Product::select('id','cate_id','name','url','image','price','price_pro','description','keywords','status','quantity','viewer','author','display','show_home','index_home','created_at','updated_at')->orderBy('id','desc')->get();
+			$data=Product::select('id','cate_id','name','url','image','price','price_pro','status','quantity','viewer','author','display','show_home','index_home','created_at','updated_at')->orderBy('id','desc')->get();
 			Cache::add('c_a_product',$data,5);
 		}
 

@@ -23,13 +23,8 @@ class BaseController extends Controller
 		
 		$this->idGroupAdmin=$user->group_id;
 
-		$role_data="";
 
-		if(!Cookie::has('role_data')){
-			$role_data=$this->getRoleData();
-		}else{
-			$role_data=Cookie::get('role_data');
-		}
+		$role_data=$this->getRoleData();
 
 		view()->share('admin_info',['id'=>$user->id,'name'=>$user->name,'last_visit'=>date('d/m/Y H:i',strtotime($user->last_visit)),'role'=>$role_data]);
 
@@ -54,8 +49,6 @@ class BaseController extends Controller
         }
 
         $text .= "]";
-
-        Cookie::queue('role_data', $text,60);
 
         return $text;
 	}

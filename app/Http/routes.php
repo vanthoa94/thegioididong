@@ -281,4 +281,6 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 Route::group(['namespace' => 'UI'],function(){
 	Route::get('/','HomeController@index');
+
+	Route::get('{url}.html','BookController@index')->where('url','[a-zA-Z0-9-]+');
 });

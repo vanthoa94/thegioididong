@@ -52,7 +52,7 @@
 </head>
 
 <body>
-    <nav id="navbartop" class="clearfix">
+    <nav id="navbartop" class="clearfix hidden-xs">
         <div class="container">
             <div class="pull-left">
                 <div id="sharep" class="clearfix">
@@ -81,7 +81,7 @@
     </nav>
 
 
-    <header id="banner">
+    <header id="banner" class="hidden-xs">
         <div class="container">
             <div class="row">
                 <div class="col-xs-6 col-md-3">
@@ -94,26 +94,27 @@
                     </div>
                 </div>
 
-                <div class="col-md-4" style="padding-right:0px">
-                    <div id="hotline" class="pull-left">
-                        <a href="Zalo: 0973-149-169">
-                            <img src="{{Asset('public/images/hotline.jpg')}}" class="block pull-left" alt="hotline 0973149169">
-                            <span class="phonenumber pull-left block">
-                                Zalo<br>
-                                0973149169
-                            </span>
-                        </a>
-                    </div>
-
-                    <div id="email" class="pull-left">
+                <div class="col-md-4">
+                    
+                    <div id="email" class="pull-right">
                         <a href="mailto:tienghoadidong@gmail.com">
                             <img src="{{Asset('public/images/email.png')}}" class="block pull-left" alt="email tienghoadidong@gmail.com">
                             <span class="email pull-left block">
                                 Gọi:<br>
-                                0973-149-169
+                                {{$base_data['website']['hotline']}}
                             </span>
                         </a>
                     </div>
+                    <div id="hotline" class="pull-right">
+                        <a href="Zalo: 0973-149-169">
+                            <img src="{{Asset('public/images/hotline.jpg')}}" class="block pull-left" alt="hotline 0973149169">
+                            <span class="phonenumber pull-left block">
+                                Zalo:<br>
+                                {{$base_data['website']['zalo']}}
+                            </span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -126,11 +127,11 @@
                     <a href="#"><h2>Danh Mục Sách <img src="{{Asset('public/images/dropdown.png')}}"></h2></a>
                     <ul>
                         <img src="{{Asset('public/images/top.png')}}">
-                        <li><a href="danhmuc.php?q=sach-mien-phi_1">Sách miễn phí</a></li>
-                        <li><a href="danhmuc.php?q=sach-co-phi_2">Sách có phí</a></li>
-                        <li><a href="danhmuc.php?q=sach-moi-nhat_4">Sách mới nhất</a></li>
-                        <li><a href="danhmuc.php?q=sach-xem-nhieu_5">Sách xem nhiều</a></li>
-                        <li><a href="danhmuc.php?q=sach-hoc-vien_9">Sách học viên</a></li>
+                        <li><a href="{{url('sach-mien-phi')}}">Sách miễn phí</a></li>
+                        <li><a href="{{url('sach-co-phi')}}">Sách có phí</a></li>
+                        <li><a href="{{url('sach-moi')}}">Sách mới nhất</a></li>
+                        <li><a href="{{url('sach-xem-nhieu')}}">Sách xem nhiều</a></li>
+                        <li><a href="{{url('sach-hoc-vien')}}">Sách học viên</a></li>
                         
                     </ul>
                 </div>
@@ -158,9 +159,29 @@
 
     </div>
 
+    <footer id="footer" style="background-color:{{$base_data['website']['background_footer']}}">
+        <div class="container">
+            {!!$base_data['website']['copyright']!!}<br />
+            Địa chỉ: {!!$base_data['website']['address']!!}<br />
+            Điện thoại: {{$base_data['website']['hotline']}} | Email: <a href="mailto:{{$base_data['website']['email']}}">{{$base_data['website']['email']}}</a>
+            @if($base_data['website']['skype']!='')
+            | Skype: <a href="{{$base_data['website']['skype']}}">{{$base_data['website']['skype']}}</a>
+            @endif
+            <div style="margin-top:5px"></div>
+            Kết nối với chúng tôi<div style="margin-top:5px"></div>
+            <a href="{{$base_data['website']['facebook']}}">
+                <img src="{{Asset('public/images/icon-facebook.png')}}" style="border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%" />
+            </a>
+            <a href="{{$base_data['website']['google']}}" style="padding-left:10px">
+                <img src="{{Asset('public/images/youtube_icon.png')}}" style="border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%" />
+            </a>
+        </div>
+    </footer>
+
     <script src="{{Asset("public/js/jquery.min.js")}}" type="text/javascript"></script>
     <script src="{{Asset("public/js/jshome.js")}}" type="text/javascript"></script>
 
     @yield('script')
+     @yield('script2')
 </body>
 </html>

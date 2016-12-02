@@ -36,44 +36,57 @@ function createFileName($name,$basename,$i,$root,$duoi){
 	return $name.".".$duoi;
 }
 
-function resize($width, $height,$path,$i){
-  /* Get original image x y*/
-  list($w, $h) = getimagesize($_FILES['image']['tmp_name'][$i]);
-  /* calculate new image size with ratio */
-  $ratio = max($width/$w, $height/$h);
-  $h = ceil($height / $ratio);
-  $x = ($w - $width / $ratio) / 2;
-  $w = ceil($width / $ratio);
-  /* new file name */
-  /* read binary data from image file */
-  $imgString = file_get_contents($_FILES['image']['tmp_name'][$i]);
-  /* create image from string */
-  $image = imagecreatefromstring($imgString);
-  $tmp = imagecreatetruecolor($width, $height);
-  imagecopyresampled($tmp, $image,
-    0, 0,
-    $x, 0,
-    $width, $height,
-    $w, $h);
-  /* Save image */
-  switch ($_FILES['image']['type'][$i]) {
-    case 'image/jpeg':
-      imagejpeg($tmp, $path, 100);
-      break;
-    case 'image/png':
-      imagepng($tmp, $path, 0);
-      break;
-    case 'image/gif':
-      imagegif($tmp, $path);
-      break;
-    default:
-      return false;
-      break;
-  }
-  imagedestroy($image);
-  imagedestroy($tmp);
-  return true;
-  
+function cwUpload($thumb_width, $thumb_height,$path,$i,$thumb = TRUE){
+
+    //upload image
+    if(move_uploaded_file($_FILES['image']['tmp_name'][$i],$path))
+    {
+        //thumbnail creation
+        if($thumb == TRUE)
+        {
+            list($width,$height) = getimagesize($path);
+            $thumb_create = imagecreatetruecolor($thumb_width,$thumb_height);
+            switch($_FILES['image']['type'][$i]){
+                case 'image/jpeg':
+                    $source = imagecreatefromjpeg($path);
+                    break;
+                case 'image/png':
+                    $source = imagecreatefrompng($path);
+                    break;
+                case 'image/gif':
+                    $source = imagecreatefromgif($path);
+                    break;
+                default:
+                    return false;
+            }
+
+            imagecopyresized($thumb_create,$source,0,0,0,0,$thumb_width,$thumb_height,$width,$height);
+            switch($_FILES['image']['type'][$i]){
+                case 'image/jpeg':
+                    imagejpeg($thumb_create,$path,100);
+                    break;
+                case 'image/png':
+                    imagepng($thumb_create,$path,100);
+                    break;
+
+                case 'image/gif':
+                    imagegif($thumb_create,$path,100);
+                    break;
+                default:
+                    return false;
+            }
+
+            imagedestroy($thumb_create);
+ 		 imagedestroy($source);
+
+        }
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 if(isset($_POST['submit'])){
@@ -110,7 +123,7 @@ if(isset($_POST['submit'])){
 
 
 					if(isset($maxwidth)){
-						if(resize($maxwidth,$maxheight,$path.'/'.$filename,$i)){
+						if(cwUpload($maxwidth,$maxheight,$path.'/'.$filename,$i)){
 							list($width,$height)=getimagesize($path.'/'.$filename);
 						
 							$arrupload[]=array(
@@ -189,8 +202,8 @@ if(isset($_POST['submit'])){
 						<div style="float:left;width:200px">
 							<select name="resize" style="padding:3px;width:100%">
 								<option value="">Gữi nguyên kích thước gốc</option>
-								<option value="115x168">115x168(Sách)</option>
-								<option value="720x480">720x480(SlideShow)</option>
+								<option value="140x204">140x204(Sách)</option>
+								<option value="840x380">840x380(SlideShow)</option>
 								<option value="160x120">160x120(Video)</option>
 								<option value="60x60">60x60(Icon box trung tâm)</option>
 								<option value="600x400">600x400(Box khuyến mãi)</option>
