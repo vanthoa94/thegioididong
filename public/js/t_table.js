@@ -545,6 +545,7 @@ function TTable(obj, options) {
         obj.addClass("ttable");
     }
 
+
     var countitem = obj.find("table tbody tr").size();
 
     if (countitem == 0) {
@@ -768,10 +769,9 @@ function TTable(obj, options) {
 
     if(!options.NoScript){
         obj.find(".captiontable .button").click(function () {
-            var th = $(this);
-          
-            var target = th.attr("data-target");
 
+            var th = $(this);
+            var target = th.attr("data-target");
             var s = $(target);
             tcc(s, th, obj, options, s.val(), function (href, data, targetc, value) {
                 fdataajax(href, data, targetc, options, value);

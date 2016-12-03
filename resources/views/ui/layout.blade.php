@@ -71,11 +71,11 @@
             </div><!--left-->
 
             <div class="pull-right">
-                <a href=""><img src="{{Asset('public/images/help.png')}}" width="13px" /> <b>Hướng dẫn đăng sách</b></a>
+                <a href="{{url('page/huong-dan-dang-sach.html')}}"><img src="{{Asset('public/images/help.png')}}" width="13px" /> <b>Hướng dẫn đăng sách</b></a>
                 <span>|</span>
-                <a href=""><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
+                <a href="#"><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
                 <span>|</span>
-                <a href=""><img src="{{Asset('public/images/icon-contact.gif')}}" width="13px" /> <b>Liên hệ</b></a>
+                <a href="{{url('lien-he.html')}}"><img src="{{Asset('public/images/icon-contact.gif')}}" width="13px" /> <b>Liên hệ</b></a>
             </div>
         </div>
     </nav>
@@ -85,20 +85,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-6 col-md-3">
-                    <a href="{{url()}}"><img src="{{Asset('public/images/logo.jpg')}}" /></a>
+                    <a href="{{url()}}"><img src="{{Asset('public/images/logo.jpg')}}" style="max-width: 100%;" /></a>
                 </div>
 
-                <div class="col-md-5">
-                    <div id="qctop">
+                <div class="col-md-5 hidden-xs hidden-sm" id="qctop">
+                            <?php 
 
-                    </div>
+                            function showUrlPage($path){
+                                if(strpos($path, "http")===0)
+                                    return $path;
+                                return url($path);
+                            }
+
+                                if(isset($base_data['qc'][1])){
+                                    $length=count($base_data['qc'][1]);
+                                    if($length>1){
+                                    $rand=rand(0, $length-1);
+
+                                    $qctop=$base_data['qc'][1][$rand];
+                                }else{
+                                    $qctop=$base_data['qc'][1][0];
+                                }
+
+                             ?>
+                                <a href="{{$qctop['url']==''?'#':showUrlPage($qctop['url'])}}" title="{{$qctop['title']}}"><img alt="{{$qctop['title']}}" src="{{\App\Product::showImage($qctop['image'])}}" /></a>
+                             <?php } ?>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4" style="padding-left:0px">
                     
                     <div id="email" class="pull-right">
-                        <a href="mailto:tienghoadidong@gmail.com">
-                            <img src="{{Asset('public/images/email.png')}}" class="block pull-left" alt="email tienghoadidong@gmail.com">
+                        <a href="tel:{{$base_data['website']['hotline']}}">
+                            <img src="{{Asset('public/images/email.png')}}" class="block pull-left" alt="{{$base_data['website']['hotline']}}">
                             <span class="email pull-left block">
                                 Gọi:<br>
                                 {{$base_data['website']['hotline']}}
@@ -106,8 +124,8 @@
                         </a>
                     </div>
                     <div id="hotline" class="pull-right">
-                        <a href="Zalo: 0973-149-169">
-                            <img src="{{Asset('public/images/hotline.jpg')}}" class="block pull-left" alt="hotline 0973149169">
+                        <a href="javascript:void(0)">
+                            <img src="{{Asset('public/images/hotline.jpg')}}" class="block pull-left" alt="{{$base_data['website']['zalo']}}">
                             <span class="phonenumber pull-left block">
                                 Zalo:<br>
                                 {{$base_data['website']['zalo']}}
@@ -157,6 +175,23 @@
 
         @yield('content')
 
+    </div>
+
+    <div id="qcfooter">
+        <?php 
+ if(isset($base_data['qc'][3])){
+                                    $length=count($base_data['qc'][3]);
+                                    if($length>1){
+                                    $rand=rand(0, $length-1);
+
+                                    $qcbottom=$base_data['qc'][3][$rand];
+                                }else{
+                                    $qcbottom=$base_data['qc'][3][0];
+                                }
+
+                             ?>
+                                <a href="{{$qctop['url']==''?'#':showUrlPage($qcbottom['url'])}}" title="{{$qcbottom['title']}}"><div style="background-image:url({{\App\Product::showImage($qcbottom['image'])}})"></div></a>
+                             <?php } ?>
     </div>
 
     <footer id="footer" style="background-color:{{$base_data['website']['background_footer']}}">

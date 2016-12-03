@@ -103,6 +103,7 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 	Route::group(['prefix'=>'page'],function(){
 		Route::get("/","PageController@index");
+		Route::get("iframe","PageController@iframe");
 		Route::get("create","PageController@create");
 		Route::post("create","PageController@postCreate");
 
@@ -282,5 +283,9 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 Route::group(['namespace' => 'UI'],function(){
 	Route::get('/','HomeController@index');
 
+	Route::get('page/{url}.html','PageController@index')->where('url','[a-zA-Z0-9-]+');
+
 	Route::get('{url}.html','BookController@index')->where('url','[a-zA-Z0-9-]+');
+
+	Route::get('{url}','CategoryController@index')->where('url','[a-zA-Z0-9-]+');
 });

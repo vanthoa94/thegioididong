@@ -127,9 +127,14 @@ function showImage($path){
                                               <span>{{$text.' '.$item->name}}
                                                 </span>
                                                 <div class="row-action">
+                                                 
                                                     <span title="Sửa thông tin"><a href="{{url('admin/category/'.$item->id)}}">Sửa</a>
+                                                       @if($item->id!=2)
                                                         <small>| </small>
+
+                                                    @endif
                                                     </span>
+                                                    @if($item->id!=2)
                                                     <span class="delete">
                                                         <a class="event" 
                                                                 data-ajax="true" 
@@ -140,6 +145,7 @@ function showImage($path){
                                                                 data-confirm="Bạn có chắc muốn xóa loại sản phẩm <b>{{$item->name}}</b>?<br /><small>Một khi xóa bạn sẽ không thể khôi phục lại được</small>"
                                                                 href="#" title="Xóa loại sản phẩm này">Xóa</a>
                                                     </span>
+                                                    @endif
                                                 </div>
                                           </td>
                                           <td>

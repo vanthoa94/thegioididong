@@ -19,6 +19,18 @@ class PageController extends BaseController
 		return view("backend.page.index",array('data'=>$data));
 	}
 
+	public function iframe()
+	{
+		if(!$this->checkPermission('page/list')){
+			return $this->ErrorPermission('Trang');
+		}
+
+		$data=Page::select('id','title','url')->orderBy('id','desc')->get();
+
+		
+		return view("backend.page.iframe",array('data'=>$data));
+	}
+
 
 	public function create(){
 		if(!$this->checkPermission('page/create')){

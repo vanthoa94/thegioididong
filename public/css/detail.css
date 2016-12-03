@@ -5,6 +5,13 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+#qcbv img{
+	max-width: 100%;
+	margin: 10px 0px;
+	display: block;
+	border:1px solid #ccc;
+	padding:5px;
+}
 #infobook p,#infobook #likefb{
 	display: block;
 	font-size: 13px;

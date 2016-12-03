@@ -205,8 +205,9 @@ if(isset($_POST['submit'])){
 								<option value="140x204">140x204(Sách)</option>
 								<option value="840x380">840x380(SlideShow)</option>
 								<option value="160x120">160x120(Video)</option>
-								<option value="60x60">60x60(Icon box trung tâm)</option>
-								<option value="600x400">600x400(Box khuyến mãi)</option>
+								<option value="475x80">475x80(Quảng cáo trên banner)</option>
+								<option value="500x100">500x100(Quảng cáo dưới footer)</option>
+								<option value="750x100">750x100(Quảng cáo trong trang đọc sách)</option>
 							</select>
 						</div>
 					</div>

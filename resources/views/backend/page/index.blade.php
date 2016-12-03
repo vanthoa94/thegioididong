@@ -75,7 +75,7 @@
                   <td><span class="checkboxb ascheckbox center" data-value="{{$item->id}}"></span></td>
                   <td>
                       <span>
-                        <a href="{{url($item->url)}}" target="black">{{$item->title}}</a>
+                        <a href="{{url('page/'.$item->url.'.html')}}" target="black">{{$item->title}}</a>
                         </span>
                                             <div class="row-action">
                                                     <span title="Sửa thông tin"><a href="{{url('admin/page/'.$item->id)}}">Sửa</a>

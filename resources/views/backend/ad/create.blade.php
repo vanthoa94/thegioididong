@@ -32,9 +32,9 @@
                         <label>Link:</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" name="url" value="{{old('url')}}" class="form-control" />
+                        <textarea name="url" id="url" class="form-control">{{old('url')}}</textarea>
                         <span class="desc">
-                          Link khi click vào quảng cáo sẽ chuyển đến?
+                          Link khi click vào quảng cáo sẽ chuyển đến? <a href="#" id="showviewpage">Chọn từ trang</a>
                         </span>
                     </div>
                    
@@ -65,11 +65,10 @@
                       <span class="red">*</span>
                         <select name="position" class="form-control">
                           <option value="-1">-- Lựa chọn --</option>
-                          <option value="1">Bên trái web</option>
-                          <option value="2">Bên phải web</option>
-                          <option value="3">Khung quảng cáo</option>
-                          <option value="4">Loại sản phẩm</option>
-                          <option value="5">Box khuyến mãi</option>
+                          <option value="1">Trên banner web</option>
+                          <option value="2">Box bên phải web</option>
+                          <option value="3">Dưới cùng web</option>
+                          <option value="4">Trong trang đọc sách</option>
                         </select>
                         <span class="desc">
                           Nơi hiển thị quảng cáo này?
@@ -91,6 +90,30 @@
     </form>
 @include('backend.upload')
 <a class="nicupload showupload" href="#nicupload">Upload</a>
+
+
+<div id="pagelist" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Trang</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="" width="100%" height="500px" style="border:0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="choose">Chọn</button>
+          <button type="button" class="btn btn-success" id="refresh">Tải lại</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
   @endsection
 
 @section('script')
@@ -135,8 +158,42 @@
   var currentPage = "#menu_ad";
   
 
-  $(document).ready(function(){
-    
+   $(document).ready(function(){
+
+    $("#pagelist").on('shown.bs.modal',function(){
+      if($(this).find("iframe:eq(0)").attr("src")==""){
+        $(this).find("iframe:eq(0)").attr("src",base_url_admin+"page/iframe");
+
+        $("#choose").click(function(){
+          var contentmodal=$("#pagelist iframe:eq(0)").contents();
+          var tb=contentmodal.find("#ttable table:eq(0) tbody:eq(0) tr.checkboxcheck:eq(0)");
+          if(!tb.length){
+            getAlert('Vui lòng chọn 1 trang');
+            return false;
+          }
+
+
+          $("#url").val(tb.find(".ascheckbox:eq(0)").attr('data-value'));
+
+          $("#pagelist").modal('hide');
+        });
+
+        $("#refresh").click(function(){
+$("#pagelist").find("iframe:eq(0)").attr("src",base_url_admin+"page/iframe");
+        });
+
+      }
+    });
+
+    $("#showviewpage").click(function(){
+
+
+$("#pagelist").modal('show');
+
+
+    });
+
+
   });
 
   </script>

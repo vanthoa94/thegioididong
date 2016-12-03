@@ -14,15 +14,20 @@
 		<div id="breadcrumb-global">
 			<ul class="clearfix">
 				<?php 
-				if($info->price==0){
-					$urlcate='sach-mien-phi';
-					$namecate="Sách miễn phí";
+				if($info->cate_id!=2){
+					if($info->price==0){
+						$urlcate='sach-mien-phi';
+						$namecate="Sách miễn phí";
+					}else{
+						$urlcate='sach-co-phi';
+						$namecate="Sách có phí";
+					}
 				}else{
-					$urlcate='sach-co-phi';
-					$namecate="Sách có phí";
-				}
+						$urlcate='sach-hoc-vien';
+						$namecate="Sách học viên";
+					}
 				 ?>
-				<li><a href="/"><b>Trang chủ</b></a><span style="margin-left:5px;">»</span></li>
+				<li><a href="/">Trang chủ</a><span style="margin-left:5px;">»</span></li>
 				<li><a href="{{url($urlcate)}}">{{$namecate}}</a><span style="margin-left:5px;">»</span></li>
 				<li><b>﻿{{$info['name']}}</b></li>
 			</ul>
@@ -99,6 +104,20 @@
 					</li>
 				@endforeach
 			</div>
+		</div>
+
+		<div id="qcbv">
+			@if($qc!=null)
+			<?php function showUrlPage3($path){
+                                if(strpos($path, "http")===0)
+                                    return $path;
+                                return url($path);
+                            } ?>
+                            @foreach($qc as $item)
+			<a href="{{$item->url==''?'#':showUrlPage3($item->url)}}" title="{{$item->title}}"><img alt="{{$item->title}}" src="{{\App\Product::showImage($item->image)}}" /></a>
+			
+			@endforeach
+			@endif
 		</div>
 
 

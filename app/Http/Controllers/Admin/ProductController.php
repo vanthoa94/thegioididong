@@ -90,6 +90,7 @@ class ProductController extends BaseController
 		$product->sold=0;
 		$product->display=1;
 		$product->index_home=0;
+		$product->daxem=0;
 
 		$product->promotion=$request->promotion;
 

@@ -30,6 +30,38 @@
 	</div>
 @endif
 
+@if(isset($base_data['featured']))
+	<div class="bright brightf">
+		<h2>Sách nổi bật</h2>
+		<div class="contentbox boxbook">
+			@foreach($base_data['featured'] as $item)
+			<div class="item clearfix">
+
+				<div class="pull-left imagebook">
+					<a href="{{url($item->url.'.html')}}"><img src="{{\App\Product::showImage($item->image)}}" /></a>
+				</div>
+				<div class="namebook">
+					<a href="{{url($item->url.'.html')}}">
+						{{$item->name}}
+					</a>
+
+					<span>Lượt xem: {{$item->viewer}}</span>
+
+					<span>Tác giả: {{$item->author}}</span>
+					<span>Giá: @if($item->price==0) 
+						Miễn phí 
+						@elseif($item->price_pro==0) 
+							{{number_format($item->price,0,'.',',')}} VNĐ
+						@else 
+							{{number_format($item->price_pro,0,'.',',')}} VNĐ
+						@endif</span>
+				</div>
+			</div>
+			@endforeach
+		</div>
+	</div>
+@endif
+
 @if(isset($base_data['newbooks']))
 	<div class="bright brightf">
 		<h2>Sách mới</h2>
@@ -75,6 +107,27 @@
 		<div class="fb-like-box" id="facebook_like_box" data-href="{{$base_data['website']['facebook']}}" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 	</div>
 </div>
+
+
+
+
+@if(isset($base_data['qc'][2]) && count($base_data['qc'][2])>0)
+
+<?php  function showUrlPage2($path){
+                                if(strpos($path, "http")===0)
+                                    return $path;
+                                return url($path);
+                            } ?>
+<div class="bright brightf">
+	
+	<div class="contentbox">
+		@foreach($base_data['qc'][2] as $item)
+			 <a href="{{$item['url']==''?'#':showUrlPage2($item['url'])}}" title="{{$item['title']}}" style="display:block;text-align:center;margin-bottom:10px"><img style="max-width:100%" alt="{{$item['title']}}" src="{{\App\Product::showImage($item['image'])}}" /></a>
+		@endforeach
+	</div>
+</div>
+
+@endif
 
 @if(isset($base_data['videos']))
 <div class="bright brightf" id="byoutube">

@@ -19,6 +19,12 @@ function showImage($path){
             return $path;
         return Asset('public/images/'.$path);
     }
+
+    function showUrlPage($path){
+        if(strpos($path, "http")===0)
+            return $path;
+        return url($path);
+    }
  ?>
 
 @include('backend._message')
@@ -79,10 +85,10 @@ function showImage($path){
                    <th width="35px">
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                    </th>
-                   <th width="200px" class="tsort">Tiêu đề</th>
+                   <th width="250px" class="tsort">Tiêu đề</th>
                
                    <th>Hình ảnh</th>
-                   <th width="200px">Link</th>
+                   <th>Link</th>
                    <th>Vị trí H.Thị</th>
                    <th>H.Thị</th>
                    <th class="tsort">Ngày cập nhật</th>
@@ -117,7 +123,7 @@ function showImage($path){
                                  <img src="{{showImage($item->image)}}" width="100px" />
                                 </td>
                                 <td>
-                                  {{$item->url}}
+                                  <a href="{{showUrlPage($item->url)}}" target="_black">Xem</a>
                                 </td>
                                 <td>
                                   <?php 

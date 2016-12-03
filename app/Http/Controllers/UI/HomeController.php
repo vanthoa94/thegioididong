@@ -9,7 +9,7 @@ class HomeController extends BaseController
 {
 	public function index()
 	{
-		$listBookNew=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->orderBy('index_home')->orderBy('id','desc')->limit(12)->get();
+		$listBookNew=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->where('cate_id','<>',2)->orderBy('index_home')->orderBy('id','desc')->limit(12)->get();
 
 		$data=array();
 
