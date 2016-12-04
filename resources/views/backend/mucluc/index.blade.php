@@ -71,15 +71,16 @@
     </div>
     <!--.captiontable-->
   <div style="overflow-x:auto;">
-      <table style="min-width:900px">
+      <table style="min-width:870px">
           <thead>
               <tr>
                   <th width="35px">
                       <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                   </th>
                     <th class="tsort" width="60px">S.Xếp</th>
-                    <th width="300px">Mục lục</th>
-                   <th class="tsort">Xem</th>
+                    <th width="250px">Mục lục</th>
+                   <th class="tsort">Đọc</th>
+                   <th class="tsort">Đọc hôm nay</th>
                    <th>Hiển Thị</th>
                    <th class="tsort">Ngày tạo</th>
                    <th class="tsort">Ngày cập nhật</th>
@@ -119,6 +120,7 @@
                                           </td>
 
                                          <td>{{$item->viewer}}</td>
+                                         <td>{{$item->doctn}}</td>
                                           <td>
                                                     <span class="ascheckbox checkboxblock {{$item->display==1?'checked':''}}"
                                                 data-background="none" 

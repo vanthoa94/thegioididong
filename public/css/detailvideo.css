@@ -1,0 +1,14 @@
+.entry-title{
+	font-size:25px;
+	margin: 10px 0px
+}
+#xemvideo iframe{
+	width:100%;
+	height: 400px;
+}
+
+@media (max-width: 768px){
+	#xemvideo iframe{
+	    height: auto;
+	}
+}

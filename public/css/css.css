@@ -477,7 +477,9 @@ body, h1, h2, h4, h5, h6, ul {
     display: block;
     float:left;
 }
-
+#qcfooter{
+    margin-top: 15px
+}
 #qcfooter a div{
         width: 100%;
     background-position: center center;

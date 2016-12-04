@@ -156,7 +156,7 @@
             </div>
             <div class="pull-left ssearch">
                 <div class="clearfix search">
-                    <form method="get" action="timkiem.php">
+                    <form method="get" action="tim-kiem.html">
                         <input placeholder="Nhập tên sách cần tìm..." type="text" id="qsearch" name="q">
                         <input type="submit" id="ssearch" value="Tìm sách">
                     </form>
@@ -212,6 +212,10 @@
             </a>
         </div>
     </footer>
+
+    <script type="text/javascript">
+        var base_url="{{url()}}";
+    </script>
 
     <script src="{{Asset("public/js/jquery.min.js")}}" type="text/javascript"></script>
     <script src="{{Asset("public/js/jshome.js")}}" type="text/javascript"></script>

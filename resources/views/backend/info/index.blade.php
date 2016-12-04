@@ -213,7 +213,7 @@ function showImage($path){
 
 
 <div>
-<h4 style="margin-bottom:0px;padding-bottom:0px">Cấu hình email nhận liên hệ</h4>
+<h4 style="margin-bottom:0px;padding-bottom:0px">Cấu hình email gửi liên hệ</h4>
 	<hr style="margin-top:10px;padding-top:0px" />
 <form method="post" id="frm-setting" action="{{Asset('admin/info/setting')}}">
 	<div class="row">
@@ -225,51 +225,23 @@ function showImage($path){
 				<div class="col-md-8 required">
 					<div class="red">*</div>
 					<input type="text" class="form-control" name="email_send" value="<?php echo $data['email_send']?>" />
-					<span class="desc">Email nhận liên hệ khi có khách gửi liên hệ. Nếu là gmail thì <a target="_black" href="https://thachpham.com/wordpress/wordpress-tutorials/smtp-gmail-wordpress.html">vào đây</a> xem cách tắt bảo mật</span>
+					<span class="desc">Email nhận liên hệ khi có khách gửi liên hệ hoặc gửi email cho người khác.
 				</div>
 			</div><br />
 		</div>
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Password:</label>
+					<label>Tên:</label>
 				</div>
 				<div class="col-md-8 required">
 					<span class="red">*</span>
-					<input type="password" class="form-control" name="password_send" value="<?php echo $data['password_send']?>" />
-					<span class="desc">Password của email</span>
+					<input type="text" class="form-control" name="password_send" value="<?php echo $data['password_send']?>" />
+					<span class="desc">VD: Phạm minh kha hoặc Admin Tiếng hoa did động hoặc onlinesee.net</span>
 				</div>
 			</div><br />
 		</div>
 	</div>
-
-	<div class="row margin">
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>SMTP Email Server:</label>
-				</div>
-				<div class="col-md-8 required">
-					<div class="red">*</div>
-					<input type="text" class="form-control" name="host_send" value="<?php echo $data['host_send']?>" />
-					<span class="desc">VD: của gmail là: smtp.gmail.com, yahoo là: smtp.mail.yahoo.com. <a target="_black" href="http://kienthuc.pavietnam.vn/article/Email-Server/Huong-dan-Thu-thuat/Danh-sach-port-POP3---SMTP-Email-Server.html">Vào đây</a> để xem thêm</span>
-				</div>
-			</div><br />
-		</div>
-		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label>Port SMTP Server:</label>
-				</div>
-				<div class="col-md-8 required">
-					<span class="red">*</span>
-					<input type="text" class="form-control" name="port_send" value="<?php echo $data['port_send']?>" />
-					<span class="desc">VD: của gmail là: 465 hoặc 587, yahoo là: 465, 995. <a target="_black" href="http://kienthuc.pavietnam.vn/article/Email-Server/Huong-dan-Thu-thuat/Danh-sach-port-POP3---SMTP-Email-Server.html">Vào đây</a> để xem thêm</span>
-				</div>
-			</div><br />
-		</div>
-	</div>
-		
 	</div>
 	
 
@@ -399,12 +371,6 @@ $(document).ready(function(){
 		},{
 			'name':'password_send',
 			'trong':true
-		},{
-			'name':'host_send',
-			'trong':true
-		},{
-			'name':'port_send',
-			'so':true
 		}
 
 	]);

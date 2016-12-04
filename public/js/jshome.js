@@ -114,7 +114,7 @@ function slide(obj,o){
 
 			th.create();
 		
-
+			obj.css("height","");
 			th.run();
 		}
 	};

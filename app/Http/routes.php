@@ -283,9 +283,23 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 Route::group(['namespace' => 'UI'],function(){
 	Route::get('/','HomeController@index');
 
+	Route::get('tim-kiem.html','HomeController@search');
+
+	Route::get('lien-he.html','ContactController@index');
+
+	Route::post('lien-he.html','ContactController@send');
+
+	Route::get('video.html','VideoController@index');
+
+	Route::get('video/{url}.html','VideoController@detail')->where('url','[a-zA-Z0-9-]+');
+
+	Route::get('tac-gia/{url}.html','CategoryController@tacgia');
+
 	Route::get('page/{url}.html','PageController@index')->where('url','[a-zA-Z0-9-]+');
 
 	Route::get('{url}.html','BookController@index')->where('url','[a-zA-Z0-9-]+');
+
+	Route::get('{url}/{url1}.html','BookController@reader')->where(['url'=>'[a-zA-Z0-9-]+','url1'=>'[a-zA-Z0-9-]+']);
 
 	Route::get('{url}','CategoryController@index')->where('url','[a-zA-Z0-9-]+');
 });

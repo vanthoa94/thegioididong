@@ -16,7 +16,7 @@
 </style>
 <div class="row">
 
-	<div id="slide" class="col-xs-offset-0 col-sm-offset-4 col-md-offset-3" style="padding-right:15px">
+	<div id="slide" class="col-xs-offset-0 col-sm-offset-4 col-md-offset-3" style="padding-right:15px;height:250px">
 		@foreach($slideshow as $item)
 			<a href="{{$item->url==''?'#':$item->url}}" title="{{$item->title}}"><img src="{{\App\Product::showImage($item->image)}}" alt="{{$item->title}}"></a>
 		@endforeach

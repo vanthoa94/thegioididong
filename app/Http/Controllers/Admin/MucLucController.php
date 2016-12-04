@@ -16,10 +16,10 @@ class MucLucController extends BaseController
 		$sach=Product::select('id','name')->where('id',$id)->first();
 		if($sach==null)
 			return redirect()->to('admin/product')->with(['message'=>'Sách không tồn tại.','message_type'=>'danger']);
-
-
+		// $dt=\Carbon\Carbon::now('Asia/Ho_Chi_Minh');
+		// printf("Now: %s", $dt->day);
 		
-		$data=MucLuc::select('id','sort_index','name','url','display','created_at','updated_at','viewer')->where('muclucs.book_id',$id)->orderBy('sort_index')->get();
+		$data=MucLuc::select('id','sort_index','name','url','display','created_at','updated_at','viewer','doctn')->where('muclucs.book_id',$id)->orderBy('sort_index')->get();
 		
 		
 		return view("backend.mucluc.index",array('data'=>$data,'sach'=>$sach));
@@ -66,6 +66,13 @@ class MucLucController extends BaseController
 		$mucluc->content=$request->content;
 
 		$mucluc->display=1;
+
+		$dt=\Carbon\Carbon::now('Asia/Ho_Chi_Minh');
+		
+
+		$mucluc->ngaydoc= $dt->day.''.$dt->month.''.$dt->year;
+
+		$mucluc->doctn=0;
 
 
 		$idyoutu=trim($request->video);

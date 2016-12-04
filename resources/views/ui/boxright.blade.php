@@ -132,7 +132,7 @@
 @if(isset($base_data['videos']))
 <div class="bright brightf" id="byoutube">
 	<h2>Youtube
-		<a href="">Xem thêm >></a>
+		<a href="{{url('video.html')}}">Xem thêm >></a>
 	</h2>
 	<div class="contentbox">
 		<div class="row">

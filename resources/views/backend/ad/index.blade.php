@@ -51,11 +51,10 @@ function showImage($path){
                  <select id="filter-by-status" data-filter='{"type":"attr","attr_name":"data-position"}'>
                     <option selected="selected" value="-1" data-id="-1">- Tất cả vị trí -</option>
                     
-                    <option value="1">Bên trái web</option>
-                          <option value="2">Bên phải web</option>
-                          <option value="3">Khung quảng cáo</option>
-                          <option value="4">Loại sản phẩm</option>
-                          <option value="5">Box khuyến mãi</option>
+                    <option value="1">Trên banner</option>
+                          <option value="2">Box quảng cáo</option>
+                          <option value="3">Dưới footer</option>
+                          <option value="4">Trang đọc sách</option>
                 </select>
                 <input type="button" class="button fleft" data-target="#filter-by-status" value="Lọc">
             </div>
@@ -129,16 +128,16 @@ function showImage($path){
                                   <?php 
                                     switch($item->position){
                                       case 1:
-                                      echo "Bên trái web";
+                                      echo "Trên banner";
                                       break;
                                       case 2:
-                                      echo "Bên phải web";
+                                      echo "Box quảng cáo";
                                       break;
                                       case 3:
-                                      echo "Bên khung quảng cáo";
+                                      echo "Dưới footer";
                                       break;
                                       case 4:
-                                      echo "Loại sản phẩm";
+                                      echo "Trang đọc sách";
                                       break;
                                     }
                                    ?>

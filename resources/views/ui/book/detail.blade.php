@@ -36,15 +36,15 @@
 
 		<div class="row">
 
-			<h1 class="title visible-xs" title="Linh Vực" style="text-align:center; margin-bottom: 15px; text-transform:uppercase;">
+			<h1 class="title visible-xs" style="text-align:center; margin-bottom: 15px; text-transform:uppercase;">
 					{{$info->name}}</h1>
 
 			<div class="col-xs-4 col-sm-6 col-md-4">
-				<img itemprop="image" alt="Linh Vực" title="Linh Vực" width="140" src="{{\App\Product::showImage($info->image)}}" style="box-shadow: 8px 8px 10px black;max-width:100%">
+				<img itemprop="image" alt="{{$info->name}}" title="{{$info->name}}" width="140" src="{{\App\Product::showImage($info->image)}}" style="box-shadow: 8px 8px 10px black;max-width:100%">
 			</div>
 
 			<div class="col-xs-8 col-sm-6 col-md-8" id="infobook">
-				<h1 class="title hidden-xs" title="Linh Vực" style="text-align:center; margin-bottom: 10px; text-transform:uppercase;">
+				<h1 class="title hidden-xs" style="text-align:center; margin-bottom: 10px; text-transform:uppercase;">
 					{{$info->name}}</h1>
 
 				<p>
@@ -66,7 +66,7 @@
 				<p><b>Lần đọc:</b> {{$info->viewer}}</p>
 
 				<div id="likefb"><b class="hidden-xs">Like ngay:</b> 
-					<div class="fb-like" data-href="{{Request::fullUrl()}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+					<div class="fb-like" data-href="{{Request::fullUrl()}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"><span style="color:white">.</span></div>
 				</div>
 				<p id="ttt" class="hidden-xs">
 					<span class="tt1">Đọc từ đầu</span>
@@ -96,7 +96,7 @@
 		<div class="boxchuong">
 
 			<h2 class="titleboxx">Các chương mới nhất</h2>
-			<div class="contentboxx" id="list-chapter">
+			<div class="contentboxx chappernew" id="list-chapter">
 				@foreach($muclucmoi as $item)
 					<li><h4>
 						<a title="{{$item->name}}" href="{{url($info->url.'/'.$item->url.'.html')}}">{{$item->name}}</a></h4>
@@ -113,15 +113,14 @@
                                     return $path;
                                 return url($path);
                             } ?>
-                            @foreach($qc as $item)
-			<a href="{{$item->url==''?'#':showUrlPage3($item->url)}}" title="{{$item->title}}"><img alt="{{$item->title}}" src="{{\App\Product::showImage($item->image)}}" /></a>
+                          
+			<a href="{{$qc->url==''?'#':showUrlPage3($qc->url)}}" title="{{$qc->title}}"><img alt="{{$qc->title}}" src="{{\App\Product::showImage($qc->image)}}" /></a>
 			
-			@endforeach
 			@endif
 		</div>
 
 
-		<div class="boxchuong">
+		<div class="boxchuong" id="listcccc">
 
 			<h2 class="titleboxx">Danh sách chương "{{$info->name}}"</h2>
 			<div class="contentboxx" id="list-chapter">
@@ -180,12 +179,23 @@ var noidungct=$("#noidungct").html();
 }
 $(document).ready(function(){
 	$("#ttt .tt1,#ttt1 .tt1").click(function(){
-		alert("asd");
+		window.location.href=$("#listcccc .contentboxx li:eq(0) h4 a").attr("href");
 	});
 
 	$("#ttt1 .tt4").click(function(){
 		$("#noidung").slideToggle();
 	});
+
+	$("#ttt1 .tt3,#ttt .tt3").click(function(){
+		var listchuong=$("#listcccc").offset().top;
+		$("html, body").stop().animate({scrollTop:listchuong-100},500);
+	});
+
+	$("#ttt1 .tt2,#ttt .tt2").click(function(){
+		window.location.href=$(".chappernew:eq(0) li:eq(0) h4 a").attr("href");
+	});
+
+
 
 thunhogioithieu();
 });

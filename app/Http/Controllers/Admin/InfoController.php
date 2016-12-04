@@ -77,11 +77,6 @@ class InfoController extends BaseController
 
 		$info->where('name','password_send')->update(array('content'=>trim(Input::get('password_send'))));
 
-		$info->where('name','host_send')->update(array('content'=>trim(Input::get('host_send'))));
-
-
-		$info->where('name','port_send')->update(array('content'=>trim(Input::get('port_send'))));
-
 
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công cấu hình send mail.']);
 	}

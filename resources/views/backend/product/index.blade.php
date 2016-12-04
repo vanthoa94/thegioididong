@@ -110,7 +110,7 @@ function showImage($path){
                     <th width="280px">Sách</th>
                     <th class="tsort" width="170px">Giá</th>
                    <th class="tsort">Loại</th>
-                   <th class="tsort" width="70px">SL</th>
+                   <th class="tsort">Đọc</th>
                    <th>H.Thị</th>
                    <th>H.T TC</th>
                    <th class="tsort">Cập nhật</th>
@@ -136,7 +136,7 @@ function showImage($path){
                          
                           <b><a href="{{url($item->url.'.html')}}" target="_black">{{$item->name}}</a></b><br />
                           <small>{{date('d/m/Y H:i',strtotime($item->created_at))}} <br /> Tác giả: {{$item->author}}<br /> status: {{$arr_status[$item->status]}}
-<br /> Xem: {{$item->viewer}}
+<br /> SL: {{$item->quantity}}
                           </small>
                         </div>
                       </span>
@@ -172,7 +172,8 @@ function showImage($path){
                                          
 
 
-                                        <td>{{$item->quantity}}</td>
+                                        <td>Tổng: {{$item->viewer}}<br />
+                                          ToDay: {{$item->doctn}}</td>
 
                                           <td>
                                                     <span class="ascheckbox checkboxblock {{$item->display==1?'checked':''}}"

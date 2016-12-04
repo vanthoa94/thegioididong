@@ -1,0 +1,25 @@
+.phantrang {
+	margin-top:5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.pagination li{
+	float: left
+}
+.pagination li a,.pagination li.active span{
+	display: block;
+	padding:7px 15px;
+	font-size: 13px;
+	font-weight: bold;
+	color:#333;
+	margin:0px 2px;
+}
+.pagination li.disabled{
+	display: none;
+}
+.pagination li.active span,.pagination li a:hover{
+	background-color: #3498db;
+	color:white;
+	text-decoration: none;
+}

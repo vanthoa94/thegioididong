@@ -31,7 +31,7 @@
         <!--col left-->
        <div id="col-left">
             <header id="left_header">
-                <a href="{{url('/')}}" target="_black">KINGTECH</a>
+                <a href="{{url('/')}}" target="_black">THDĐ</a>
             </header>
             <!--#left header-->
             <div id="content-col-left">

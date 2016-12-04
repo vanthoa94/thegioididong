@@ -1,0 +1,11 @@
+.box .contentbox.boxvideos .item .image, .box .contentbox.boxvideos .item .image img{
+    height: 80px;
+    width: auto;
+    text-align: center;
+}
+.box .contentbox.boxvideos .item h3{
+	width: 100%
+}
+.box .contentbox.boxvideos .item{
+	height: 130px;
+}

@@ -22,7 +22,7 @@ class ProductController extends BaseController
 			$data=Cache::get('c_a_product');
 		}else{
 
-			$data=Product::select('id','cate_id','name','url','image','price','price_pro','status','quantity','viewer','author','display','show_home','index_home','created_at','updated_at')->orderBy('id','desc')->get();
+			$data=Product::select('id','cate_id','name','url','image','price','price_pro','status','quantity','viewer','author','display','show_home','index_home','created_at','updated_at','doctn')->orderBy('id','desc')->get();
 			Cache::add('c_a_product',$data,5);
 		}
 
@@ -97,6 +97,13 @@ class ProductController extends BaseController
 		$product->author=trim($request->author);
 
 		$product->show_home=1;
+
+		$dt=\Carbon\Carbon::now('Asia/Ho_Chi_Minh');
+		
+
+		$product->ngaydoc= $dt->day.''.$dt->month.''.$dt->year;
+
+		$product->doctn=0;
 		
 
 		if($product->save()){
