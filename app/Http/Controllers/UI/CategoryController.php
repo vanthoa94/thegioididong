@@ -17,19 +17,29 @@ class CategoryController extends BaseController
 			'sach-mien-phi'=>'Sách miễn phí',
 			'sach-co-phi'=>'Sách có phí',
 			'sach-moi'=>'Sách mới nhất',
-			'sach-xem-nhieu'=>'Sách xem nhiều',
-			'sach-hoc-vien'=>'Sách học viên'
+			'sach-xem-nhieu'=>'Sách xem nhiều'
 		);
 
+
+		$info=array();
+		
+
+
 		if(!array_key_exists($url, $cate)){
-			return view("errors.404");
+
+			$infoc=Category::select('id','name','url')->where('url',$url)->where('display',1)->first();
+
+			if($infoc==null)
+				return view("errors.404");
+			$info['url']=$infoc->url;
+			$info['name']=$infoc->name;
+			$info['id']=$infoc->id;
+		}else{
+			$info['url']=$url;
+			$info['name']=$cate[$url];
 		}
 
 		$data=array();
-
-		$info=array();
-		$info['url']=$url;
-		$info['name']=$cate[$url];
 
 		$data['info']=$info;
 
@@ -49,8 +59,8 @@ class CategoryController extends BaseController
 			case 'sach-xem-nhieu':
 				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->orderBy('viewer','desc')->paginate(24);
 				break;
-			case 'sach-hoc-vien':
-				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('cate_id',2)->orderBy('updated_at','desc')->paginate(24);
+			default:
+				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('cate_id',$info['id'])->orderBy('updated_at','desc')->paginate(24);
 				break;
 		}
 		$data['products']=$products;

@@ -7,6 +7,8 @@ use App\Website;
 use App\Video;
 use App\Product;
 use App\Ads;
+use App\Category;
+use Cache;
 
 class BaseController extends Controller
 {
@@ -23,6 +25,33 @@ class BaseController extends Controller
         $base_data=array();
         $base_data['website']=$data;
 
+        if(Cache::has('c_a_category')){
+            $listCateInHomeC=Cache::get('c_a_category');
+            $listCateInHome=array();
+            foreach ($listCateInHomeC as $value) {
+                if($value->display==1){
+                    $listCateInHome[]=$value;
+                }
+            }
+
+            $length=count($listCateInHome);
+
+            for($i=0;$i<$length;$i++){
+
+                for($j=$i+1;$j<$length;$j++){
+                    if($listCateInHome[$i]->sort_menu>$listCateInHome[$j]->sort_menu){
+                        $temp=$listCateInHome[$i];
+                        $listCateInHome[$i]=$listCateInHome[$j];
+                        $listCateInHome[$j]=$temp;
+                    }
+                }   
+            }
+        }else{
+            $listCateInHome=Category::select('id','name','url')->where('display',1)->orderBy('sort_menu')->get();
+        }
+
+
+        $base_data['categorys']=$listCateInHome;
 
         if($this->loadVideo){
 

@@ -129,6 +129,7 @@ function ffilter(th, obj,flag,value) {
         	                    text = text.find("span:eq(0)");
         	                }
                             text=text.text().toLowerCase();
+
         	                if ($.trim(text).indexOf(filter.value) !== -1) {
         	                    par.removeClass('hide');
         	                }

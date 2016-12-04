@@ -3,17 +3,52 @@
 namespace App\Http\Controllers\UI;
 use App\Product;
 use App\SlideShow;
+use App\Category;
+use Cache;
 
 
 class HomeController extends BaseController
 {
 	public function index()
 	{
-		$listBookNew=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->where('cate_id','<>',2)->orderBy('index_home')->orderBy('id','desc')->limit(12)->get();
+		$listCateInHome=array();
+
+		if(Cache::has('c_a_category')){
+			$listCateInHomeC=Cache::get('c_a_category');
+
+			foreach ($listCateInHomeC as $value) {
+				if($value->show_home==1){
+					$listCateInHome[]=$value;
+				}
+			}
+
+			$length=count($listCateInHome);
+
+			for($i=0;$i<$length;$i++){
+
+				for($j=$i+1;$j<$length;$j++){
+					if($listCateInHome[$i]->sort_home>$listCateInHome[$j]->sort_home){
+						$temp=$listCateInHome[$i];
+						$listCateInHome[$i]=$listCateInHome[$j];
+						$listCateInHome[$j]=$temp;
+					}
+				}	
+			}
+		}else{
+			$listCateInHome=Category::select('id','name','url')->where('show_home',1)->orderBy('sort_home')->get();
+		}
+
+		$listBookNew=array();
+
+		foreach ($listCateInHome as $value) {
+			$listBookNew[$value->id]=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->where('cate_id',$value->id)->orderBy('index_home')->orderBy('id','desc')->limit(12)->get();
+		}
 
 		$data=array();
 
 		$data['listBookNew']=$listBookNew;
+
+		$data['listCateInHome']=$listCateInHome;
 
 		$data['slideshow']=SlideShow::select('title','url','image')->where('display',1)->orderBy('index','asc')->get();
 

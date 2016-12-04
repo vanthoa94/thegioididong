@@ -26,11 +26,14 @@
 
 <div class="row contentmain">
 	<div class="col-xs-12 col-sm-6 col-md-6">
+
+		@foreach($listCateInHome as $value)
+
 		<div class="box">
-			<h2>Sách Tiếng Hoa <a href=""> Xem thêm &gt;&gt;</a></h2>
+			<h2>{{$value->name}} <a href="{{url($value->url)}}"> Xem thêm &gt;&gt;</a></h2>
 			<div class="contentbox clearfix">
 				<div class="row">
-					@foreach($listBookNew as $item)
+					@foreach($listBookNew[$value->id] as $item)
 
 					<div class="item col-xs-6 col-sm-6 col-md-4">
 						<div class="image">
@@ -55,7 +58,9 @@
 					@endforeach
 				</div>
 			</div><!--content-box-->
-		</div>
+		</div><br />
+
+		@endforeach
 	</div><!--colleft-->
 
 	<div class="col-xs-12 col-sm-6 col-md-6 hidden-xs">

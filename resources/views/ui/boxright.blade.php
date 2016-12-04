@@ -160,12 +160,10 @@
     </div>
 </div>
 
-<link type="text/css" rel="stylesheet" href="{{Asset('public/css/dialogvideo.css')}}"></script>
 
 @endif
 
 @section('script')
-<script type="text/javascript" src="{{Asset('public/js/dialogvideo.js')}}"></script>
 <script>
 $(window).load(function(){
 	var widthbox=document.getElementById('boxfacebookline').offsetWidth;

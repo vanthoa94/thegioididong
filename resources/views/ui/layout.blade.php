@@ -9,6 +9,7 @@
     <title>@yield('title')</title>
     <link href="{{Asset("public/css/bootstrap.min.css")}}" rel="stylesheet" />
     <link href="{{Asset("public/css/css.css")}}" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="{{Asset('public/css/dialogvideo.css')}}"></script>
     @yield('css')
     <!--[if lt IE 9]>
           <script src="{{Asset("public/js/html5shiv.min.js")}}"></script>
@@ -73,7 +74,7 @@
             <div class="pull-right">
                 <a href="{{url('page/huong-dan-dang-sach.html')}}"><img src="{{Asset('public/images/help.png')}}" width="13px" /> <b>Hướng dẫn đăng sách</b></a>
                 <span>|</span>
-                <a href="#"><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
+                <a href="#" id="logindialog"><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
                 <span>|</span>
                 <a href="{{url('lien-he.html')}}"><img src="{{Asset('public/images/icon-contact.gif')}}" width="13px" /> <b>Liên hệ</b></a>
             </div>
@@ -149,7 +150,9 @@
                         <li><a href="{{url('sach-co-phi')}}">Sách có phí</a></li>
                         <li><a href="{{url('sach-moi')}}">Sách mới nhất</a></li>
                         <li><a href="{{url('sach-xem-nhieu')}}">Sách xem nhiều</a></li>
-                        <li><a href="{{url('sach-hoc-vien')}}">Sách học viên</a></li>
+                        @foreach($base_data['categorys'] as $item)
+                            <li><a href="{{url($item->url)}}">{{$item->name}}</a></li>
+                        @endforeach
                         
                     </ul>
                 </div>
@@ -213,12 +216,40 @@
         </div>
     </footer>
 
+    <div id="dialogLogin">
+         <div class='header'>
+            <span>Đăng nhập</span> <i title="close" class="closedialog"></i>
+        </div>
+        <div class='ct'>
+            
+        </div>
+    </div>
+
     <script type="text/javascript">
         var base_url="{{url()}}";
     </script>
 
     <script src="{{Asset("public/js/jquery.min.js")}}" type="text/javascript"></script>
     <script src="{{Asset("public/js/jshome.js")}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{Asset('public/js/dialogvideo.js')}}"></script>
+
+    <script type="text/javascript">
+    var dialogLogin=null;
+    $(document).ready(function(){
+        $("#logindialog").click(function(){
+
+            if(dialogLogin==null){
+                dialogLogin=new dialog($("#dialogLogin"),{
+                    "width":320,
+                    "height":280
+                });
+                dialogLogin.init();
+            }
+            dialogLogin.show();
+            return false;
+        });
+    });
+    </script>
 
     @yield('script')
      @yield('script2')
