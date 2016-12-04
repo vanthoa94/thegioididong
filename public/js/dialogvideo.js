@@ -47,11 +47,11 @@ function dialog(obj,options){
 		}
 
 		
-		if(top<=5){
-			top=6;
+		if(top<=20){
+			top=21;
 		}
 
-		obj.css({"width":widthobj,"height":heightobj,"left":left+"%","top":(top-5)+"%"});
+		obj.css({"width":widthobj,"height":heightobj,"left":left+"%","top":(top-20)+"%"});
 		obj.find(".ct").css({"height":heightobj-40});
 
 		if(!$(".dimb").length){

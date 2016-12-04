@@ -221,7 +221,9 @@
             <span>Đăng nhập</span> <i title="close" class="closedialog"></i>
         </div>
         <div class='ct'>
-            
+            <div id="iframe">
+
+            </div>
         </div>
     </div>
 
@@ -235,15 +237,23 @@
 
     <script type="text/javascript">
     var dialogLogin=null;
+
+    var isFrameParent=true;
+
+    function LoginFaceSuccess(result){
+      
+    }
+
     $(document).ready(function(){
         $("#logindialog").click(function(){
 
             if(dialogLogin==null){
                 dialogLogin=new dialog($("#dialogLogin"),{
                     "width":320,
-                    "height":280
+                    "height":240
                 });
                 dialogLogin.init();
+                 dialogLogin.getObj().find("#iframe").html('<iframe style="border:0;width:272px;height:170px" src="'+(base_url+"/login-face")+'"></iframe>');
             }
             dialogLogin.show();
             return false;
