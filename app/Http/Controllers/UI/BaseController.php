@@ -9,6 +9,7 @@ use App\Product;
 use App\Ads;
 use App\Category;
 use Cache;
+use Session;
 
 class BaseController extends Controller
 {
@@ -87,6 +88,12 @@ class BaseController extends Controller
         }
 
         $base_data['qc']=$arrqc;
+
+        if(Session::get('loginuser')!=null){
+            $base_data['islogin']=Session::get('loginuser');
+        }else{
+            $base_data['islogin']=0;
+        }
 
 		view()->share('base_data',$base_data);
 

@@ -133,20 +133,11 @@
                         </ul>
                     </li>
 
-                    <li id="menu_account" class="dropdownmenu">
-                        <a href="#">
+                    <li id="menu_account">
+                        <a href="{{url('admin/user')}}">
                             <i class="fa fa-user"></i> <span>Quản lý người dùng</span>
-                             <small class="fa fa-chevron-down"></small>
                         </a>
-                        <ul>
-                            <li data-role="user/list" class="trole" data-action="list">
-                                <a href="{{url('admin/user')}}">Danh sách</a>
-                            </li>
-
-                            <li data-role="user/create" class="trole" data-action="new"> 
-                                <a href="{{url('admin/user/create')}}" >Thêm mới</a>
-                            </li>
-                        </ul>
+                        
                     </li>
 
                     <li id="menu_info" class="dropdownmenu">

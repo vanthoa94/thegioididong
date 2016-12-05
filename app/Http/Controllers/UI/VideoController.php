@@ -27,6 +27,28 @@ class VideoController extends BaseController
 
 		$data['info']=$info;
 
+		$isAddViewer=false;
+
+		if(!isset($_COOKIE['viewvideo'])){
+			$isAddViewer=true;
+
+			setcookie('viewvideo',$info->id,time()+1200);
+		}else{
+			$arrviewer=explode(',',$_COOKIE['viewvideo']);
+
+			if(!in_array($info->id, $arrviewer)){
+				$arrviewer[]=$info->id;
+
+				$isAddViewer=true;
+
+				setcookie('viewvideo',implode(',', $arrviewer),time()+1200);
+			}
+		}
+
+		if($isAddViewer){
+			Video::where('id',$info->id)->update(array('view'=>$info->view+1));
+		}
+
 		return view("ui.video.detail",$data);
 	}
 }

@@ -4,7 +4,7 @@
 @section('breadcrumb')
 <h2>Người dùng</h2>
 <h3 class="trole" data-role="user/create">
-        <a href="{{url('admin/user/create')}}">Thêm Mới</a>
+      
     </h3>
 @endsection
 
@@ -36,11 +36,11 @@
                 <input type="button" class="button fleft" data-target="#bulk-action-selector-top" value="Áp dụng">
             </div>
             <div class="group-action">
-                <select id="filter-by-date" data-filter='{"type":"column","column":"select","filtertype":"^"}' data-group-filter="a">
+                <select id="filter-by-date" data-filter='{"type":"attr","attr_name":"data-type"}' data-group-filter="a">
                     <option selected="selected" value="-1">- Lọc tất cả -</option>
                     
-                    <option value="Nam" data-column="6">Giới tính nam</option>
-                    <option value="Nữ" data-column="6">Giới tính nữ</option>
+                    <option value="1">Tài khoản facebook</option>
+                    <option value="2">Tài khoản google</option>
                 </select>
                 <input type="button" class="button fleft" data-target="#filter-by-date" value="Lọc">
             </div>
@@ -68,28 +68,26 @@
                 <th width="35px">
                     <span class="ascheckbox checkall center" data-target=".checkboxb"></span>
                 </th>
-                <th class="tsort" width="200px">Username</th>
-          
-                <th>Tên</th>
+                <th class="tsort" width="150px">Tên</th>
                 <th>Số ĐT</th>
                 <th>Email</th>
                 <th width="150px">Địa chỉ</th>
                 <th>Giới tính</th>
                 <th width="70px">Khóa</th>
                 <th class="tsort">Ngày Tạo</th>
-                <th class="tsort">Ngày Cập Nhật</th>
+                <th class="tsort">Truy cập cuối</th>
             </tr>
         </thead>
         <tbody>
           <?php $IdUser=0; ?>
             @foreach ($data as $item)
-                <tr data-block="{{$item->block}}">
+                <tr data-block="{{$item->block}}" data-type="{{$item->remember_token}}">
                     <td>
                         
                         <span class="ascheckbox center checkboxb" data-value="{{$item->id}}"></span>
                     </td>
                     <td>
-                        <span>{{$item->username}}</span>
+                        <span>{{$item->name}}</span>
                         <div class="row-action">
                             <span class="trole" data-role="user/update"><a href="{{url('admin/user/'.$item->id)}}" title="Sửa thông tin">Sửa</a>
                                 <small>| </small>
@@ -103,28 +101,14 @@
                                         data-name="{{$item->username}}" 
                                         data-confirm="Bạn có chắc muốn xóa user <b>{{$item->username}}</b>?<br /><small>Một khi xóa bạn sẽ không thể khôi phục lại được</small>"
                                         href="#" title="Xóa user này">Xóa</a>
-                                <small>| </small>
                             </span>
-                                <span class="trole" data-role="user/reset"><a class="event"
-                                        data-ajax="true" 
-                                         data-href="{{url('admin/user/reset')}}"
-                                         data-value="{{$item->id}}" 
-                                         data-success="resetpass"
-                                        data-before="enterpass"
-                                        href="#" title="Cập nhật lại mật khẩu cho user">Reset pass</a>
-                                </span>
+                              
                         </div>
                     </td>
                    
-                    <td>{{$item->name}}</td>
                     <td>{{$item->phone}}</td>
                     <td>
-                        @if(strlen($item->email)<=15)
                         {{$item->email}}
-                        @else
-                        {{substr($item->email,0,15)}}<br />
-                        {{substr($item->email,15)}}
-                        @endif
                     </td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->gender==1?"Nam":"Nữ"}}</td>
@@ -255,7 +239,7 @@ var _token="{{csrf_token()}}";
                     getAlert(message);
                     target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                         if ($(this).hasClass("checked")) {
-                            $(this).parents("tr").attr("data-block","1").find("td:eq(7) .checkboxblock").addClass("checked");
+                            $(this).parents("tr").attr("data-block","1").find("td:eq(6) .checkboxblock").addClass("checked");
                            
                         }
                     });
@@ -266,7 +250,7 @@ var _token="{{csrf_token()}}";
                     getAlert(message);
                     target.parents(".ttable").find("table tbody tr .checkboxb").each(function () {
                         if ($(this).hasClass("checked")) {
-                            $(this).parents("tr").attr("data-block", "0").find("td:eq(7) .checkboxblock").removeClass("checked");
+                            $(this).parents("tr").attr("data-block", "0").find("td:eq(6) .checkboxblock").removeClass("checked");
                         }
                     });
                     target = target.parents(".ttable");

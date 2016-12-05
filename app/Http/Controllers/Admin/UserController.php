@@ -13,7 +13,7 @@ class UserController extends BaseController
 			return $this->ErrorPermission('Người dùng');
 		}
 
-		$data=User::orderBy('id','desc')->get();
+		$data=User::orderBy('updated_at','desc')->get();
 
 		return view("backend.user.index",array('data'=>$data));
 	}

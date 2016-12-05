@@ -69,3 +69,8 @@
 </div>
 
 @endsection
+
+@section('script2')
+
+    <script src="{{Asset("public/js/jshome.js")}}" type="text/javascript"></script>
+@endsection

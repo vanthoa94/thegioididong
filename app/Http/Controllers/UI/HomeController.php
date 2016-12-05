@@ -102,7 +102,4 @@ class HomeController extends BaseController
 		return view("ui.search",array('products'=>$products,'total'=>$total,'videos'=>$videos,'total1'=>$total1));
 	}
 
-	public function login(){
-		return view('ui.login');
-	}
 }

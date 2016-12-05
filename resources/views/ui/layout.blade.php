@@ -71,10 +71,18 @@
                 </div>
             </div><!--left-->
 
-            <div class="pull-right">
+            <div class="pull-right" id="tass">
                 <a href="{{url('page/huong-dan-dang-sach.html')}}"><img src="{{Asset('public/images/help.png')}}" width="13px" /> <b>Hướng dẫn đăng sách</b></a>
                 <span>|</span>
-                <a href="#" id="logindialog"><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
+                @if($base_data['islogin']==0)
+                <i>
+                <a href="#" class="loginweb"><img src="{{Asset('public/images/Login-Information.png')}}" width="13px" /> <b>Đăng nhập</b></a>
+                </i>
+                @else
+                <a href="{{url('user/profile')}}"><img src="{{Asset('public/images/inf.png')}}" width="13px" /> <b>Thông tin cá nhân</b></a>
+                <span>|</span>
+                <a href="#" onclick="logoutWeb()"><img src="{{Asset('public/images/logout.png')}}" width="13px" /> <b>Thoát</b></a>
+                @endif
                 <span>|</span>
                 <a href="{{url('lien-he.html')}}"><img src="{{Asset('public/images/icon-contact.gif')}}" width="13px" /> <b>Liên hệ</b></a>
             </div>
@@ -224,6 +232,8 @@
             <div id="iframe">
 
             </div>
+            <div id="progressicon">
+            </div>
         </div>
     </div>
 
@@ -232,35 +242,8 @@
     </script>
 
     <script src="{{Asset("public/js/jquery.min.js")}}" type="text/javascript"></script>
-    <script src="{{Asset("public/js/jshome.js")}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{Asset('public/js/script.js')}}"></script>
     <script type="text/javascript" src="{{Asset('public/js/dialogvideo.js')}}"></script>
-
-    <script type="text/javascript">
-    var dialogLogin=null;
-
-    var isFrameParent=true;
-
-    function LoginFaceSuccess(result){
-      
-    }
-
-    $(document).ready(function(){
-        $("#logindialog").click(function(){
-
-            if(dialogLogin==null){
-                dialogLogin=new dialog($("#dialogLogin"),{
-                    "width":320,
-                    "height":240
-                });
-                dialogLogin.init();
-                 dialogLogin.getObj().find("#iframe").html('<iframe style="border:0;width:272px;height:170px" src="'+(base_url+"/login-face")+'"></iframe>');
-            }
-            dialogLogin.show();
-            return false;
-        });
-    });
-    </script>
-
     @yield('script')
      @yield('script2')
 </body>

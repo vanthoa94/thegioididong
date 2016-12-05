@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title></title>
-	<meta name="google-signin-client_id" content="791349724207-ossi354u6qkufjrfkhujmr10serkt7cm.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="263721748986-v74q0nhgjva92i5qpes6fcsljhnr9dcc.apps.googleusercontent.com">
 	<style type="text/css">
 	.loginbtn img{
 		width:100%;
@@ -26,7 +26,7 @@
 	</style>
 </head>
 <body>
-<p>Bạn có thể đăng nhập vào website bằng 1 trong 2 cách bên dưới</p>
+<p id='status'>Bạn có thể đăng nhập vào website bằng 1 trong 2 cách bên dưới</p>
 <div id="loginface" class="loginbtn" onclick="loginFace();"><img src="{{Asset('public/images/loginwithface.png')}}" /></div>
 <div class="loginbtn">
  <img id="googleSignIn" src="{{Asset('public/images/loginwithgooge.png')}}" />
@@ -38,10 +38,10 @@ if(typeof parent.isFrameParent=='undefined'){
 }
 	window.fbAsyncInit = function() {
     	FB.init({
-		    appId      : '1581096018837837',
+		    appId      : '479305018897192',
 		    cookie     : true,
 		    xfbml      : true,
-		    version    : 'v2.3'
+		    version    : 'v2.4'
     	});
  	};
 
@@ -54,6 +54,7 @@ if(typeof parent.isFrameParent=='undefined'){
    }(document, 'script', 'facebook-jssdk'));
 
  	function loginFace(){
+ 		parent.showProgressIcon();
 		FB.login(function(response) {
 	  		FB.getLoginStatus(function(response) {
 	    		statusChangeCallback(response);
@@ -61,17 +62,18 @@ if(typeof parent.isFrameParent=='undefined'){
 	 	}, {scope: 'public_profile,email'});
 	}
 
+	var _token="{{csrf_token()}}";
+
 
 	 function statusChangeCallback(response) {  
 	    if (response.status === 'connected') {
-	      
 	      LoginFacebook();
 	    } else if (response.status === 'not_authorized') {
-	      document.getElementById('status').innerHTML = 'Please log ' +'into this app.';
+	      document.getElementById('status').innerHTML = 'Vui lòng đăng nhập vào ứng dụng.';
+	      parent.hideProgressIcon();
 	    } else {
-	      
-	      document.getElementById('status').innerHTML = 'Please log ' +
-	        'into Facebook.';
+	      document.getElementById('status').innerHTML = 'Vui lòng đăng nhập vào facebook';
+	      parent.hideProgressIcon();
 	    }
 	  }
 
@@ -83,30 +85,38 @@ if(typeof parent.isFrameParent=='undefined'){
 	  }
 
 	   function LoginFacebook() {
-    		FB.api('/me', function(response) {
-				parent.LoginFaceSuccess(response);
+    		FB.api('/me?fields=name,email,gender', function(response) {
+				parent.LoginFaceSuccess(response,_token);
 		    });
 		}
 
 function onLoadGoogleCallback(){
   gapi.load('auth2', function() {
     auth2 = gapi.auth2.init({
-      client_id: '791349724207-ossi354u6qkufjrfkhujmr10serkt7cm.apps.googleusercontent.com',
+      client_id: '263721748986-v74q0nhgjva92i5qpes6fcsljhnr9dcc.apps.googleusercontent.com',
       cookiepolicy: 'single_host_origin',
       scope: 'profile'
     });
 
   auth2.attachClickHandler(element, {},
     function(googleUser) {
-        console.log('Signed in: ' + googleUser.getBasicProfile().getName());
+    	parent.showProgressIcon();
+        var profile=googleUser.getBasicProfile();
+
+        parent.LoginGoogleSuccess(profile,_token);
       }, function(error) {
-        console.log('Sign-in error', error);
+      	document.getElementById('status').innerHTML = 'Lỗi đăng nhập. Vui lòng thử lại.';
+	      parent.hideProgressIcon();
       }
     );
   });
 
   element = document.getElementById('googleSignIn');
 }
+
+window.onload=function(){
+	parent.hideProgressIcon();
+};
 
 </script>
 

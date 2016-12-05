@@ -283,13 +283,18 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 Route::group(['namespace' => 'UI'],function(){
 	Route::get('/','HomeController@index');
 
-	Route::get('login-face','HomeController@login');
 
 	Route::get('tim-kiem.html','HomeController@search');
 
 	Route::get('lien-he.html','ContactController@index');
 
 	Route::post('lien-he.html','ContactController@send');
+
+	Route::get('login-face','UserController@login');
+
+	Route::post('loginweb','UserController@postLogin');
+
+	Route::get('user/logout','UserController@logout');
 
 	Route::get('video.html','VideoController@index');
 

@@ -1,13 +1,3 @@
-$(function(){
- 	$(".addthis_toolbox a.at300b").click(function () {
-	    if (!$(this).hasClass("printpage")) {
-	        window.open($(this).attr("href"), '_blank', "menubar=no,toolbar=no,resizable=no,scrollbars=no,height=450,width=710");
-
-	        return false;
-	    }
-	});
-});
-
 
 function initslide(obj,o){
 	new slide(obj,(o!=null && typeof(o)=="object")?o:null).init();
