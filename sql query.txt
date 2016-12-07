@@ -1,0 +1,6 @@
+insert into websites VALUES(NULL,'content_color','#333333');
+insert into websites VALUES(NULL,'content_size','17');
+insert into websites VALUES(NULL,'background_boxright','#ffffff');
+insert into websites VALUES(NULL,'background_content_read','#ffffff');
+insert into websites VALUES(NULL,'border_box_right','#e5e5e5');
+insert into websites VALUES(NULL,'show_box_shadow','1');

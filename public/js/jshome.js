@@ -40,7 +40,7 @@ function slide(obj,o){
 				if(--current<0){
 					current=max-1;
 				}
-				th.move(current,sleepanimate);
+				th.move(current,sleepanimate,true);
 				th.resetTimer();
 			});
 			obj.find("#next").click(function(){
@@ -121,14 +121,23 @@ function slide(obj,o){
 		th.loadImage(arr,0);
 	};
 	
-	this.move=function(po,sle){
+	this.move=function(po,sle,prev){
 		obj.find("#arrow li.active").removeClass("active").parent().find("li").eq(po).addClass("active");
-		var after=po-1;
-		if(after<0){
-			after=max-1;
+		if(prev==null){
+			var after=po-1;
+			if(after<0){
+				after=max-1;
+			}
+			th.content.find("a").eq(after).hide();
+			th.content.find("a").eq(po).fadeIn('slow');
+		}else{
+			var before=po+1;
+			if(before>max-1){
+				before=max-2;
+			}
+			th.content.find("a").eq(before).hide();
+			th.content.find("a").eq(po).fadeIn('slow');
 		}
-		th.content.find("a").eq(after).hide();
-		th.content.find("a").eq(po).fadeIn('slow');
 	};
 
 	this.movenext=function(){

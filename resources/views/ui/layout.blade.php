@@ -47,6 +47,19 @@
         #headermenu .danhmuc ul li a:hover{
             color:{{$base_data['website']['background_hover_menu']}};
         }
+        .bright{
+            background-color: {{$base_data['website']['background_boxright']}};
+
+            border:1px solid {{$base_data['website']['border_box_right']}};
+        }
+
+        @if($base_data['website']['show_box_shadow']=='0')
+        .bright{
+            box-shadow: 0px 0px 0px #fff;
+            -moz-box-shadow: 0px 0px 0px #fff;
+            -webkit-box-shadow: 0px 0px 0px #fff;
+        }
+        @endif
     </style>
 
 

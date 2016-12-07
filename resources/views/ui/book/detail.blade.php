@@ -147,6 +147,12 @@
 	</div><!--colright-->
 </div>
 
+<style type="text/css">
+.boxchuong{
+	background-color: {{$base_data['website']['background_boxright']}}
+}
+</style>
+
 @endsection
 
 @section('script2')

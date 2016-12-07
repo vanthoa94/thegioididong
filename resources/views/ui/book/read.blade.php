@@ -34,6 +34,8 @@
 			</ul>
 		</div>
 
+		<h1 class="title">{{$info->name}}</h1>
+
 		<div class="navigator">
 
 			<div class="listchuong">
@@ -45,18 +47,18 @@
 				</select>
 			</div>
 
-			<a href="#" class="btn btn-primary cprev">Chương trước</a>
+			<a href="#" class="btn btn-success cprev">Chương trước</a>
 			<button class="btn btn-success" id="caidat">Cài đặt</button>
-			<a href="#" class="btn btn-primary cnext">Chương sau</a>
+			<a href="#" class="btn btn-success cnext">Chương sau</a>
 
 			<div id="option">
 				Màu chữ: <select id="fontcolor">
-					<option value="black" selected="selected">Đen</option>
+					<option value="#333333" selected="selected">Đen</option>
 					<option value="blue">Xanh</option>
 					<option value="red">Đỏ</option>
 					<option value="#fd00ff">Hồng</option>
 					<option value="#af0dff">Tím</option>	
-					<option value="#999">Xám</option>
+					<option value="#999999">Xám</option>
 
 			</select> &nbsp;&nbsp;
 				Kích thước chữ: <select id="fontsize">
@@ -75,8 +77,9 @@
 
 		</div>
 
-		<h1 class="title">{{$info->name}}</h1>
+		
 		<h2 class="nmucluc">{{$mucluc->name}}</h2>
+		
 
 		@if($mucluc->video!='')
 			<div id="xemvideo">
@@ -95,7 +98,7 @@
 			
 		@endif
 
-		<div id="content">
+		<div id="content" style="font-size:{{$base_data['website']['content_size']}};color:{{$base_data['website']['content_color']}};line-height:{{((int)$base_data['website']['content_size'])+4}}px">
 			{!!$mucluc->content!!}
 		</div>
 
@@ -176,12 +179,12 @@
 
 		$("#fontcolor").change(function(){
 			$("#content").css("color",$(this).val());
-		});
+		}).val("{{$base_data['website']['content_color']}}");
 
 		$("#fontsize").change(function(){
 			$("#content").css("font-size",$(this).val());
 			$("#content").css("line-height",(parseInt($(this).val())+4)+"px");
-		});
+		}).val("{{$base_data['website']['content_size']}}");
 		
 		$("#caidat").click(function(){
 			$("#option").slideToggle();

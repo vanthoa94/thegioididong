@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Website;
 use Input;
-
+use Cache;
 
 class InfoController extends BaseController
 {
@@ -13,13 +13,18 @@ class InfoController extends BaseController
 			return $this->ErrorPermission('Thông tin website');
 		}
 
-		$info=Website::get();
 		$data=array();
-		foreach ($info as $key => $value) {
-			if(array_key_exists($value->name, $data)){
-				$data[$value->name].="\n".$value->content;
-			}else
+
+		if(Cache::has('c_a_websites')){
+			$data=Cache::get('c_a_websites');
+		}else{
+
+			$info=Website::get();
+			foreach ($info as $key => $value) {
 				$data[$value->name]=$value->content;
+			}
+
+			Cache::forever('c_a_websites',$data);
 		}
 
 		
@@ -37,7 +42,8 @@ class InfoController extends BaseController
 		$info->where('name','meta_description')->update(array('content'=>str_replace("\"", "'", trim(Input::get('meta_description')))));
 		$info->where('name','meta_keywords')->update(array('content'=>str_replace("\"", "'", trim(Input::get('meta_keywords')))));
 		$info->where('name','copyright')->update(array('content'=>str_replace("\n","<br>",trim(Input::get('copyright')))));
-
+		if(Cache::has('c_a_websites'))
+				Cache::forget('c_a_websites');
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công thông tin chung.']);
 	}
 
@@ -62,7 +68,8 @@ class InfoController extends BaseController
 
 		$info->where('name','GPKD')->update(array('content'=>trim(Input::get('GPKD'))));
 
-
+		if(Cache::has('c_a_websites'))
+				Cache::forget('c_a_websites');
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công thông tin liên hệ.']);
 	}
 
@@ -77,7 +84,8 @@ class InfoController extends BaseController
 
 		$info->where('name','password_send')->update(array('content'=>trim(Input::get('password_send'))));
 
-
+		if(Cache::has('c_a_websites'))
+				Cache::forget('c_a_websites');
 		return redirect('admin/info')->with(['message'=>'Cập nhật thành công cấu hình send mail.']);
 	}
 

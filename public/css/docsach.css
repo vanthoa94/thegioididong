@@ -4,13 +4,16 @@
 	margin-bottom: 10px;
 }
 .title{
-	color:#a70000;
 	margin-top:20px;
+	    color: #690;
+	        text-transform: uppercase;
+    font-family: "Roboto Condensed",Tahoma,sans-serif;
 }
 .nmucluc{
-	font-size: 22px;
-	font-weight: bold;
-	margin-bottom: 25px;
+	font-size: 20px;
+	padding-bottom: 15px;
+	margin-top: 25px;
+	color:#333;
 }
 #content{
 	line-height: 20px;

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\UI;
 
 use Illuminate\Routing\Controller;
-use App\Website;
 use App\Video;
 use App\Product;
 use App\Ads;
@@ -17,10 +16,18 @@ class BaseController extends Controller
     protected $loadNewBook=false;
     protected $loadFeBook=false;
 	public function __construct(){
-		$website = Website::get();
+
         $data=array();
-        foreach ($website as $key => $value) {
-             $data[$value->name]=$value->content;
+
+        if(Cache::has('c_a_websites')){
+            $data=Cache::get('c_a_websites');
+        }else{
+            $website = \App\Website::get();
+            foreach ($website as $key => $value) {
+                 $data[$value->name]=$value->content;
+            }
+
+            Cache::forever('c_a_websites',$data);
         }
 
         $base_data=array();

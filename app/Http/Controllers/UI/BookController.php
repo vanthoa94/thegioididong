@@ -25,7 +25,7 @@ class BookController extends BaseController
 
 		$data['cothemuondoc']=$cothemuondoc;
 
-		$muclucs=MucLuc::select('name','url','updated_at')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->paginate(15);
+		$muclucs=MucLuc::select('name','url','updated_at')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->orderBy('id')->paginate(15);
 
 		$data['total']=$muclucs->total();
 
@@ -88,7 +88,7 @@ class BookController extends BaseController
 
 		$data['mucluc']=$mucluc;
 
-		$data['muclucs']=MucLuc::select('name','url')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->get();
+		$data['muclucs']=MucLuc::select('name','url')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->orderBy('id')->get();
 
 		$data['qc']=Ads::select('title','url','image')->where('display',1)->where('position',4)->orderBy('id','desc')->first();
 

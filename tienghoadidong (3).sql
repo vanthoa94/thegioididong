@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2016 at 12:17 PM
+-- Generation Time: Dec 07, 2016 at 07:53 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -47,7 +47,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `group_id`, `name`, `username`, `email`, `password`, `phone`, `last_visit`, `after_last_visit`, `block`, `created_at`, `updated_at`, `remember_token`) VALUES
-(1, 1, 'Admin', 'admin', 'admin@gmail.com', '$2y$10$7KHD7I0a/fOP90iC//E./.GHtRU3hZy62Bw1Cg39lLRyUqL/m6h3K', '01686539737', '2016-12-03 13:09:21', '2016-12-04 14:14:06', 0, '0000-00-00 00:00:00', '2016-12-04 07:14:06', 'sBa8r21rRcFX9mX86XOmGVRMHoNRdWYiMKo6XOsVaHmjOVLkGFS30qEdtAWi');
+(1, 1, 'Admin', 'admin', 'admin@gmail.com', '$2y$10$7KHD7I0a/fOP90iC//E./.GHtRU3hZy62Bw1Cg39lLRyUqL/m6h3K', '01686539737', '2016-12-05 15:12:33', '2016-12-07 13:52:45', 0, '0000-00-00 00:00:00', '2016-12-07 06:52:45', 'sBa8r21rRcFX9mX86XOmGVRMHoNRdWYiMKo6XOsVaHmjOVLkGFS30qEdtAWi');
 
 -- --------------------------------------------------------
 
@@ -181,9 +181,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `cate_id`, `name`, `url`, `image`, `price`, `price_pro`, `description`, `keywords`, `status`, `quantity`, `viewer`, `sold`, `promotion`, `author`, `display`, `show_home`, `index_home`, `created_at`, `updated_at`, `daxem`, `ngaydoc`, `doctn`) VALUES
-(1, 1, '﻿﻿﻿﻿﻿﻿Nắm Vững 300 Từ Tiếng Hoa', 'hoc-vien-online-26-11', 'book/bia.jpg', 100000, 90000, '', '', 3, 0, 2, 0, 'Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q<br>Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q', 'Phạm Minh Kha', 1, 1, 1, '2016-11-29 06:27:34', '2016-12-04 09:59:01', 0, '4122016', 2),
-(2, 1, '﻿﻿﻿﻿﻿﻿Tư Vấn Học Tiếng Hoa', 'tu-van-hoc-tieng-hoa', 'book/bia(1).jpg', 0, 0, '', '', 0, 0, 0, 0, 'Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thục&nbsp;<div>Thông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q<br></div><div>Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q</div>', 'Phạm Minh Kha', 1, 1, 0, '2016-11-30 06:58:30', '2016-12-02 11:03:07', 0, '4122016', 0),
-(3, 1, 'Học viên online 4/12', 'hoc-vien-online-4-12', 'book/bia.jpg', 0, 0, '', '', 0, 0, 2, 0, 'sách học viên online', 'Phạm Minh Kha', 1, 1, 0, '2016-12-04 07:15:03', '2016-12-04 11:16:08', 0, '4122016', 2);
+(1, 1, '﻿﻿﻿﻿﻿﻿Nắm Vững 300 Từ Tiếng Hoa', 'hoc-vien-online-26-11', 'book/bia.jpg', 1000000, 900000, '', '', 3, 0, 3, 0, 'Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q<br>Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q', 'Phạm Minh Kha', 1, 1, 1, '2016-11-29 06:27:34', '2016-12-04 14:45:42', 0, '4122016', 3),
+(2, 1, '﻿﻿﻿﻿﻿﻿Tư Vấn Học Tiếng Hoa', 'tu-van-hoc-tieng-hoa', 'book/bia(1).jpg', 0, 0, '', '', 0, 0, 8, 0, 'Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thục&nbsp;<div>Thông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q<br></div><div>Sự thành công ở đây không mơ hồ, cao xa hay viển vông, mà rất thực tế, rõ ràng: Tôi biết, tôi đang xử lý Thông tin này. Tôi biết, tôi rõ ràng Thông tin này. Tôi phải lặp đi lặp lại rất nhiều lần Thông tin này bằng cách nghe, nói, viết và liên tưởng đến tình huống thực tế. Tôi đã thuần thụcThông tin này, nghĩa là tôi đã thành công với nó. Sự thành công lớn do nhiều sự thành công nhỏ như vầy cộng lại mà thành. Tùy theo chỗ đứng (nền tảng, điều kiện, …) mà ta đi nhanh hay đi chậm, tuy nhiên điều q</div>', 'Phạm Minh Kha', 1, 1, 0, '2016-11-30 06:58:30', '2016-12-05 09:10:41', 0, '5122016', 5),
+(3, 2, 'Học viên online 4/12', 'hoc-vien-online-4-12', 'book/bia.jpg', 0, 0, '', '', 0, 0, 2, 0, 'sách học viên online', 'Phạm Minh Kha', 1, 1, 0, '2016-12-04 07:15:03', '2016-12-04 14:37:17', 0, '4122016', 2);
 
 -- --------------------------------------------------------
 
@@ -209,8 +209,8 @@ CREATE TABLE `categorys` (
 --
 
 INSERT INTO `categorys` (`id`, `parent`, `name`, `url`, `meta_description`, `meta_keywords`, `show_home`, `sort_home`, `sort_menu`, `display`) VALUES
-(1, 0, 'Sách tiếng hoa', 'sach-tieng-hoa', '', '', 1, 0, 0, 1),
-(2, 0, 'Sách học viên', 'sach-hoc-vien', '', '', 0, 0, 0, 1);
+(1, 0, 'Sách tiếng hoa', 'sach-tieng-hoa', '', '', 1, 1, 1, 1),
+(2, 0, 'Sách học viên', 'sach-hoc-vien', '', '', 1, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -382,8 +382,8 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `url`, `meta_description`, `meta_keywords`, `content`, `display`, `created_at`, `updated_at`, `viewer`) VALUES
-(1, 'Hướng dẫn đăng sách lên website', 'huong-dan-dang-sach', '', '', 'Hướng dẫn', 1, '2016-12-03 07:07:42', '2016-12-03 07:07:42', 0),
-(2, 'Khai giảng khóa học tiếng hoa cấp tốc', 'giam-50-hoc-phi', '', '', 'Nội dung', 1, '2016-12-03 08:08:10', '2016-12-03 08:37:08', 0),
+(1, 'Hướng dẫn đăng sách lên website', 'huong-dan-dang-sach', '', '', 'Hướng dẫn', 1, '2016-12-03 07:07:42', '2016-12-05 07:01:34', 1),
+(2, 'Khai giảng khóa học tiếng hoa cấp tốc', 'giam-50-hoc-phi', '', '', 'Nội dung', 1, '2016-12-03 08:08:10', '2016-12-07 06:52:00', 1),
 (3, 'Dạy tiếng hoa online', 'day-tieng-hoa-online', '', '', 'Liên hệ', 1, '2016-12-03 08:40:45', '2016-12-03 08:40:45', 0);
 
 -- --------------------------------------------------------
@@ -540,6 +540,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `phone`, `address`, `gender`, `block`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'Van Thoa', '622872394481016', 'tranvanthoa2@gmail.com', 'ojhsdfosaodfgso', '', '', 1, 0, '1', '2016-12-05 08:21:30', '2016-12-05 08:24:08');
+
 -- --------------------------------------------------------
 
 --
@@ -580,7 +587,7 @@ CREATE TABLE `videos` (
 
 INSERT INTO `videos` (`id`, `name`, `title`, `url`, `image`, `source`, `video_url`, `display`, `view`, `created_at`, `updated_at`) VALUES
 (1, 'Nói Thạo 139 Câu Tiếng Hoa - 090', 'Nói Thạo 139 Câu Tiếng Hoa - 090', 'noi-thao-139-cau-tieng-hoa-090', 'https://img.youtube.com/vi/XRneTtLm-Os/mqdefault.jpg', 1, 'https://www.youtube.com/embed/XRneTtLm-Os', 1, 0, '2016-12-02 09:05:20', '2016-12-02 09:15:16'),
-(2, 'Nói Thạo 139 Câu Tiếng Hoa', 'Nói Thạo 139 Câu Tiếng Hoa', 'noi-thao-139-cau-tieng-hoa-030', 'https://img.youtube.com/vi/z6dMJ9mJhRw/mqdefault.jpg', 1, 'https://www.youtube.com/embed/z6dMJ9mJhRw', 1, 0, '2016-12-02 09:20:17', '2016-12-02 09:20:17');
+(2, 'Nói Thạo 139 Câu Tiếng Hoa', 'Nói Thạo 139 Câu Tiếng Hoa', 'noi-thao-139-cau-tieng-hoa-030', 'https://img.youtube.com/vi/z6dMJ9mJhRw/mqdefault.jpg', 1, 'https://www.youtube.com/embed/z6dMJ9mJhRw', 1, 1, '2016-12-02 09:20:17', '2016-12-05 07:00:25');
 
 -- --------------------------------------------------------
 
@@ -831,7 +838,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_online`
 --

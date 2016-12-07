@@ -104,7 +104,7 @@
 <div class="bright brightf">
 	<h2>Facebook</h2>
 	<div class="contentbox" id="boxfacebookline">
-		<!--<div class="fb-like-box" id="facebook_like_box" data-href="{{$base_data['website']['facebook']}}" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>-->
+		<div class="fb-like-box" id="facebook_like_box" data-href="{{$base_data['website']['facebook']}}" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 	</div>
 </div>
 

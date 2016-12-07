@@ -153,6 +153,108 @@
 		
 	</div>
 
+	<div class="row margin">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Màu nền box right:</label>
+				</div>
+				<div class="col-md-8">
+					<input type="color" name="background_boxright" style="height:50px;width:100px" value="<?php echo $data['background_boxright']?>" />
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+
+
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Border box right:</label>
+				</div>
+				<div class="col-md-8">
+					<input type="color" name="border_box_right" style="height:50px;width:100px" value="<?php echo $data['border_box_right']?>" />
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+		
+	</div>
+
+	<div class="row margin">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Hiển thị bóng box right:</label>
+				</div>
+				<div class="col-md-8">
+					<input type="checkbox" name="show_box_shadow" <?php echo $data['show_box_shadow']==1?"checked='checked'":"" ?> />
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+
+
+		<div class="col-md-6">
+			
+			<div class="row">
+				<div class="col-md-4">
+					<label>Màu nền trang đọc sách:</label>
+				</div>
+				<div class="col-md-8">
+					<input type="color" name="background_content_read" style="height:50px;width:100px" value="<?php echo $data['background_content_read']?>" />
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+		
+	</div>
+
+	<div class="row margin">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Màu chữ trang đọc sách:</label>
+				</div>
+				<div class="col-md-8">
+					<select name="content_color" id="content_color">
+						<option value="#333333">Đen</option>
+						<option value="blue">Xanh</option>
+						<option value="red">Đỏ</option>
+						<option value="#fd00ff">Hồng</option>
+						<option value="#af0dff">Tím</option>	
+						<option value="#999999">Xám</option>
+
+					</select>
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+
+
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Kích thước chữ trang đọc sách:</label>
+				</div>
+				<div class="col-md-8">
+					<select name="content_size" id="content_size">
+						<option value="15px">15</option>
+						<option value="16px">16</option>
+						<option value="17px">17</option>
+						<option value="18px">18</option>
+						<option value="19px">19</option>
+						<option value="20px">20</option>
+						<option value="21px">21</option>
+						<option value="22px">22</option>
+					</select>
+					<span class="desc">.</span>
+				</div>
+			</div><br />
+		</div>
+		
+	</div>
+
 
 	<div class="row">
     		<div class="col-md-12 text-right">
@@ -173,8 +275,14 @@
     var asset_path="{{Asset('public')}}/";
     var __token="{{csrf_token()}}";
     var btnUpload=null;
+
+    var content_color="{{$data['content_color']}}";
+    var content_size="{{$data['content_size']}}";
    
     $(function(){
+
+    	$("#content_color").val(content_color);
+    	$("#content_size").val(content_size);
 
     
     $("#frm").kiemtra([
