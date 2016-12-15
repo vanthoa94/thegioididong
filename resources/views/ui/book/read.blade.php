@@ -27,7 +27,7 @@
 						$namecate="Sách học viên";
 					}
 				 ?>
-				<li><a href="/">Trang chủ</a><span style="margin-left:5px;">»</span></li>
+				<li><a href="{{url('/')}}">Trang chủ</a><span style="margin-left:5px;">»</span></li>
 				<li><a href="{{url($urlcate)}}">{{$namecate}}</a><span style="margin-left:5px;">»</span></li>
 				<li><a href="{{url($info->url.'.html')}}">{{$info->name}}</a><span style="margin-left:5px;">»</span></li>
 				<li><b>﻿{{$mucluc->name}}</b></li>
@@ -134,7 +134,7 @@
 
 	</div>
 
-	<div class="col-xs-12 col-sm-4 col-md-4 hidden-xs">
+	<div class="col-xs-12 col-sm-4 col-md-4" id="bbrightt">
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>

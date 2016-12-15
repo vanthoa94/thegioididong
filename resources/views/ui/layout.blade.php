@@ -17,6 +17,12 @@
     <![endif]-->
 
 
+</head>
+
+<body>
+
+
+
 
     <style type="text/css">
         body{
@@ -31,7 +37,7 @@
         #banner{
             background-color: {{$base_data['website']['background_header']}};
         }
-        #headermenu{
+        #headermenu,#navmobile{
                 background-color: {{$base_data['website']['background_menu']}};
         }
         a{
@@ -52,20 +58,9 @@
 
             border:1px solid {{$base_data['website']['border_box_right']}};
         }
-
-        @if($base_data['website']['show_box_shadow']=='0')
-        .bright{
-            box-shadow: 0px 0px 0px #fff;
-            -moz-box-shadow: 0px 0px 0px #fff;
-            -webkit-box-shadow: 0px 0px 0px #fff;
-        }
-        @endif
     </style>
 
 
-</head>
-
-<body>
     <nav id="navbartop" class="clearfix hidden-xs">
         <div class="container">
             <div class="pull-left">
@@ -101,6 +96,41 @@
             </div>
         </div>
     </nav>
+
+    <nav id="navmobile" class="clearfix visible-xs">
+        <div class="pull-left">
+        <a href="{{url()}}"><img src="{{Asset('public/images/logo.jpg')}}" style="max-width: 100%;height:30px;display:block;margin-top:5px" /></a>
+        </div>
+        <div class="pull-right" id="menumobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div id="collapsemenumo" class="hidden-sm hidden-md hidden-lg">
+        <form id="searchmobile" method="get" action="tim-kiem.html">
+            <input type="text" class="searchinput" name="q" placeholder="Nhập tên sách cần tìm..." />
+            <input type="image" class="searchbtn" src="{{asset('public/images/searchicon.png')}}" />
+        </form>
+        <hr>
+        <div id="boxmenumobile1">
+        </div>
+        <hr>
+        <div id="boxmenumobile2">
+        </div>
+        <hr>
+        <b style="padding-left:5px">Hotline:</b>  {{$base_data['website']['hotline']}}
+        <hr>
+        <b style="padding-left:5px">Zalo:</b>  {{$base_data['website']['zalo']}}
+        <hr>
+        <a href="{{$base_data['website']['facebook']}}" style="padding-left:5px">
+            <img src="http://localhost/thegioididong/public/images/icon-facebook.png" style="border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%">
+        </a>
+        <a href="{{$base_data['website']['google']}}" style="padding-left:10px">
+            <img src="http://localhost/thegioididong/public/images/youtube_icon.png" style="border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%">
+        </a>
+        
+    </div>
 
 
     <header id="banner" class="hidden-xs">
@@ -165,7 +195,7 @@
             <div class="pull-left ddanhmuc">
                 <div class="danhmuc">
                     <a href="#"><h2>Danh Mục Sách <img src="{{Asset('public/images/dropdown.png')}}"></h2></a>
-                    <ul>
+                    <ul id="dmgmobile">
                         <img src="{{Asset('public/images/top.png')}}">
                         <li><a href="{{url('sach-mien-phi')}}">Sách miễn phí</a></li>
                         <li><a href="{{url('sach-co-phi')}}">Sách có phí</a></li>
@@ -249,6 +279,18 @@
             </div>
         </div>
     </div>
+
+
+
+        @if($base_data['website']['show_box_shadow']=='0')
+        <style type="text/css">
+        .bright{
+            box-shadow: 0px 0px 0px #fff;
+            -moz-box-shadow: 0px 0px 0px #fff;
+            -webkit-box-shadow: 0px 0px 0px #fff;
+        }
+        </style>
+        @endif
 
     <script type="text/javascript">
         var base_url="{{url()}}";

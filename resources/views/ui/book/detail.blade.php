@@ -27,7 +27,7 @@
 						$namecate="Sách học viên";
 					}
 				 ?>
-				<li><a href="/">Trang chủ</a><span style="margin-left:5px;">»</span></li>
+				<li><a href="{{url('/')}}">Trang chủ</a><span style="margin-left:5px;">»</span></li>
 				<li><a href="{{url($urlcate)}}">{{$namecate}}</a><span style="margin-left:5px;">»</span></li>
 				<li><b>﻿{{$info['name']}}</b></li>
 			</ul>
@@ -41,6 +41,7 @@
 
 			<div class="col-xs-4 col-sm-6 col-md-4">
 				<img itemprop="image" alt="{{$info->name}}" title="{{$info->name}}" width="140" src="{{\App\Product::showImage($info->image)}}" style="box-shadow: 8px 8px 10px black;max-width:100%">
+				
 			</div>
 
 			<div class="col-xs-8 col-sm-6 col-md-8" id="infobook">
@@ -52,9 +53,15 @@
 				</p>
 
 				<p><b>Thể loại:</b> <a href="{{url($urlcate)}}">{{$namecate}}</a></p>
-
+				@if($info->price==0)
 				<p><b>Số chương:</b> {{$total}}</p>
-
+				@else
+				<p class="bookprice"><b>Giá sách:</b> @if($info->price_pro!=0 && $info->price_pro<$info->price)
+									{{number_format($info->price_pro,0,'.',',')}} VNĐ <s>{{number_format($info->price,0,'.',',')}} VNĐ</s>
+								@else
+									{{number_format($info->price,0,'.',',')}} VNĐ
+								@endif</p>
+				@endif
 				<?php 
 				$status=\App\Product::getStatus();
 
@@ -66,23 +73,33 @@
 				<p><b>Lần đọc:</b> {{$info->viewer}}</p>
 
 				<div id="likefb"><b class="hidden-xs">Like ngay:</b> 
-					<div class="fb-like" data-href="{{Request::fullUrl()}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"><span style="color:white">.</span></div>
+					<div class="fb-like" data-href="{{Request::fullUrl()}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true">like</div>
 				</div>
+				
 				<p id="ttt" class="hidden-xs">
 					<span class="tt1">Đọc từ đầu</span>
 					<span class="tt2">Đọc chương mới nhất</span>
 					<span class="tt3">Danh sách chương</span>
 				</p>
+
 			</div>
 			
 		</div>
 
-		<div id="ttt1" class="visible-xs clearfix">
-					<span class="tt4">Giới thiệu sách</span>
-					<span class="tt1">Đọc từ đầu</span>
-					<span class="tt2">Đọc chương mới nhất</span>
-					<span class="tt3">Danh sách chương</span>
+		@if($info->price>0)
+		<div class="clearfix" style="margin:15px auto;width:184px">
+					<a href="#" class="btn btn-primary {{$base_data['islogin']==0?"loginweb":"muasachngay"}}">
+						<img src="{{asset('public/images/v3_cart.png')}}" style="padding-right:7px" />
+						<span style="font-size:15px">Đăng ký mua sách</span></a>
 				</div>
+				@endif
+
+		<div id="ttt1" class="visible-xs clearfix">
+				<span class="tt4">Giới thiệu sách</span>
+				<span class="tt1">Đọc từ đầu</span>
+				<span class="tt2">Đọc chương mới nhất</span>
+				<span class="tt3">Danh sách chương</span>
+		</div>
 
 		<div id="noidung">
 			<b>Nội Dung Sách:</b>
@@ -95,7 +112,7 @@
 
 		<div class="boxchuong">
 
-			<h2 class="titleboxx">Các chương mới nhất</h2>
+			<h2 class="titleboxx">{{count($muclucmoi)}} chương mới nhất</h2>
 			<div class="contentboxx chappernew" id="list-chapter">
 				@foreach($muclucmoi as $item)
 					<li><h4>
@@ -142,7 +159,7 @@
 
 	</div>
 
-	<div class="col-xs-12 col-sm-4 col-md-4 hidden-xs">
+	<div class="col-xs-12 col-sm-4 col-md-4" id="bbrightt">
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>

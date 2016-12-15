@@ -14,7 +14,7 @@
 		<div id="breadcrumb-global">
 			<ul class="clearfix">
 				
-				<li><a href="/">Trang chủ</a><span style="margin-left:5px;">»</span></li>
+				<li><a href="{{url('/')}}">Trang chủ</a><span style="margin-left:5px;">»</span></li>
 				<li><a href="{{url('video.html')}}">Video</a><span style="margin-left:5px;">»</span></li>
 				<li><b>﻿{{$info->title}}</b></li>
 			</ul>

@@ -130,7 +130,7 @@
 @endif
 
 @if(isset($base_data['videos']))
-<div class="bright brightf" id="byoutube">
+<div class="bright brightf hidden-xs" id="byoutube">
 	<h2>Youtube
 		<a href="{{url('video.html')}}">Xem thêm >></a>
 	</h2>
@@ -166,7 +166,9 @@
 @section('script')
 <script>
 $(window).load(function(){
-	var widthbox=document.getElementById('boxfacebookline').offsetWidth;
+
+setTimeout(function(){
+		var widthbox=document.getElementById('boxfacebookline').offsetWidth;
 	document.getElementById('facebook_like_box').setAttribute('data-width',widthbox);
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -175,6 +177,9 @@ $(window).load(function(){
   js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+},1000);
+
+
 });
 
 if($("#byoutube .contentbox div").size()==0){

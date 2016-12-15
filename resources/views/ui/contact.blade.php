@@ -11,7 +11,7 @@
 		<div id="breadcrumb-global">
 			<ul class="clearfix">
 		
-				<li><a href="/">Trang chủ</a><span style="margin-left:5px;">»</span></li>
+				<li><a href="{{url('/')}}">Trang chủ</a><span style="margin-left:5px;">»</span></li>
 				<li><b>Liên hệ</b></li>
 			</ul>
 		</div>

@@ -16,3 +16,10 @@
 #contentpage{
 	margin: 10px 0px;
 }
+@media(max-width:768px){
+
+	#navvv .pull-right{
+		float:left !important;
+		margin-top:5px;
+	}
+}

@@ -33,7 +33,7 @@ function LoginFaceSuccess(result,token){
         if(r.success){
             if(r.block==null){
                 dialogLogin.hide();
-                $("#tass i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
+                $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
                 if(callbackSuccessLogin!=null){
                     window[callbackSuccessLogin](data);
                 }
@@ -62,7 +62,7 @@ function LoginGoogleSuccess(result,token){
         if(r.success){
             if(r.block==null){
                 dialogLogin.hide();
-                $("#tass i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
+                $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
                 if(callbackSuccessLogin!=null){
                     window[callbackSuccessLogin](data);
                 }
@@ -97,6 +97,9 @@ function logoutWeb(){
 }
 
 $(document).ready(function(){
+$("#boxmenumobile1").html("<h2>DANH MỤC SÁCH</h2>"+$("#dmgmobile").html());
+$("#boxmenumobile2").html($("#tass").html());
+    
    
     $(".loginweb").click(function(){
         if(dialogLogin==null){
@@ -123,6 +126,21 @@ $(document).ready(function(){
             return false;
         }
     });
+    var collapsemenumo=null;
+    $("#menumobile").click(function(){
+        if(collapsemenumo==null){
 
+        collapsemenumo=$("#collapsemenumo");
+        }
+        collapsemenumo.slideToggle(function(){
+
+            if(collapsemenumo.css('display')!=='none'){
+               $(document.body).addClass("showmenumo");
+            }else{
+                $(document.body).removeClass("showmenumo");
+            }
+        });
+
+    });
     
 });

@@ -63,7 +63,7 @@
 		@endforeach
 	</div><!--colleft-->
 
-	<div class="col-xs-12 col-sm-6 col-md-6 hidden-xs">
+	<div class="col-xs-12 col-sm-6 col-md-6" id="bbrightt">
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>
