@@ -294,6 +294,11 @@ Route::group(['namespace' => 'UI'],function(){
 
 	Route::post('loginweb','UserController@postLogin');
 
+	Route::post('mua-sach','MuaSachController@index');
+	Route::post('kt-mua-sach','MuaSachController@checkMuaSach');
+
+	Route::get('sach-cua-ban.html','CategoryController@mybook');
+
 	Route::get('user/logout','UserController@logout');
 
 	Route::get('video.html','VideoController@index');

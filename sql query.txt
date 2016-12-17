@@ -4,3 +4,23 @@ insert into websites VALUES(NULL,'background_boxright','#ffffff');
 insert into websites VALUES(NULL,'background_content_read','#ffffff');
 insert into websites VALUES(NULL,'border_box_right','#e5e5e5');
 insert into websites VALUES(NULL,'show_box_shadow','1');
+
+create table mua_sach
+(
+    id int unsigned not null AUTO_INCREMENT,
+    user_id int unsigned not null,
+    book_id int unsigned not null,
+    active tinyint(1) default 0,
+    viewer int default 0,
+    viewer_day int default 0,
+    viewer_date varchar(8),
+    ip_mua varchar(12),
+    ip_doc text,
+	da_xem tinyint(1) default 0,
+	gia_mua int(10),
+    created_at datetime,
+    updated_at datetime,
+    PRIMARY key (`id`),
+    foreign key (`user_id`) REFERENCES users(`id`),
+    foreign key (`book_id`) REFERENCES books(`id`)
+)

@@ -25,7 +25,7 @@
 
 
     <style type="text/css">
-        body{
+        body,#headermenu .danhmuc ul{
             background-color: {{$base_data['website']['background_color']}}
         }
         #navbartop{
@@ -217,7 +217,7 @@
                 </div>
             </div>
             <div class="pull-left cart hidden-sm">
-                <a href="sachcuaban.php" title="Sách của bạn">Sách Của Bạn</a>
+                <a href="{{url('sach-cua-ban.html')}}" title="Sách của bạn">Sách Của Bạn</a>
             </div>
             <div class="pull-left addbook hidden-sm">
                 <a href="themsach.php" title="Thêm sách mới">+ Thêm Sách</a>

@@ -96,13 +96,18 @@ class BaseController extends Controller
 
         $base_data['qc']=$arrqc;
 
-        if(Session::get('loginuser')!=null){
-            $base_data['islogin']=Session::get('loginuser');
-        }else{
-            $base_data['islogin']=0;
-        }
+        $base_data['islogin']=$this->isLogin();
 
 		view()->share('base_data',$base_data);
 
 	}
+
+    protected function isLogin(){
+
+        if(Session::get('loginuser')!=null){
+            return Session::get('loginuser');
+        }else{
+            return 0;
+        }
+    }
 }

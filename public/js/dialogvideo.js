@@ -56,7 +56,8 @@ function dialog(obj,options){
 
 		if(!$(".dimb").length){
 			$("body").append("<div class='dimb'></div>");
-			$(".dimb").click(function(){
+
+			$(".dimb").on('click',function(){
 				th.hide();
 			});
 		}

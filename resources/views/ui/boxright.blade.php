@@ -187,13 +187,17 @@ $("#byoutube").hide();
 }
 var dialogvideo=null;
 $(document).ready(function(){
-	dialogvideo=new dialog($("#dialogvideo"),{
-        "width":600,
-        "height":380,
-        "removeObj":"#ctvideo"
-    });
-    dialogvideo.init();
+	
     $("#byoutube .itemboxy").click(function(){
+    	if(dialogvideo==null){
+	    	dialogvideo=new dialog($("#dialogvideo"),{
+		        "width":600,
+		        "height":380,
+		        "removeObj":"#ctvideo"
+		    });
+		    dialogvideo.init();
+		}
+
         var obj=dialogvideo.getObj();
         obj.find(".header span").html($(this).find("h3").eq(0).html());
         obj.find(".ct #ctvideo").html('<iframe width="560" height="315" src="'+$(this).attr("data-video")+'" frameborder="0" allowfullscreen></iframe>');

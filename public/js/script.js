@@ -35,7 +35,7 @@ function LoginFaceSuccess(result,token){
                 dialogLogin.hide();
                 $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
                 if(callbackSuccessLogin!=null){
-                    window[callbackSuccessLogin](data);
+                    window[callbackSuccessLogin](true);
                 }
             }else{
                 dialogLogin.getObj().addClass("block");
@@ -64,7 +64,7 @@ function LoginGoogleSuccess(result,token){
                 dialogLogin.hide();
                 $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
                 if(callbackSuccessLogin!=null){
-                    window[callbackSuccessLogin](data);
+                    window[callbackSuccessLogin](true);
                 }
             }else{
                 dialogLogin.getObj().addClass("block");
@@ -113,6 +113,11 @@ $("#boxmenumobile2").html($("#tass").html());
         }
         if($(this).attr("data-callback")){
             callbackSuccessLogin=$(this).attr("data-callback");
+        }
+        if($(this).attr("data-title")){
+            dialogLogin.getObj().find(".header span").html($(this).attr("data-title"));
+        }else{
+            dialogLogin.getObj().find(".header span").html("Đăng nhập");
         }
         dialogLogin.show();
         return false;

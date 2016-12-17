@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UI;
 use App\Product;
 use App\MucLuc;
 use App\Ads;
+use App\Order;
 
 
 class BookController extends BaseController
@@ -19,6 +20,23 @@ class BookController extends BaseController
 		$data=array();
 
 		$data['info']=$info;
+
+		$user_id=$this->isLogin();
+		if($user_id==0){
+			$data['chuamua']=true;
+			$data['dakichhoat']=false;	
+		}else{
+			$order=Order::select('active','gia_mua','created_at')->where('user_id',$user_id)->where('book_id',$info->id)->first();
+			if($order==null){
+				$data['chuamua']=true;
+				$data['dakichhoat']=false;	
+			}else{
+				$data['chuamua']=false;
+				$data['dakichhoat']=$order->active==1;
+				$data['gia_mua']=$order->gia_mua;
+				$data['ngay_mua_sach']=$order->created_at;
+			}
+		}
 
 		$cothemuondoc=Product::select('name','url','image','price','price_pro','author','viewer')->where('display',1)->where('cate_id',$info->cate_id)->where('id','<>',$info->id)->orderBy('viewer','desc')->limit(3)->get();
            
@@ -71,9 +89,27 @@ class BookController extends BaseController
 
 	public function reader($url,$url1){
 
-		$info=Product::select('id','cate_id','name','url')->where('url',$url)->first();
+		$info=Product::select('id','cate_id','name','url','price')->where('url',$url)->first();
 		if($info==null){
 			return view("errors.404");
+		}
+
+		if($info->price>0){
+			$user_id=$this->isLogin();
+
+			if($user_id==0){
+				return redirect($info->url.'.html')->with('error_message','1');
+			}
+
+			$order=Order::select('active')->where('user_id',$user_id)->where('book_id',$info->id)->first();
+
+			if($order==null){
+				return redirect($info->url.'.html')->with('error_message','3');
+			}else{
+				if($order->active==0){
+					return redirect($info->url.'.html')->with('error_message','2');
+				}
+			}
 		}
 
 		$data=array();

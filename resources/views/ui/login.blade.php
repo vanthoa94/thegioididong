@@ -31,6 +31,7 @@
 <div class="loginbtn">
  <img id="googleSignIn" src="{{Asset('public/images/loginwithgooge.png')}}" />
  </div>
+
 	<div id="fb-root"></div>
 <script type="text/javascript">
 if(typeof parent.isFrameParent=='undefined'){

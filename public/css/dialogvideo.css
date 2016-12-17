@@ -45,7 +45,7 @@
 .dialog hr{
 	border-top:1px solid #ccc;
 }
-#dialog,#dialog2,#dialog3,#dialog1,#dialogLogin{
+#dialog,#dialog2,#dialog3,#dialogvideo,#dialogLogin{
 	display: none;
 }
 #dialog1 #facebookicon,#dialog1 #googleicon{

@@ -89,4 +89,17 @@ class CategoryController extends BaseController
 
 		return view("ui.book.category",$data);
 	}
+
+	public function mybook()
+	{
+		$data=array();
+
+		$products=Product::select('name','url','image','author','mua_sach.gia_mua','mua_sach.created_at')->join('mua_sach','books.id','=','mua_sach.book_id')->orderBy('mua_sach.id','desc')->paginate(24);
+
+		$data['products']=$products;
+
+		$data['total']=$products->total();
+
+		return view("ui.book.mybook",$data);
+	}
 }
