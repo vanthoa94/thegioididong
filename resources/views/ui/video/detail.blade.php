@@ -40,6 +40,8 @@
 
 @section('script2')
 <script type="text/javascript">
+currentPage="Xem video";
+pageId='detailvideo:{{$info->id}}';
 function thunhogioithieu(){
 	$("#hidecontentgt").remove();
 

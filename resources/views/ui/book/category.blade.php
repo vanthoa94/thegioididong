@@ -64,5 +64,9 @@
 	</div><!--colright-->
 </div>
 
+<script type="text/javascript">
+currentPage="Loại sách";
+pageId='category:{{$info['id']}}';
+</script>
 
 @endsection

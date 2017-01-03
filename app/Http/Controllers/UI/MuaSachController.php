@@ -42,6 +42,7 @@ class MuaSachController extends Controller
         $order->ip_doc="";
         $order->da_xem=0;
         $order->gia_mua=$request->price;
+        $order->created_at=$dt->year.'-'.$dt->month.'-'.$dt->day.' '.$dt->hour.':'.$dt->minute.':'.$dt->second;
 
         if($order->save()){
             $email=User::select('email')->where('id',$user_id)->first();
@@ -75,5 +76,49 @@ class MuaSachController extends Controller
             }
         }
 
+    }
+
+    public function huy(){
+        $id=\Input::get('id');
+
+        if($id==null){
+            return json_encode(array(
+                'success'=>false,
+                'message'=>'Hủy đăng ký mua sách thất bại. Vui lòng thử lại.'
+            ));
+        }
+        if(Order::destroy($id)){
+            return json_encode(array(
+                'success'=>true
+            ));
+        }
+
+        return json_encode(array(
+            'success'=>false,
+            'message'=>'Hủy đăng ký mua sách thất bại. Vui lòng thử lại.'
+        ));
+    }
+
+    public function position_user(){
+       if(\Cookie::has("uon")){
+            $data=json_decode(\Cookie::get('uon'));
+
+            if(isset($data->pageId)){
+                if($data->pageId==\Input::get('pageId')){
+                    return 0;
+                }
+            }
+
+            $page=trim(\Input::get("page"));
+            $url=\Input::get('url');
+
+
+            if($page=="")
+                $page="Trang chủ";
+                
+            \App\UserOnline::where('id2',$data->id)->update(['position'=>$page]);
+            $data->pageId=\Input::get('pageId');
+            \Cookie::queue('uon', json_encode($data),20);
+        }
     }
 }

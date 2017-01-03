@@ -131,7 +131,11 @@
         </a>
         
     </div>
+<script type="text/javascript">
 
+        var currentPage='';
+        var pageId='';
+</script>
 
     <header id="banner" class="hidden-xs">
         <div class="container">
@@ -217,7 +221,7 @@
                 </div>
             </div>
             <div class="pull-left cart hidden-sm">
-                <a href="{{url('sach-cua-ban.html')}}" title="Sách của bạn">Sách Của Bạn</a>
+                <a href="{{$base_data['islogin']==0?'#':url('sach-cua-ban.html')}}" {!!$base_data['islogin']==0?"class='loginweb'":""!!} title="Sách của bạn" id="listscus">Sách Của Bạn</a>
             </div>
             <div class="pull-left addbook hidden-sm">
                 <a href="themsach.php" title="Thêm sách mới">+ Thêm Sách</a>
@@ -294,6 +298,7 @@
 
     <script type="text/javascript">
         var base_url="{{url()}}";
+        var _t="{{csrf_token()}}";
     </script>
 
     <script src="{{Asset("public/js/jquery.min.js")}}" type="text/javascript"></script>

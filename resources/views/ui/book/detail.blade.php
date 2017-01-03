@@ -199,7 +199,7 @@
 					</div>
 
 					<div class="alert alert-warning">
-						Bạn đã mua sách này vào ngày {{date('d/m/Y H:i',strtotime($ngay_mua_sach))}} nhưng chưa được kích hoạt. Vui lòng chuyển khoản <b>{{number_format($gia_mua,0,'.',',')}} VNĐ</b> vào tài khoản ngân hàng bên dưới
+						Bạn đã mua sách này vào ngày {{date('d/m/Y H:i',strtotime($ngay_mua_sach))}} nhưng chưa được kích hoạt. Vui lòng chuyển khoản <b>{{number_format($gia_mua,0,'.',',')}} VNĐ</b> vào tài khoản ngân hàng bên dưới với nội dung chuyển tiền là "mua sach {{$id_dk}}"
 						<div style="padding:5px 10px;">
 											<strong>THÔNG TIN TÀI KHOẢN</strong><br />
 											Số tải khoản: 123234234234234<br />
@@ -287,6 +287,10 @@
 	background-color: {{$base_data['website']['background_boxright']}}
 }
 </style>
+<script type="text/javascript">
+currentPage="Đọc sách";
+	pageId='book:{{$info->id}}';
+</script>
 
 @endsection
 
@@ -345,58 +349,86 @@ $(document).ready(function(){
 @if(!$showurl)
 
 <style type="text/css">
-#dialogDkMuaSach{
+#dialogDkMuaSach,#dialogHuyDkMuaSach{
 	display: none;
 }
+
 </style>
 
  <div id="dialogDkMuaSach">
-         <div class='header'>
-            <span>Đăng ký mua sách</span> <i title="close" class="closedialog"></i>
+     <div class='header'>
+        <span>Đăng ký mua sách</span> <i title="close" class="closedialog"></i>
+    </div>
+    <div class='ct'>
+        <div id="contentmuasach">
+        	<div class="row">
+        		<div class="col-xs-4">
+					<img alt="{{$info->name}}" title="{{$info->name}}" width="80" src="{{\App\Product::showImage($info->image)}}" style="max-width:100%">
+        		</div>
+        		<div class="col-xs-8">
+        			<h1 class="title" style="margin-bottom: 10px;font-size:13px">
+					{{$info->name}}</h1>
+
+						<div style="margin-bottom:3px">
+							<b>Tác giả:</b> <a href="{{url('tac-gia/'.$info->author.'.html')}}">{{$info->author}}</a>
+						</div>
+
+						<div style="margin-bottom:3px"><b>Thể loại:</b> <a href="{{url($urlcate)}}">{{$namecate}}</a></div>
+
+						<div style="margin-bottom:3px"><b>Số chương:</b> {{$total}}</div>
+						
+						<div><b>Lần đọc:</b> {{$info->viewer}}</div>
+        		</div>
+        	</div>
+        	<br />
+        	<div class="text-center" style="font-size:14px;font-weight:bold;border:1px dotted #ccc;padding:6px 2px">@if($info->price_pro!=0 && $info->price_pro<$info->price)
+								{{number_format($info->price_pro,0,'.',',')}} VNĐ <s style="color:#999">{{number_format($info->price,0,'.',',')}} VNĐ</s>
+							@else
+								{{number_format($info->price,0,'.',',')}} VNĐ
+							@endif</div>
+							<br />
+							<div class="text-center">
+			<div class="btn btn-info">Đăng ký mua</div>
+			<div class="btn btn-default">Hủy bỏ</div>
+			</div>
+			 <div id="progressiconmuasach">
         </div>
-        <div class='ct'>
-            <div id="contentmuasach">
-            	<div class="row">
-            		<div class="col-xs-4">
-						<img alt="{{$info->name}}" title="{{$info->name}}" width="80" src="{{\App\Product::showImage($info->image)}}" style="max-width:100%">
-            		</div>
-            		<div class="col-xs-8">
-            			<h1 class="title" style="margin-bottom: 10px;font-size:13px">
-						{{$info->name}}</h1>
-
-							<div style="margin-bottom:3px">
-								<b>Tác giả:</b> <a href="{{url('tac-gia/'.$info->author.'.html')}}">{{$info->author}}</a>
-							</div>
-
-							<div style="margin-bottom:3px"><b>Thể loại:</b> <a href="{{url($urlcate)}}">{{$namecate}}</a></div>
-
-							<div style="margin-bottom:3px"><b>Số chương:</b> {{$total}}</div>
-							
-							<div><b>Lần đọc:</b> {{$info->viewer}}</div>
-            		</div>
-            	</div>
-            	<br />
-            	<div class="text-center" style="font-size:14px;font-weight:bold;border:1px dotted #ccc;padding:6px 2px">@if($info->price_pro!=0 && $info->price_pro<$info->price)
-									{{number_format($info->price_pro,0,'.',',')}} VNĐ <s style="color:#999">{{number_format($info->price,0,'.',',')}} VNĐ</s>
-								@else
-									{{number_format($info->price,0,'.',',')}} VNĐ
-								@endif</div>
-								<br />
-								<div class="text-center">
-				<div class="btn btn-info">Đăng ký mua</div>
-				<div class="btn btn-default">Hủy bỏ</div>
-				</div>
-				 <div id="progressiconmuasach">
-            </div>
-            </div>
-           
         </div>
+       
+    </div>
+</div>
+
+ <div id="dialogHuyDkMuaSach" style="width:340px">
+     <div class='header'>
+        <span>Hủy đơn đăng ký mua sách</span> <i title="close" class="closedialog"></i>
+    </div>
+    <div style="position:relative">
+    <div class='ct'>
+        <p>Bạn có chắc muốn hủy đơn đăng ký mua sách <b>{{$info->name}}</b>?</p>
+        
+
+	    
+    </div>
+    <div style="position:absolute;bottom:0px;    width: 100%;padding:7px;border-top:1px solid #eee">
+    	 <div class="text-right">	
+	        <button id="dongyhuy" class="btn btn-success">Tôi đồng ý</button>
+	        <button onclick="dialogHuyMuaSach.hide()" class="btn btn-default">Hủy bỏ</button>
+	    </div>
     </div>
 
+     <div id="progressiconhuymuasach">
+	     </div>
+    </div>
+
+</div>
+
 	<script type="text/javascript">
+
 	var dialogMuaSach=null;
+	var dialogHuyMuaSach=null;
 	var book_id="{{$info->id}}";
 	var book_price="{{$info->price_pro==0?$info->price:$info->price_pro}}";
+	var idDK="{{$id_dk or 0}}";
 	var _token="{{csrf_token()}}";
 	window['dkmuasach']=function(isLogin){
 		if(dialogMuaSach==null){
@@ -452,6 +484,7 @@ $(document).ready(function(){
 	     dialogMuaSach.getObj().find("#progressiconmuasach").hide();
 	}
 
+
 	$(document).ready(function(){
 		$(".loginweb").attr("data-callback",'dkmuasach');
 		$(".muasachngay").click(function(){
@@ -460,6 +493,31 @@ $(document).ready(function(){
 		$(".alert-dismissible .close").click(function(){
 			$(this).parent().fadeOut();
 			return false;
+		});
+
+		$(".huymuasach").click(function(){
+			if(dialogHuyMuaSach==null){
+				$("#dialogHuyDkMuaSach").show();
+	            dialogHuyMuaSach=new dialog($("#dialogHuyDkMuaSach"),{
+	                "width":340,
+	                "height":$("#dialogHuyDkMuaSach .ct:eq(0) p:eq(0)").height()+110
+	            });
+	            dialogHuyMuaSach.getObj().find("#dongyhuy").click(function(){
+	            	 dialogHuyMuaSach.getObj().find("#progressiconhuymuasach").show();
+	            	RunAjax(base_url+"/mua-sach/huy",{'id':idDK,"_token":_token},function(r){
+				        if(r.success){
+				            window.location.reload();
+				        }else{
+				            alert(r.message);
+			              	 dialogHuyMuaSach.getObj().find("#progressiconhuymuasach").hide();
+				        }
+				      
+				    });
+	            });
+	            dialogHuyMuaSach.init();
+	        }
+	        dialogHuyMuaSach.show();
+	        return false;
 		});
 	});
 	</script>

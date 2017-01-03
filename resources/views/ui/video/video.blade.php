@@ -54,5 +54,8 @@
 	</div><!--colright-->
 </div>
 
-
+<script type="text/javascript">
+currentPage="Xem danh sách video";
+pageId='video';
+</script>
 @endsection

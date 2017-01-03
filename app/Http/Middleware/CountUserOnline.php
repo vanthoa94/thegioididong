@@ -88,7 +88,7 @@ class CountUserOnline
 
         }
 
-        $current=UserOnline::whereRaw("TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),'-12:00','+10:00'))<6")->count('id');
+        $current=UserOnline::whereRaw("TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),'-00:00','+07:00'))<6")->count('id');
 
         \View::share('count_user_online',["current"=>$current,"total"=>$total]);
 

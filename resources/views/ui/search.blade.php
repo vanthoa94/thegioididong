@@ -103,6 +103,7 @@
 
 @section('script2')
 <script type="text/javascript">
+pageId='search';
 $(document).ready(function(){
 	var query="{{$_GET['q']}}";
 	$(".pagination a").each(function(){

@@ -67,6 +67,13 @@ class CategoryController extends BaseController
 
 		$data['total']=$products->total();
 
+		if(!isset($data['info']['id'])){
+			$data['info']['id']=array_search($url,array_keys($cate));
+			
+			$data['info']['id']++;
+			$data['info']['id']=$data['info']['id']*100000;
+		}
+
 		return view("ui.book.category",$data);
 	}
 
@@ -92,9 +99,13 @@ class CategoryController extends BaseController
 
 	public function mybook()
 	{
+		$user_id=$this->isLogin();
+		if($user_id==0){
+			return redirect('/');
+		}
 		$data=array();
 
-		$products=Product::select('name','url','image','author','mua_sach.gia_mua','mua_sach.created_at')->join('mua_sach','books.id','=','mua_sach.book_id')->orderBy('mua_sach.id','desc')->paginate(24);
+		$products=Product::select('name','url','image','author','mua_sach.gia_mua','mua_sach.created_at')->join('mua_sach','books.id','=','mua_sach.book_id')->where('mua_sach.user_id',$user_id)->orderBy('mua_sach.id','desc')->paginate(24);
 
 		$data['products']=$products;
 

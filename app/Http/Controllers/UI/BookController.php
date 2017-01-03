@@ -26,7 +26,7 @@ class BookController extends BaseController
 			$data['chuamua']=true;
 			$data['dakichhoat']=false;	
 		}else{
-			$order=Order::select('active','gia_mua','created_at')->where('user_id',$user_id)->where('book_id',$info->id)->first();
+			$order=Order::select('id','active','gia_mua','created_at')->where('user_id',$user_id)->where('book_id',$info->id)->first();
 			if($order==null){
 				$data['chuamua']=true;
 				$data['dakichhoat']=false;	
@@ -35,6 +35,7 @@ class BookController extends BaseController
 				$data['dakichhoat']=$order->active==1;
 				$data['gia_mua']=$order->gia_mua;
 				$data['ngay_mua_sach']=$order->created_at;
+				$data['id_dk']=$order->id;
 			}
 		}
 

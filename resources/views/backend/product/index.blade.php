@@ -28,8 +28,15 @@ function showImage($path){
     <ul class="subsubsub">
         <li><a data-filter="all" data-group-filter="a" data-subsubsub="true" href="#" class="current">Tất cả <span class="count"></span></a>|</li>
         <li><a data-filter='{"type":"attr","value":"0","attr_name":"data-display"}' data-group-filter="a" data-subsubsub="true" href="#">Đang ẩn <span class="count"></span></a>|</li>
-        <li><a data-filter='{"type":"attr","value":"1","attr_name":"data-showhome"}' data-group-filter="a" data-subsubsub="true" href="#">Hiện thị trang chủ <span class="count"></span></a></li>
+        <li><a data-filter='{"type":"attr","value":"1","attr_name":"data-showhome"}' data-group-filter="a" data-subsubsub="true" href="#">Hiện thị trang chủ <span class="count"></span></a>
+ @if(isset($_GET['id']))
+|
+ @endif
+        </li>
        
+       @if(isset($_GET['id']))
+        <li><a data-filter='{"type":"attr","value":"{{$_GET['id']}}","attr_name":"data-id"}' href="#">Tìm kiếm <span class="count">(1)</span></a></li>
+       @endif
        
     </ul>
 
@@ -120,7 +127,7 @@ function showImage($path){
            
             @foreach($data as $item)
             
-                                            <tr data-display="{{$item->display}}" data-status="{{$item->status}}" data-showhome="{{$item->show_home}}">
+                                            <tr data-display="{{$item->display}}" data-status="{{$item->status}}" data-showhome="{{$item->show_home}}" data-id="{{$item->id}}">
                                           <td><span class="checkboxb ascheckbox center" data-value="{{$item->id}}"></span></td>
                                           <td>
                                             <span>
@@ -145,6 +152,9 @@ function showImage($path){
                                                         <small>| </small>
                                                     </span>
                                                     <span title="Mục lục"><a href="{{url('admin/muc-luc/'.$item->id)}}">Mục lục</a>
+                                                        <small>| </small>
+                                                    </span>
+                                                    <span title="Danh sách đơn đăng ký mua"><a href="{{url('admin/order?bookid='.$item->id)}}">Đơn hàng</a>
                                                         <small>| </small>
                                                     </span>
                                                     <span class="delete">
@@ -217,6 +227,7 @@ function showImage($path){
  <script type="text/javascript">
 	var currentPage = "#menu_product";
   var subPage='list';
+  var IdBook="{{$_GET['id'] or 0}}";
   
 	$(document).ready(function(){
     
@@ -233,6 +244,12 @@ function showImage($path){
               obj.find(".subsubsub li:eq(1) .count").html('(' + count + ')');
               count = obj.find("table tbody tr[data-showhome='1']").size();
               obj.find(".subsubsub li:eq(2) .count").html('(' + count + ')');
+
+              if (IdBook != 0) {
+                        var s=obj.find('table tbody tr[data-id="' + IdBook + '"]').size();
+                        obj.find(".subsubsub li:eq(3) .count").html('(' + s + ')');
+                    }
+
              
           },
         'action':function(href,arr,target){
@@ -315,6 +332,10 @@ function showImage($path){
             target.find(".subsubsub li:eq(2) span.count").html("(" + target.find("table tbody tr[data-showhome='1']").size() + ")");
         }
       });
+
+if(IdBook!=0)
+            $("#ttable").find(".subsubsub a:eq(3)").click();
+
 
     $("#ttable table tbody .inputTable").keyup(function(){
         var val=parseInt($(this).val());

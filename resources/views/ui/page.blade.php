@@ -38,6 +38,10 @@
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>
+<script type="text/javascript">
+currentPage="Trang";
+pageId='page:{{$info->id}}';
+</script>
 
 
 @endsection

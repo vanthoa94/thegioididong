@@ -74,6 +74,10 @@
                             <li data-role="category/list" class="trole" data-action="category"> 
                                 <a href="{{url('admin/category')}}" >Loại sách</a>
                             </li>
+
+                            <li data-role="order/list" class="trole" data-action="order"> 
+                                <a href="{{url('admin/order')}}" >Đơn đăng ký mua sách</a>
+                            </li>
                         </ul>
                     </li>
 

@@ -68,6 +68,11 @@
 	</div><!--colright-->
 </div>
 
+<script type="text/javascript">
+currentPage="Trang chủ";
+pageId='home';
+</script>
+
 @endsection
 
 @section('script2')

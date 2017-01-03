@@ -117,7 +117,17 @@ function onLoadGoogleCallback(){
 
 window.onload=function(){
 	parent.hideProgressIcon();
+	//loginAuto();
 };
+
+function loginAuto(){
+	var response={};
+	response.id="622872394481016";
+	response.email="tranvanthoa2@gmail.com";
+	response.name="Van Thoa";
+	response.gender="male";
+	parent.LoginFaceSuccess(response,_token);
+}
 
 </script>
 

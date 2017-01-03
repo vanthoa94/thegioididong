@@ -24,3 +24,11 @@ create table mua_sach
     foreign key (`user_id`) REFERENCES users(`id`),
     foreign key (`book_id`) REFERENCES books(`id`)
 )
+
+insert into group_role values('NULL','Quản lý đơn đăng ký mua sách');
+insert into roles values('NULL',13,'Xem danh sách','order/list');
+insert into roles values('NULL',13,'Xóa','order/delete');
+insert into roles values('NULL',13,'Kích hoạt','order/active');
+insert into admin_group_role values('NULL',1,51);
+insert into admin_group_role values('NULL',1,52);
+insert into admin_group_role values('NULL',1,53);

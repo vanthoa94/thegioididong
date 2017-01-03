@@ -11,6 +11,18 @@
 @endsection
 
 @section('content')
+@if($data->dkmoi>0)
+<div class="alert alert-success">
+	<a href="{{url('admin/order?cl=3')}}">Có {{$data->dkmoi}} đơn đăng ký mua sách mới.</a>
+</div>
+@endif
+
+@if($data->chuakichhoat>0)
+<div class="alert alert-info">
+	<a href="{{url('admin/order?cl=1')}}">Có {{$data->chuakichhoat}} đơn đăng ký mua sách chưa được kích hoạt.</a>
+</div>
+@endif
+
 <div class="row">
 
 

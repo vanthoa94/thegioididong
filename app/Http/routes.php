@@ -217,6 +217,18 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 	});
 
+	Route::group(['prefix'=>'order'],function(){
+		Route::get("/","OrderController@index");
+		Route::post("active","OrderController@active");
+		Route::post("actives","OrderController@actives");
+
+		Route::post("deactives","OrderController@deactives");
+
+		Route::post("delete","OrderController@postDelete");
+		Route::post("deletes","OrderController@postDeletes");
+
+	});
+
 	Route::get("uploadimage","UploadController@upload");
     Route::post("uploadimage","UploadController@upload");
     Route::post("ajax/loadfolder","UploadController@loadfolder");
@@ -280,7 +292,9 @@ Route::group(['middleware'=>'auth','prefix'=>'admin','namespace' => 'Admin'],fun
 
 });
 
-Route::group(['namespace' => 'UI'],function(){
+Route::post('position_user','UI\MuaSachController@position_user');
+
+Route::group(['middleware'=>'count_user','namespace' => 'UI'],function(){
 	Route::get('/','HomeController@index');
 
 
@@ -294,7 +308,9 @@ Route::group(['namespace' => 'UI'],function(){
 
 	Route::post('loginweb','UserController@postLogin');
 
+
 	Route::post('mua-sach','MuaSachController@index');
+	Route::post('mua-sach/huy','MuaSachController@huy');
 	Route::post('kt-mua-sach','MuaSachController@checkMuaSach');
 
 	Route::get('sach-cua-ban.html','CategoryController@mybook');

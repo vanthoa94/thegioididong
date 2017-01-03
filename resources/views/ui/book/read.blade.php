@@ -139,10 +139,15 @@
 	</div><!--colright-->
 </div>
 
+<script type="text/javascript">
+	pageId='readbook:{{$info->id.'-'.$mucluc->id}}';
+</script>
+
 @endsection
 
 @section('script2')
 <script type="text/javascript">
+currentPage="Đọc sách";
 	var bookurl="{{$info->url}}";
 	var urlMucLuc="{{$mucluc->url.'.html'}}";
 

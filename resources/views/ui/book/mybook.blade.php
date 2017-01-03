@@ -58,6 +58,7 @@
 		@include('ui.boxright')
 	</div><!--colright-->
 </div>
-
-
+<script type="text/javascript">
+	pageId='mybook';
+</script>
 @endsection

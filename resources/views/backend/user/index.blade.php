@@ -19,7 +19,14 @@
 <div id="ttable" class="ttable">
     <ul class="subsubsub">
         <li><a data-filter="all" data-group-filter="a" data-subsubsub="true" href="#" class="current">Tất cả <span class="count"></span></a>|</li>
-        <li><a data-filter='{"type":"attr","value":"1","attr_name":"data-block"}' data-group-filter="a" data-subsubsub="true" href="#">Đang khóa <span class="count"></span></a></li>
+        <li><a data-filter='{"type":"attr","value":"1","attr_name":"data-block"}' data-group-filter="a" data-subsubsub="true" href="#">Đang khóa <span class="count"></span></a>
+         @if(isset($_GET['id']))
+|
+ @endif</li>
+
+   @if(isset($_GET['id']))
+        <li><a data-filter='{"type":"attr","value":"{{$_GET['id']}}","attr_name":"data-id"}' href="#">Tìm kiếm <span class="count">(1)</span></a></li>
+       @endif
        
     </ul>
     <!--.subsubsub-->
@@ -81,7 +88,7 @@
         <tbody>
           <?php $IdUser=0; ?>
             @foreach ($data as $item)
-                <tr data-block="{{$item->block}}" data-type="{{$item->remember_token}}">
+                <tr data-block="{{$item->block}}" data-type="{{$item->remember_token}}" data-id="{{$item->id}}">
                     <td>
                         
                         <span class="ascheckbox center checkboxb" data-value="{{$item->id}}"></span>
@@ -179,6 +186,7 @@
  <script type="text/javascript">
    var currentPage = "#menu_account";
         var subPage = 'list';
+        var IdUser="{{$_GET['id'] or 0}}";
 var _token="{{csrf_token()}}";
   $(document).ready(function(){
 
@@ -265,8 +273,16 @@ var _token="{{csrf_token()}}";
                     obj.find(".subsubsub li:eq(0) .count").html('(' + sumitem + ')');
                     var count = obj.find("table tbody tr[data-block='1']").size();
                     obj.find(".subsubsub li:eq(1) .count").html('(' + count + ')');
+                     if (IdUser != 0) {
+                        var s=obj.find('table tbody tr[data-id="' + IdUser + '"]').size();
+                        obj.find(".subsubsub li:eq(2) .count").html('(' + s + ')');
+                    }
                 }
             });
+
+
+if(IdUser!=0)
+            $("#ttable").find(".subsubsub a:eq(2)").click();
 
   });
 

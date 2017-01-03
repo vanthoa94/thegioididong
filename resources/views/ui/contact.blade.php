@@ -26,7 +26,7 @@
 		<strong>Zalo: </strong>{{$base_data['website']['zalo']}}<br />
 		<strong>Email: </strong>{{$base_data['website']['email']}}<br />
 		<hr>
-		Hoặc liên lạc với chúng tôi bằng cách điền đầy đủ thông tin vào mẫu sau:<br /><br />
+		Hoặc liên hệ với chúng tôi bằng cách điền đầy đủ thông tin vào mẫu sau:<br /><br />
 
 @include('backend._message')
 		<form method="post" action="" id="frm">
@@ -105,6 +105,7 @@
 <script src="{{Asset('public/js/validate.js')}}" ></script>
 
 <script type="text/javascript">
+pageId='contact';
 $(document).ready(function(){
 $("#frm1").kiemtra([
             {

@@ -11,7 +11,7 @@ class IndexController extends BaseController
 	{
 		$now=Carbon::now();
 		$dt=array();
-		$dt['data']=Admin::select(\DB::raw('(select sum(quantity) from statistics_online where id2 like "%'.$now->month.$now->year.'") as omonth,(select quantity from statistics_online where id2='.$now->day.$now->month.$now->year.') as oday,(select count(id) from user_online where TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-12:00","+10:00"))<6) as o,
+		$dt['data']=Admin::select(\DB::raw('(select sum(quantity) from statistics_online where id2 like "%'.$now->month.$now->year.'") as omonth,(select quantity from statistics_online where id2='.$now->day.$now->month.$now->year.') as oday,(select count(id) from user_online where TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-00:00","+07:00"))<6) as o,
 			(select sum(quantity) from statistics_online) as s,(select count(id) from books) as sanpham,
 			(select count(id) from menus) as menu,
 			(select count(id) from slideshows) as slide,
@@ -19,10 +19,12 @@ class IndexController extends BaseController
 			(select count(id) from videos) as video,
 			(select count(id) from pages) as page,
 			(select count(id) from tags) as tag,
-			(select count(id) from users) as user'))
+			(select count(id) from users) as user,
+			(select count(id) from mua_sach where active=0) as chuakichhoat,
+			(select count(id) from mua_sach where active=0 and DATE(created_at)="2016-12-21") as dkmoi'))
 		->first();
 		try{
-			UserOnline::whereRaw('TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-12:00","+10:00"))>30')->delete();
+			UserOnline::whereRaw('TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-00:00","+07:00"))>30')->delete();
 		}catch(\Exception $e){
 
 		}
@@ -51,7 +53,7 @@ class IndexController extends BaseController
 	}
 
 	public function listonline(){
-		return json_encode(UserOnline::select('last_visit','ip','position')->whereRaw('TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-12:00","+10:00"))<6')->get());
+		return json_encode(UserOnline::select('last_visit','ip','position')->whereRaw('TIMESTAMPDIFF(MINUTE,last_visit,CONVERT_TZ(NOW(),"-00:00","+07:00"))<6')->get());
 	}
 
 	public function removecookie(){

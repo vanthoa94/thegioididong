@@ -30,24 +30,30 @@ function LoginFaceSuccess(result,token){
     data["type"]=1;
     data["_token"]=token;
     RunAjax(base_url+"/loginweb",data,function(r){
-        if(r.success){
-            if(r.block==null){
-                dialogLogin.hide();
-                $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
-                if(callbackSuccessLogin!=null){
-                    window[callbackSuccessLogin](true);
-                }
-            }else{
-                dialogLogin.getObj().addClass("block");
+        loginSuccessF(r);
+    });
+}
 
-                dialogLogin.getObj().find(".ct").html('Tài khoản của bạn đã bị khóa. Nếu bạn không biết nguyên nhân vui lòng <a href="'+(base_url+"/lien-he.html")+'">liên hệ</a> cho chúng tôi để biết thêm thông tin. Cảm ơn.');
+function loginSuccessF(r){
+    if(r.success){
+        if(r.block==null){
+            dialogLogin.hide();
+            $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
+            if(callbackSuccessLogin!=null){
+                window[callbackSuccessLogin](true);
             }
         }else{
-            alert(r.message);
+            dialogLogin.getObj().addClass("block");
+
+            dialogLogin.getObj().find(".ct").html('Tài khoản của bạn đã bị khóa. Nếu bạn không biết nguyên nhân vui lòng <a href="'+(base_url+"/lien-he.html")+'">liên hệ</a> cho chúng tôi để biết thêm thông tin. Cảm ơn.');
         }
 
-        hideProgressIcon();
-    });
+        $("#listscus").attr('href',base_url+'/sach-cua-ban.html').removeClass('loginweb').off('click');
+    }else{
+        alert(r.message);
+    }
+
+    hideProgressIcon();
 }
 
 function LoginGoogleSuccess(result,token){
@@ -59,23 +65,7 @@ function LoginGoogleSuccess(result,token){
     data["type"]=2;
     data["_token"]=token;
     RunAjax(base_url+"/loginweb",data,function(r){
-        if(r.success){
-            if(r.block==null){
-                dialogLogin.hide();
-                $("#tass i,#boxmenumobile2 i").html('<a href="'+(base_url+"/user/profile")+'"><img src="'+(base_url+"/public/images/inf.png")+'" width="13px" /> <b>Thông tin cá nhân</b></a><span>|</span><a href="#" onclick="logoutWeb()"><img src="'+(base_url+"/public/images/logout.png")+'" width="13px" /> <b>Thoát</b></a>');
-                if(callbackSuccessLogin!=null){
-                    window[callbackSuccessLogin](true);
-                }
-            }else{
-                dialogLogin.getObj().addClass("block");
-
-                dialogLogin.getObj().find(".ct").html('Tài khoản của bạn đã bị khóa. Nếu bạn không biết nguyên nhân vui lòng <a href="'+(base_url+"/lien-he.html")+'">liên hệ</a> cho chúng tôi để biết thêm thông tin. Cảm ơn.');
-            }
-        }else{
-            alert(r.message);
-        }
-
-        hideProgressIcon();
+        loginSuccessF(r);
     });
 }
 
@@ -147,5 +137,25 @@ $("#boxmenumobile2").html($("#tass").html());
         });
 
     });
+
+$(window).load(function(){
+    setTimeout(function(){
+          jQuery.ajax({
+            type: "POST",
+            url: base_url+'/position_user',
+            dataType: 'json',
+            data: {"page":currentPage==''?document.title:(currentPage+': '+document.title),"url":window.location.href,'_token':_t,'pageId':pageId},
+            success: function (result) {
+                
+
+            },
+            error: function (e, e2, e3) {
+                
+            }
+        });
+    },15000);
+
+});
+
     
 });

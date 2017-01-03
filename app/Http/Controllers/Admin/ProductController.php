@@ -253,9 +253,7 @@ class ProductController extends BaseController
 			return json_encode(["success"=>false,"message"=>"Bạn không có quyền chỉnh sửa"]);
 		}
 		$data=explode(',',\Input::get('data'));
-		foreach($data as $item){
-			Product::where('id',(int)$item)->update(['display'=>1]);
-		}
+		Product::whereIn('id',$data)->update(['display'=>1]);
 
 		if(Cache::has('c_a_product'))
 				Cache::forget('c_a_product');
@@ -267,9 +265,7 @@ class ProductController extends BaseController
 			return json_encode(["success"=>false,"message"=>"Bạn không có quyền chỉnh sửa"]);
 		}
 		$data=explode(',',\Input::get('data'));
-		foreach($data as $item){
-			Product::where('id',(int)$item)->update(['display'=>0]);
-		}
+		Product::whereIn('id',$data)->update(['display'=>0]);
 
 		if(Cache::has('c_a_product'))
 				Cache::forget('c_a_product');
@@ -281,9 +277,8 @@ class ProductController extends BaseController
 			return json_encode(["success"=>false,"message"=>"Bạn không có quyền chỉnh sửa"]);
 		}
 		$data=explode(',',\Input::get('data'));
-		foreach($data as $item){
-			Product::where('id',(int)$item)->update(['show_home'=>1]);
-		}
+		
+		Product::whereIn('id',$data)->update(['show_home'=>1]);
 
 		if(Cache::has('c_a_product'))
 				Cache::forget('c_a_product');
@@ -295,9 +290,8 @@ class ProductController extends BaseController
 			return json_encode(["success"=>false,"message"=>"Bạn không có quyền chỉnh sửa"]);
 		}
 		$data=explode(',',\Input::get('data'));
-		foreach($data as $item){
-			Product::where('id',(int)$item)->update(['show_home'=>0]);
-		}
+		
+		Product::whereIn('id',$data)->update(['show_home'=>0]);
 
 		if(Cache::has('c_a_product'))
 				Cache::forget('c_a_product');
