@@ -84,7 +84,7 @@ class CategoryController extends BaseController
 		$info=array();
 		$info['url']=$url;
 		$info['name']="Tác giả ".$url;
-
+		$info['id']=4465555;
 		$data['info']=$info;
 
 

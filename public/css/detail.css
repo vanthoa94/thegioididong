@@ -11,6 +11,7 @@
 	display: block;
 	border:1px solid #ccc;
 	padding:5px;
+	width:100%;
 }
 #infobook p,#infobook #likefb{
 	display: block;

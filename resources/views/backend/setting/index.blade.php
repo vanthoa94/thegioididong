@@ -202,7 +202,12 @@
 					<label>Màu nền trang đọc sách:</label>
 				</div>
 				<div class="col-md-8">
-					<input type="color" name="background_content_read" style="height:50px;width:100px" value="<?php echo $data['background_content_read']?>" />
+					<select name="background_content_read" id="background_content_read">
+						<option value="transparent">Trong xuốt</option>
+						<option value="#ffffff">Trắng</option>
+						<option value="#000000">Đen</option>
+						<option value="#f3f3f3">Xám</option>
+					</select>
 					<span class="desc">.</span>
 				</div>
 			</div><br />
@@ -247,6 +252,9 @@
 						<option value="20px">20</option>
 						<option value="21px">21</option>
 						<option value="22px">22</option>
+						<option value="23px">23</option>
+						<option value="24px">24</option>
+						<option value="25px">25</option>
 					</select>
 					<span class="desc">.</span>
 				</div>
@@ -278,11 +286,13 @@
 
     var content_color="{{$data['content_color']}}";
     var content_size="{{$data['content_size']}}";
+    var content_background="{{$data['background_content_read']}}";
    
     $(function(){
 
     	$("#content_color").val(content_color);
     	$("#content_size").val(content_size);
+    	$("#background_content_read").val(content_background);
 
     
     $("#frm").kiemtra([

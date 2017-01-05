@@ -94,7 +94,7 @@ class ProductController extends BaseController
 
 		$product->promotion=$request->promotion;
 
-		$product->author=trim($request->author);
+		$product->author=$this->convertAuthor($request->author);
 
 		$product->show_home=1;
 
@@ -171,7 +171,7 @@ class ProductController extends BaseController
 		
 		$product->promotion=$request->promotion;
 
-		$product->author=trim($request->author);
+		$product->author=$this->convertAuthor($request->author);
 
 		
 		if($product->save()){
@@ -180,6 +180,24 @@ class ProductController extends BaseController
 			return redirect()->to('admin/product/'.$request->id)->with('message','Cập nhật thành công.');
 		}
 		return redirect()->to('admin/product/'.$request->id)->with(['message'=>'Có lỗi. Cập nhật thất bại','message_type'=>'danger']);
+	}
+
+	private function convertAuthor($a){
+		$a=trim($a);
+
+		$arr=explode(" ", $a);
+
+		$author="";
+
+		foreach ($arr as $value) {
+			$v=trim($value);
+			if($v!=""){
+				
+				$author.=strtoupper(substr($v, 0,1)).strtolower(substr($v, 1)).' ';
+			}
+		}
+
+		return trim($author);
 	}
 
 	public function postDelete(){

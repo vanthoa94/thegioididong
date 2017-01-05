@@ -4,15 +4,23 @@
 	margin-bottom: 10px;
 }
 .title{
-	margin-top:20px;
 	    color: #690;
 	        text-transform: uppercase;
     font-family: "Roboto Condensed",Tahoma,sans-serif;
 }
+.contentreads{
+	padding:15px 7px;
+	margin-bottom: 7px;
+}
+#breadcrumb-global{
+	margin-bottom: 5px;
+}
+#bbrightt{
+	margin-top: 15px;
+}
 .nmucluc{
 	font-size: 20px;
 	padding-bottom: 15px;
-	margin-top: 25px;
 	color:#333;
 }
 #content{
@@ -50,6 +58,7 @@
 	display: block;
 	border:1px solid #ccc;
 	padding:5px;
+	width:100%;
 }
 #ngheaudio{
 	width:300px;
