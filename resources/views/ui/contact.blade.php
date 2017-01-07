@@ -66,7 +66,7 @@
 
 			<div class="row">
 		        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 text-right">
-		          <input type="submit" class="btn btn-success" value="Lưu Lại" />
+		          <input type="submit" class="btn btn-success" value="Gửi" />
 		          <input type="reset" class="btn btn-default" value="Nhập Lại" />
 		        </div>
 		      </div>

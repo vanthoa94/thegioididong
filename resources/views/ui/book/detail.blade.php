@@ -14,17 +14,12 @@
 		<div id="breadcrumb-global">
 			<ul class="clearfix">
 				<?php 
-				if($info->cate_id!=2){
-					if($info->price==0){
+				if($info->price==-1){
 						$urlcate='sach-mien-phi';
 						$namecate="Sách miễn phí";
 					}else{
 						$urlcate='sach-co-phi';
 						$namecate="Sách có phí";
-					}
-				}else{
-						$urlcate='sach-hoc-vien';
-						$namecate="Sách học viên";
 					}
 
 					$isLogin=($base_data['islogin']!==0);
@@ -51,7 +46,7 @@
 						$showurl=false;
 					}
 
-					if($info->price==0){
+					if($info->price==-1){
 						$showurl=true;
 						$classed="";
 					}
@@ -91,22 +86,20 @@
 				$infomuasach=explode('|', $infomuasach);
 			 ?>
 
-		  	Bạn đã đăng ký mua sách <b>{{$info->name}}</b> thành công với giá <b>@if($info->price_pro!=0 && $info->price_pro<$info->price)
+		  	Bạn đã đăng ký mua sách <b>{{$info->name}}</b> thành công với giá <b>@if($info->price_pro!=-1 && $info->price_pro<$info->price)
 									{{number_format($info->price_pro,0,'.',',')}} VNĐ
 								@else
 									{{number_format($info->price,0,'.',',')}} VNĐ
-								@endif</b>. Nhưng bạn vẫn chưa đọc được sách này do sách được kích hoạt. Vui lòng chuyển khoản <b>@if($info->price_pro!=0 && $info->price_pro<$info->price)
+								@endif</b> vào lúc {{date('H:i d/m/Y',strtotime($ngay_mua_sach))}}. Sách sẽ được kích hoạt, sau khi bạn thành toán <b>@if($info->price_pro!=-1 && $info->price_pro<$info->price)
 									{{number_format($info->price_pro,0,'.',',')}} VNĐ
 								@else
-									{{number_format($info->price,0,'.',',')}} VNĐ @endif</b> vào tài khoản ngân hàng ở dưới, với nội dung chuyển tiền theo cú pháp: "mua sach {{$infomuasach[1]}}"<i>(Vui lòng không đổi số này chúng tôi sẽ dựa vào số này để kích hoạt sách cho bạn.)</i>. <br />
+									{{number_format($info->price,0,'.',',')}} VNĐ @endif</b> vào tài khoản ngân hàng ở dưới, với nội dung chuyển tiền ghi: "mua sach {{$infomuasach[1]}}"<i>(Vui lòng không đổi số này chúng tôi sẽ dựa vào số này để kích hoạt sách cho bạn.)</i>. <br />
 								
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div style="padding:5px 10px;">
 											<strong>THÔNG TIN TÀI KHOẢN</strong><br />
-											Số tải khoản: 123234234234234<br />
-											Chủ tải khoản: Phạm Minh Kha<br />
-											Ngân hàng: Đông Á
+											{!!$base_data['website']['info_bank']!!}
 										</div>
 									
 									</div>
@@ -121,7 +114,7 @@
 									</div>
 								</div>
 
-									Chúng tôi sẽ thông báo cho bạn thông qua email <b>{!! $infomuasach[0] !!}</b>. Xin chân thành cảm ơn!
+									Chúng tôi sẽ gửi đến các thông tin liên quan, thông qua email <b>{!! $infomuasach[0] !!}</b>. Xin chân thành cảm ơn!
 		</div>
 
 		@endif
@@ -145,10 +138,10 @@
 				</p>
 
 				<p><b>Thể loại:</b> <a href="{{url($urlcate)}}">{{$namecate}}</a></p>
-				@if($info->price==0)
+				@if($info->price==-1)
 				<p><b>Số chương:</b> {{$total}}</p>
 				@else
-				<p class="bookprice"><b>Giá sách:</b> @if($info->price_pro!=0 && $info->price_pro<$info->price)
+				<p class="bookprice"><b>Giá sách:</b> @if($info->price_pro!=-1 && $info->price_pro<$info->price)
 									{{number_format($info->price_pro,0,'.',',')}} VNĐ <s>{{number_format($info->price,0,'.',',')}} VNĐ</s>
 								@else
 									{{number_format($info->price,0,'.',',')}} VNĐ
@@ -170,15 +163,15 @@
 				
 				<p id="ttt" class="hidden-xs">
 					<span class="tt1">Đọc từ đầu</span>
-					<span class="tt2">Đọc chương mới nhất</span>
-					<span class="tt3">Danh sách chương</span>
+					<span class="tt2">Đọc mục mới nhất</span>
+					<span class="tt3">Danh sách mục</span>
 				</p>
 
 			</div>
 			
 		</div>
 
-		@if($info->price>0)
+		@if($info->price>-1)
 			@if($chuamua)
 				<div class="clearfix" style="margin:15px auto;width:184px">
 					<a href="#" class="btn btn-primary {{$classed}}" data-title="Đăng nhập mua sách">
@@ -199,14 +192,12 @@
 					</div>
 
 					<div class="alert alert-warning">
-						Bạn đã mua sách này vào ngày {{date('d/m/Y H:i',strtotime($ngay_mua_sach))}} nhưng chưa được kích hoạt. Vui lòng chuyển khoản <b>{{number_format($gia_mua,0,'.',',')}} VNĐ</b> vào tài khoản ngân hàng bên dưới với nội dung chuyển tiền là "mua sach {{$id_dk}}"
+						Bạn đã mua sách <strong>{{$info->name}}</strong> vào lúc {{date('H:i d/m/Y',strtotime($ngay_mua_sach))}} với giá <b>{{number_format($gia_mua,0,'.',',')}} VNĐ</b>. Sách sẽ được kích hoạt sau khi bạn thanh toán <b>{{number_format($gia_mua,0,'.',',')}} VNĐ</b> vào tài khoản ngân hàng, với nội dung chuyển tiền ghi: "mua sach {{$id_dk}}".
 						<div style="padding:5px 10px;">
 											<strong>THÔNG TIN TÀI KHOẢN</strong><br />
-											Số tải khoản: 123234234234234<br />
-											Chủ tải khoản: Phạm Minh Kha<br />
-											Ngân hàng: Đông Á
+											{!!$base_data['website']['info_bank']!!}
 										</div>
-								Để chúng tôi kích hoạt sách cho bạn. Nếu bạn đã chuyển khoản rồi mà vẫn chưa được kích hoạt. Vui lòng <a href="{{url('lien-he.html')}}">liên hệ</a> với chúng tôi để biết thêm thông tin. Xin cảm ơn.
+								Nếu bạn đã chuyển khoản rồi, sau vài giờ mà sách vẫn chưa được kích hoạt, vui lòng <a href="{{url('lien-he.html')}}">liên hệ</a> với chúng tôi.<br ><br > Trân trọng!
 					</div>
 				@endif
 			@endif
@@ -215,8 +206,8 @@
 		<div id="ttt1" class="visible-xs clearfix">
 				<span class="tt4">Giới thiệu sách</span>
 				<span class="tt1">Đọc từ đầu</span>
-				<span class="tt2">Đọc chương mới nhất</span>
-				<span class="tt3">Danh sách chương</span>
+				<span class="tt2">Đọc mục mới nhất</span>
+				<span class="tt3">Danh sách mục</span>
 		</div>
 
 		<div id="noidung">
@@ -230,12 +221,12 @@
 
 		<div class="boxchuong">
 
-			<h2 class="titleboxx">{{count($muclucmoi)}} chương mới nhất</h2>
+			<h2 class="titleboxx">{{count($muclucmoi)}} mục mới nhất</h2>
 			<div class="contentboxx chappernew" id="list-chapter">
 				@foreach($muclucmoi as $item)
 					<li><h4>
 						<a title="{{$item->name}}" href="{{$showurl?url($info->url.'/'.$item->url.'.html'):'javascript:void(0)'}}" class="{{$classed}}" data-title="Đăng nhập mua sách">{{$item->name}}</a></h4>
-						<span class="w3-right w3-hide-small">{{date('d/m/Y',strtotime($item->updated_at))}}</span>
+						<span class="w3-right w3-hide-small">{{date('d/m/Y',strtotime($item->created_at))}}</span>
 					</li>
 				@endforeach
 			</div>
@@ -257,12 +248,12 @@
 
 		<div class="boxchuong" id="listcccc">
 
-			<h2 class="titleboxx">Danh sách chương "{{$info->name}}"</h2>
+			<h2 class="titleboxx">Danh sách mục "{{$info->name}}"</h2>
 			<div class="contentboxx" id="list-chapter">
 				@foreach($muclucs as $item)
 					<li><h4>
 						<a title="{{$item->name}}" href="{{$showurl?url($info->url.'/'.$item->url.'.html'):'javascript:void(0)'}}" class="{{$classed}}" data-title="Đăng nhập mua sách">{{$item->name}}</a></h4>
-						<span class="w3-right w3-hide-small">{{date('d/m/Y',strtotime($item->updated_at))}}</span>
+						<span class="w3-right w3-hide-small">{{date('d/m/Y',strtotime($item->created_at))}}</span>
 					</li>
 				@endforeach
 
@@ -366,7 +357,7 @@ $(document).ready(function(){
 					<img alt="{{$info->name}}" title="{{$info->name}}" width="80" src="{{\App\Product::showImage($info->image)}}" style="max-width:100%">
         		</div>
         		<div class="col-xs-8">
-        			<h1 class="title" style="margin-bottom: 10px;font-size:13px">
+        			<h1 class="title" style="margin-bottom:5px;overflow:hidden;font-size:13px" title="{{$info->name}}">
 					{{$info->name}}</h1>
 
 						<div style="margin-bottom:3px">
@@ -381,7 +372,7 @@ $(document).ready(function(){
         		</div>
         	</div>
         	<br />
-        	<div class="text-center" style="font-size:14px;font-weight:bold;border:1px dotted #ccc;padding:6px 2px">@if($info->price_pro!=0 && $info->price_pro<$info->price)
+        	<div class="text-center" style="font-size:14px;font-weight:bold;border:1px dotted #ccc;padding:6px 2px">@if($info->price_pro!=-1 && $info->price_pro<$info->price)
 								{{number_format($info->price_pro,0,'.',',')}} VNĐ <s style="color:#999">{{number_format($info->price,0,'.',',')}} VNĐ</s>
 							@else
 								{{number_format($info->price,0,'.',',')}} VNĐ
@@ -427,7 +418,7 @@ $(document).ready(function(){
 	var dialogMuaSach=null;
 	var dialogHuyMuaSach=null;
 	var book_id="{{$info->id}}";
-	var book_price="{{$info->price_pro==0?$info->price:$info->price_pro}}";
+	var book_price="{{$info->price_pro==-1?$info->price:$info->price_pro}}";
 	var idDK="{{$id_dk or 0}}";
 	var _token="{{csrf_token()}}";
 	window['dkmuasach']=function(isLogin){

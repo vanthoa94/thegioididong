@@ -14,7 +14,6 @@ class InfoController extends BaseController
 		}
 
 		$data=array();
-
 		if(Cache::has('c_a_websites')){
 			$data=Cache::get('c_a_websites');
 		}else{
@@ -66,7 +65,7 @@ class InfoController extends BaseController
 
 		$info->where('name','address')->update(array('content'=>trim(Input::get('address'))));
 
-		$info->where('name','GPKD')->update(array('content'=>trim(Input::get('GPKD'))));
+		$info->where('name','info_bank')->update(array('content'=>trim(Input::get('info_bank'))));
 
 		if(Cache::has('c_a_websites'))
 				Cache::forget('c_a_websites');

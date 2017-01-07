@@ -17,7 +17,7 @@ class OrderController extends BaseController
 
 		$currentDate=$dt->day.'/'.$dt->month.'/'.$dt->year;
 
-		$data=Order::select('mua_sach.id','mua_sach.book_id','mua_sach.user_id','mua_sach.active','mua_sach.viewer','mua_sach.viewer_day','mua_sach.ip_mua','mua_sach.gia_mua','mua_sach.created_at','mua_sach.updated_at','books.name as book_name','users.name as username','users.email','users.phone')->join('books','books.id','=','mua_sach.book_id')->join('users','users.id','=','mua_sach.user_id')->orderBy('active')->orderBy('id','desc')->get();
+		$data=Order::select('mua_sach.id','mua_sach.book_id','mua_sach.user_id','mua_sach.active','mua_sach.viewer','mua_sach.viewer_day','mua_sach.ip_mua','mua_sach.ip_doc','mua_sach.gia_mua','mua_sach.created_at','mua_sach.updated_at','books.name as book_name','users.name as username','users.email','users.phone')->join('books','books.id','=','mua_sach.book_id')->join('users','users.id','=','mua_sach.user_id')->orderBy('active')->orderBy('id','desc')->get();
 
 		return view("backend.order.list",array('data'=>$data,'currentDate'=>$currentDate));
 	}

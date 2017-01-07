@@ -224,7 +224,7 @@
                 <a href="{{$base_data['islogin']==0?'#':url('sach-cua-ban.html')}}" {!!$base_data['islogin']==0?"class='loginweb'":""!!} title="Sách của bạn" id="listscus">Sách Của Bạn</a>
             </div>
             <div class="pull-left addbook hidden-sm">
-                <a href="themsach.php" title="Thêm sách mới">+ Thêm Sách</a>
+                <a href="{{url('user/book/create')}}" title="Thêm sách mới">+ Thêm Sách</a>
             </div>
         </div>
     </nav>

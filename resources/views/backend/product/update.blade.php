@@ -61,7 +61,7 @@ function showImage($path){
               </div>
               <div class="col-sm-8 required">
                 <span class="red">*</span>
-                <input type="text" name="author" value="{{$data->author}}" class="form-control" />
+                <input type="text" name="author" value="{!!$data->author!!}" class="form-control" />
                 
                 <span class="desc">
                   Tên tác giả viết sách này
@@ -125,7 +125,7 @@ function showImage($path){
                 
                 <span class="desc">
                   Giá gốc của sách. VD: 1.000.000 hoặc 1,000,000 hoặc 1000000.<br />
-                  <b>Để 0 nếu là miễn phí</b>
+                  <b>Để -1 nếu là miễn phí</b>
                 </span>
                 <span class="pricetext"></span>
               </div>
@@ -143,7 +143,7 @@ function showImage($path){
                   </div>
                   
                   <span class="desc">
-                    Giá khuyến mãi của sách. <b>Để 0 nếu giống giá gốc.</b>
+                    Giá khuyến mãi của sách. <b>Để -1 nếu giống giá gốc.</b>
                   </span>
                   <span class="pricetext"></span>
                 </div>
@@ -396,8 +396,13 @@ var status="{{$data->status}}";
       var text=$.trim($(this).val());
 
       if(text!=""){
+        if(text==-1)
+          $(this).parent().parent().find(".pricetext").html("Miễn phí");
+          else{
         text=parseInt(removeMemony(text));
+        
         $(this).parent().parent().find(".pricetext").html(DOCSO.doc(text));
+      }
       }else{
         $(this).parent().parent().find(".pricetext").html("");
       }

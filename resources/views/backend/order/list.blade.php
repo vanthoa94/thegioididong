@@ -143,7 +143,7 @@
                                 </td>
                                 <td>
                                     IP Mua: {{$item->ip_mua}}<br />
-                                    Ip Đọc: <a href="javascript:void(0)">Xem ds</a>
+                                    Ip Đọc: <a href="javascript:void(0)" data-toggle="modal" data-target="#MDoc" data-doc="{{$item->ip_doc}}">Xem ds</a>
                                 </td>
                                 <td>
                                     {{date('d/m/Y H:i',strtotime($item->created_at))}}
@@ -162,6 +162,42 @@
        </div>
     </div>
     <!--#ttable-->
+</div>
+
+<!-- Modal -->
+<div id="MDoc" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Ip Đọc</h4>
+      </div>
+      <div class="modal-body">
+        <div class="ttable">
+        <table>
+          <thead>
+          <tr>
+            <th>IP</th>
+            <th>Xem</th>
+            <th>Lần đọc cuối</th>
+          </tr> 
+</thead>
+<tbody id="listIpDoc">
+</tbody>
+
+
+        </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 
@@ -252,6 +288,27 @@ if(UserId!=0 || BookId!=0)
           if(ColumnClick!=0){
             $("#ttable").find(".subsubsub a:eq("+ColumnClick+")").click();
           }
+
+          var objDoc=null;
+
+          $("#MDoc").on('shown.bs.modal',function(e){
+           var target=$(e.relatedTarget);
+
+           var listIpDoc=target.attr("data-doc");
+
+           if(objDoc==null){
+objDoc=$("#listIpDoc");
+           }
+
+           if(listIpDoc==""){
+            objDoc.html('');
+           return;
+           }
+            listIpDoc=jQuery.parseJSON(listIpDoc);
+            for(var key in listIpDoc){
+objDoc.html('<tr><td>'+listIpDoc[key].ip+'</td><td>'+listIpDoc[key].view+'</td><td>'+listIpDoc[key].date+'</td></tr>');
+            }
+          });
 
   });
 

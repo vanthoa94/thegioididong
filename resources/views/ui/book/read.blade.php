@@ -14,17 +14,12 @@
 		<div id="breadcrumb-global">
 			<ul class="clearfix">
 				<?php 
-				if($info->cate_id!=2){
-					if($info->price==0){
+				if($info->price==-1){
 						$urlcate='sach-mien-phi';
 						$namecate="Sách miễn phí";
 					}else{
 						$urlcate='sach-co-phi';
 						$namecate="Sách có phí";
-					}
-				}else{
-						$urlcate='sach-hoc-vien';
-						$namecate="Sách học viên";
 					}
 				 ?>
 				<li><a href="{{url('/')}}">Trang chủ</a><span style="margin-left:5px;">»</span></li>
@@ -136,7 +131,7 @@
 
 				
 		<div class="listchuong">
-					Danh Sách Chương:  &nbsp;&nbsp;
+					Danh Sách:  &nbsp;&nbsp;
 					<select>
 						@foreach($muclucs as $item)
 							<option value="{{$item->url.'.html'}}">{{$item->name}}</option>
@@ -207,7 +202,9 @@ currentPage="Đọc sách";
 		$("#backgroundcolor").change(function(){
 			$(".contentreads").css("background-color",$(this).val());
 			if($(this).val()!="transparent"){
-				$(".contentreads").css({"box-shadow":"0px 0px 2px #999","padding-left":"15px","padding-right":"15px"});
+				$(".contentreads").css({"box-shadow":"0px 0px 2px #ccc","padding-left":"15px","padding-right":"15px"});
+			}else{
+				$(".contentreads").css("box-shadow","");
 			}
 		}).val("{{$base_data['website']['background_content_read']}}");
 

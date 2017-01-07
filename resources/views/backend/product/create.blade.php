@@ -111,13 +111,13 @@
               <div class="col-sm-8 required">
                 <span class="red">*</span>
                 <div class="input-group">
-                  <input type="text" name="price" value="{{old('price',0)}}" class="form-control formatprice" />
+                  <input type="text" name="price" value="{{old('price',-1)}}" class="form-control formatprice" />
                   <span class="input-group-addon">VNĐ</span>
                 </div>
                 
                 <span class="desc">
                   Giá gốc của sách. VD: 1.000.000 hoặc 1,000,000 hoặc 1000000.<br />
-                  <b>Để 0 nếu là miễn phí</b>
+                  <b>Để -1 nếu là miễn phí</b>
                 </span>
                 <span class="pricetext"></span>
               </div>
@@ -130,12 +130,12 @@
                 </div>
                 <div class="col-sm-8">
                   <div class="input-group">
-                    <input type="text" name="price_company" value="{{old('price_pro',0)}}" class="form-control formatprice" />
+                    <input type="text" name="price_company" value="{{old('price_pro',-1)}}" class="form-control formatprice" />
                     <span class="input-group-addon">VNĐ</span>
                   </div>
                   
                   <span class="desc">
-                    Giá khuyến mãi của sách. <b>Để 0 nếu giống giá gốc.</b>
+                    Giá khuyến mãi của sách. <b>Để -1 nếu giống giá gốc.</b>
                   </span>
                   <span class="pricetext"></span>
                 </div>
@@ -385,8 +385,13 @@
       var text=$.trim($(this).val());
 
       if(text!=""){
-        text=parseInt(removeMemony(text));
-        $(this).parent().parent().find(".pricetext").html(DOCSO.doc(text));
+     
+        if(text==-1){
+            $(this).parent().parent().find(".pricetext").html("Miễn phí");
+          }else{
+               text=parseInt(removeMemony(text));
+          $(this).parent().parent().find(".pricetext").html(DOCSO.doc(text));
+        }
       }else{
         $(this).parent().parent().find(".pricetext").html("");
       }

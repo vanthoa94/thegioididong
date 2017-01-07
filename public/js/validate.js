@@ -181,9 +181,9 @@ function isCharacter(obj){
 function isPrice(obj){
 	if(obj.val().str_trim()=="")
 		return false;
-	if(obj.val().str_trim()=="0")
+	if(obj.val().str_trim()=="0" || obj.val().str_trim()=="-1")
 		return true;
-	return /^[0-9]{1,3}( |-|\.|\,)?[0-9]{3}(( |-|\.|\,)?[0-9]{3})?(( |-|\.|\,)?[0-9]{3})?(( |-|\.|\,)?[0-9]{3})?$/.test(obj.val().str_trim());
+	return /^[0-9]{1,3}( |\.|\,)?[0-9]{3}(( |\.|\,)?[0-9]{3})?(( |\.|\,)?[0-9]{3})?(( |\.|\,)?[0-9]{3})?$/.test(obj.val().str_trim());
 }
 
 function isPriceEn(obj){
@@ -191,7 +191,7 @@ function isPriceEn(obj){
 		return false;
 	if(obj.val().str_trim()=="0")
 		return true;
-	return /^[0-9]{1,3}(( |-|\.|\,)?[0-9]{1,3})?(( |-|\.|\,)?[0-9]{1,3})?(( |-|\.|\,)?[0-9]{1,3})?$/.test(obj.val().str_trim());
+	return /^[0-9]{1,3}(( |\.|\,)?[0-9]{1,3})?(( |\.|\,)?[0-9]{1,3})?(( |\.|\,)?[0-9]{1,3})?$/.test(obj.val().str_trim());
 }
 
 function compare2obj(obj1,obj2){

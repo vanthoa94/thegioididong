@@ -16,9 +16,9 @@
 					<span>Lượt xem: {{$item->viewer}}</span>
 
 					<span>Tác giả: {{$item->author}}</span>
-					<span>Giá: @if($item->price==0) 
+					<span>Giá: @if($item->price==-1) 
 						Miễn phí 
-						@elseif($item->price_pro==0) 
+						@elseif($item->price_pro==-1) 
 							{{number_format($item->price,0,'.',',')}} VNĐ
 						@else 
 							{{number_format($item->price_pro,0,'.',',')}} VNĐ
@@ -48,9 +48,9 @@
 					<span>Lượt xem: {{$item->viewer}}</span>
 
 					<span>Tác giả: {{$item->author}}</span>
-					<span>Giá: @if($item->price==0) 
+					<span>Giá: @if($item->price==-1) 
 						Miễn phí 
-						@elseif($item->price_pro==0) 
+						@elseif($item->price_pro==-1) 
 							{{number_format($item->price,0,'.',',')}} VNĐ
 						@else 
 							{{number_format($item->price_pro,0,'.',',')}} VNĐ
@@ -80,9 +80,9 @@
 					<span>{{date('d/m/Y H:i',strtotime($item->updated_at))}}</span>
 
 					<span>Tác giả: {{$item->author}}</span>
-					<span>Giá: @if($item->price==0) 
+					<span>Giá: @if($item->price==-1) 
 						Miễn phí 
-						@elseif($item->price_pro==0) 
+						@elseif($item->price_pro==-1) 
 							{{number_format($item->price,0,'.',',')}} VNĐ
 						@else 
 							{{number_format($item->price_pro,0,'.',',')}} VNĐ

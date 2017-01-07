@@ -44,13 +44,13 @@ class BookController extends BaseController
 
 		$data['cothemuondoc']=$cothemuondoc;
 
-		$muclucs=MucLuc::select('name','url','updated_at')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->orderBy('id')->paginate(15);
+		$muclucs=MucLuc::select('name','url','created_at')->where('display',1)->where('book_id',$info->id)->orderBy('sort_index')->orderBy('id')->paginate(15);
 
 		$data['total']=$muclucs->total();
 
 		$data['muclucs']=$muclucs;
 
-		$data['muclucmoi']=MucLuc::select('name','url','updated_at')->where('display',1)->where('book_id',$info->id)->orderBy('id','desc')->limit(5)->get();
+		$data['muclucmoi']=MucLuc::select('name','url','created_at')->where('display',1)->where('book_id',$info->id)->orderBy('id','desc')->limit(5)->get();
 
 		$data['qc']=Ads::select('title','url','image')->where('display',1)->where('position',4)->orderBy('id','desc')->first();
 
@@ -81,7 +81,7 @@ class BookController extends BaseController
 			if($info->ngaydoc==$ngaydoc){
 				Product::where('id',$info->id)->update(array('viewer'=>$info->viewer+1,'doctn'=>$info->doctn+1));
 			}else{
-				Product::where('id',$info->id)->update(array('viewer'=>$info->viewer+1,'ngaydoc'=>$ngaydoc,'doctn'=>0));
+				Product::where('id',$info->id)->update(array('viewer'=>$info->viewer+1,'ngaydoc'=>$ngaydoc,'doctn'=>1));
 			}
 		}
 
@@ -95,7 +95,9 @@ class BookController extends BaseController
 			return view("errors.404");
 		}
 
-		if($info->price>0){
+		$isOrderBook=false;
+		$user_id=0;
+		if($info->price>-1){
 			$user_id=$this->isLogin();
 
 			if($user_id==0){
@@ -110,6 +112,7 @@ class BookController extends BaseController
 				if($order->active==0){
 					return redirect($info->url.'.html')->with('error_message','2');
 				}
+				$isOrderBook=true;
 			}
 		}
 
@@ -151,11 +154,55 @@ class BookController extends BaseController
 			$dt=\Carbon\Carbon::now('Asia/Ho_Chi_Minh');
 			
 			$ngaydoc= $dt->day.''.$dt->month.''.$dt->year;
+			$order=null;
+
+			if($isOrderBook){
+
+				$order=Order::select('viewer','viewer_day','viewer_date','ip_doc')->where('user_id',$user_id)->where('book_id',$info->id)->first();
+
+				if($order!=null){
+					$ipDoc=$order->ip_doc;
+
+					$arrIpDoc=json_decode($ipDoc);
+					if($arrIpDoc==null)
+						$arrIpDoc=array();
+
+					$ipUser=\Request::ip();
+
+					$flag=false;
+
+					foreach ($arrIpDoc as $value) {
+						if($value->ip==$ipUser){
+							$value->view=(int)$value->view+1;
+							$value->date=$dt->day.'/'.$dt->month.'/'.$dt->year.' '.$dt->hour.':'.$dt->minute;
+							$flag=true;
+							break;
+						}
+					}
+
+					if(!$flag){
+						$arrIpDoc[]=array(
+							'ip'=>$ipUser,
+							'view'=>1,
+							'date'=>$dt->day.'/'.$dt->month.'/'.$dt->year.' '.$dt->hour.':'.$dt->minute
+						);
+					}
+				}else{
+					return redirect($info->url.'.html')->with('error_message','3');
+				}
+			}
 
 			if($mucluc->ngaydoc==$ngaydoc){
 				MucLuc::where('id',$mucluc->id)->update(array('viewer'=>$mucluc->viewer+1,'doctn'=>$mucluc->doctn+1));
+				if($isOrderBook){
+					Order::where('book_id',$info->id)->where('user_id',$user_id)->update(array('viewer'=>$order->viewer+1,'viewer_day'=>$order->viewer_day+1,'ip_doc'=>json_encode($arrIpDoc)));
+				}
 			}else{
-				MucLuc::where('id',$mucluc->id)->update(array('viewer'=>$mucluc->viewer+1,'ngaydoc'=>$ngaydoc,'doctn'=>0));
+				MucLuc::where('id',$mucluc->id)->update(array('viewer'=>$mucluc->viewer+1,'ngaydoc'=>$ngaydoc,'doctn'=>1));
+
+				if($isOrderBook){
+					Order::where('book_id',$info->id)->where('user_id',$user_id)->update(array('viewer'=>$order->viewer+1,'viewer_date'=>$ngaydoc,'viewer_day'=>1,'ip_doc'=>json_encode($arrIpDoc)));
+				}
 			}
 		}
 

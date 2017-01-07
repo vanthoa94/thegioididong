@@ -28,14 +28,11 @@
         <div class="col-sm-6">
           <div class="row">
             <div class="col-sm-4">
-              <label>Username:</label>
+              <label>ID:</label>
             </div>
-            <div class="col-sm-8 required">
-              <span class="red">*</span>
-              <input type="text" name="username" class="form-control" value="{{$data->username}}" />
-              <span class="desc">
-                Tên đăng nhập. Không dấu và không có ký tự đặc biệt
-              </span>
+            <div class="col-sm-8">
+              <input type="hidden" name="username" class="form-control" value="{{$data->username}}" />
+             {{$data->username}}<br><br><br><br>
             </div>
           </div>
         </div>
@@ -64,7 +61,8 @@
               <label>Email:</label>
             </div>
             <div class="col-sm-8">
-              <input type="text" name="email" value="{{$data->email}}" class="form-control" />
+              <input type="hidden" name="email" value="{{$data->email}}" class="form-control" />
+               {{$data->email}}
               <span class="desc">
                 .
               </span>

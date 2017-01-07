@@ -48,10 +48,10 @@ class CategoryController extends BaseController
 
 		switch ($url) {
 			case 'sach-mien-phi':
-				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('price',0)->orderBy('id','desc')->paginate(24);
+				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('price',-1)->orderBy('id','desc')->paginate(24);
 				break;
 			case 'sach-co-phi':
-				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('price','>',0)->orderBy('id','desc')->paginate(24);
+				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('price','>',-1)->orderBy('id','desc')->paginate(24);
 				break;
 			case 'sach-moi':
 				$products=Product::select('name','url','image','author','price','price_pro')->where('display',1)->orderBy('updated_at','desc')->paginate(24);

@@ -172,8 +172,8 @@ function showImage($path){
 
                                           <td>
                                           <div class="clearfix"> 
-                                            <b class="pull-left" style="width:60px">Giá:</b> {{$item->price==0?'Miễn phí':number_format($item->price,0,',','.')}}<br />
-                                            <b class="pull-left" style="width:60px">Giá km: </b> {{$item->price==0?'Miễn phí':number_format($item->price_pro,0,',','.')}}<br />
+                                            <b class="pull-left" style="width:60px">Giá:</b> {{$item->price==-1?'Miễn phí':number_format($item->price,0,',','.')}}<br />
+                                            <b class="pull-left" style="width:60px">Giá km: </b> {{$item->price==-1?'Miễn phí':($item->price_pro==-1?number_format($item->price,0,',','.'):number_format($item->price_pro,0,',','.'))}}<br />
                                          
                                             </div>
                                           </td>

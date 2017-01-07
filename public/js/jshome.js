@@ -59,6 +59,7 @@ function slide(obj,o){
 				obj.find("#arrow").append("<li></li>");
 			}
 			obj.find("#arrow li").click(function(){
+				obj.find("#contentslide a").hide();
 				current=th.se($(this));
 				th.resetTimer();
 				th.move(current,500);

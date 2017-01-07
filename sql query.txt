@@ -32,3 +32,12 @@ insert into roles values('NULL',13,'Kích hoạt','order/active');
 insert into admin_group_role values('NULL',1,51);
 insert into admin_group_role values('NULL',1,52);
 insert into admin_group_role values('NULL',1,53);
+
+insert into websites VALUES(NULL,'info_bank','Số tải khoản: 123234234234234<br>Chủ tải khoản: Phạm Minh Kha<br>
+Ngân hàng: Đông Á');
+
+ALTER TABLE books
+MODIFY COLUMN price INT NOT NULL
+
+ALTER TABLE books
+MODIFY COLUMN price_pro INT NOT NULL

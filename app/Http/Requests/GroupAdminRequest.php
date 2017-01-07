@@ -30,7 +30,7 @@ class GroupAdminRequest extends Request
 
     public function messages(){
         return [
-            'name.required'=>'Vui lòng nhập tên nhóm'
+            'name.required'=>'Vui lòng nhập tên'
         ];
     }
 }

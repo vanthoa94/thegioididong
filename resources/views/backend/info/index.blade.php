@@ -76,7 +76,6 @@ function showImage($path){
 			</div><br />
 		</div>
 	</div>
-
 	
 
 
@@ -188,11 +187,11 @@ function showImage($path){
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Giấy phép kinh doanh:</label>
+					<label>Tài khoản ngân hàng:</label>
 				</div>
 				<div class="col-md-8">
-					<textarea class="form-control" name="GPKD"><?php echo $data['GPKD']?></textarea>
-					<span class="desc">Thông tin giấy phép kinh doanh</span>
+					<textarea rows="3" class="form-control" name="info_bank"><?php echo $data['info_bank']?></textarea>
+					<span class="desc">Có thể ghi HTML</span>
 				</div>
 			</div><br />
 		</div>

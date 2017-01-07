@@ -44,8 +44,8 @@
 						</h3>
 						<span class="tacgia">{{$item->author}}</span>
 						<p>
-							@if($item->price!=0)
-								@if($item->price_pro!=0 && $item->price_pro<$item->price)
+							@if($item->price!=-1)
+								@if($item->price_pro!=-1 && $item->price_pro<$item->price)
 									{{number_format($item->price_pro,0,'.',',')}} VNĐ <s>{{number_format($item->price,0,'.',',')}} VNĐ</s>
 								@else
 									{{number_format($item->price,0,'.',',')}} VNĐ

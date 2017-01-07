@@ -317,6 +317,12 @@ Route::group(['middleware'=>'count_user','namespace' => 'UI'],function(){
 
 	Route::get('user/logout','UserController@logout');
 
+	Route::get('user/profile','ProfileController@getIndex');
+	Route::post('user/profile','ProfileController@postIndex');
+
+	Route::get('user/book/create','ProfileController@getCreateBook');
+	Route::post('user/book/create','ProfileController@postCreateBook');
+
 	Route::get('video.html','VideoController@index');
 
 	Route::get('video/{url}.html','VideoController@detail')->where('url','[a-zA-Z0-9-]+');

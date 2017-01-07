@@ -72,12 +72,15 @@ class ProductController extends BaseController
 		$product->description=str_replace("\n", "<br>",$product->description);
 		$product->keywords=str_replace("\"", "'", trim($request->keywords));
 		
-		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
+		$product->price=preg_replace("/(\.| |\,)*/", "", trim($request->price));
 
 		if(trim($request->price_company)!=""){
-			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
+			if(trim($request->price_company)=="-1")
+				$product->price_pro=preg_replace("/(\.| |\,)*/", "", trim($request->price_company));
+			else
+				$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
 		}else{
-			$product->price_pro=0;
+			$product->price_pro=-1;
 		}
 		$product->status=$request->status;
 
@@ -153,12 +156,15 @@ class ProductController extends BaseController
 		$product->description=str_replace("\n", "<br>",$product->description);
 		$product->keywords=str_replace("\"", "'", trim($request->keywords));
 		
-		$product->price=preg_replace("/(\.|-| |\,)*/", "", trim($request->price));
+		$product->price=preg_replace("/(\.| |\,)*/", "", trim($request->price));
 
 		if(trim($request->price_company)!=""){
-			$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
+			if(trim($request->price_company)=='-1')
+				$product->price_pro=preg_replace("/(\.| |\,)*/", "", trim($request->price_company));
+			else
+				$product->price_pro=preg_replace("/(\.|-| |\,)*/", "", trim($request->price_company));
 		}else{
-			$product->price_pro=0;
+			$product->price_pro=-1;
 		}
 		$product->status=$request->status;
 
