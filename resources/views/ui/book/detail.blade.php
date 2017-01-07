@@ -6,6 +6,15 @@
 <link href="{{Asset("public/css/detail.css")}}" rel="stylesheet" />
 @endsection
 
+@section('meta')
+	<meta name="description" content="{!!$info['meta_description']!!}" />
+	<meta name="keywords" content="{!!$info['meta_keywords']!!}" />
+	<meta property='og:title' content='{!!$info['name']!!}'/>
+	<meta property='og:description' content='﻿{!!$info['description']!!}'/>
+	<meta property="og:image" content="{{\App\Product::showImage($info->image)}}" />
+@endsection
+
+
 @section('content')
 
 <div class="row">
@@ -90,10 +99,10 @@
 									{{number_format($info->price_pro,0,'.',',')}} VNĐ
 								@else
 									{{number_format($info->price,0,'.',',')}} VNĐ
-								@endif</b> vào lúc {{date('H:i d/m/Y',strtotime($ngay_mua_sach))}}. Sách sẽ được kích hoạt, sau khi bạn thành toán <b>@if($info->price_pro!=-1 && $info->price_pro<$info->price)
+								@endif</b> vào lúc {{date('H:i d/m/Y',strtotime($ngay_mua_sach))}}. Sách sẽ được kích hoạt, sau khi bạn thanh toán <b>@if($info->price_pro!=-1 && $info->price_pro<$info->price)
 									{{number_format($info->price_pro,0,'.',',')}} VNĐ
 								@else
-									{{number_format($info->price,0,'.',',')}} VNĐ @endif</b> vào tài khoản ngân hàng ở dưới, với nội dung chuyển tiền ghi: "mua sach {{$infomuasach[1]}}"<i>(Vui lòng không đổi số này chúng tôi sẽ dựa vào số này để kích hoạt sách cho bạn.)</i>. <br />
+									{{number_format($info->price,0,'.',',')}} VNĐ @endif</b> vào tài khoản ngân hàng ở dưới, với nội dung chuyển tiền ghi: "mua sach {{$infomuasach[1]}}"<i>(Vui lòng không đổi số này, chúng tôi sẽ dựa vào số này để kích hoạt sách cho bạn.)</i>. <br />
 								
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">

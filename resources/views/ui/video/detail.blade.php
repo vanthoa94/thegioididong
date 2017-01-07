@@ -6,6 +6,12 @@
 <link href="{{Asset("public/css/detailvideo.css")}}" rel="stylesheet" />
 @endsection
 
+@section('meta')
+	<meta name="keywords" content="xem video {!!$info->title!!}" />
+	<meta property='og:title' content='{!!$info->title!!}'/>
+@endsection
+
+
 @section('content')
 
 <div class="row">

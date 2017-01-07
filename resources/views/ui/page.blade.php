@@ -6,6 +6,13 @@
 <link href="{{Asset("public/css/page.css")}}" rel="stylesheet" />
 @endsection
 
+@section('meta')
+	<meta name="description" content="{!!$info->meta_description!!}" />
+	<meta name="keywords" content="{!!$info->meta_keywords!!}" />
+	<meta property='og:title' content='{!!$info->title!!}'/>
+	<meta property='og:description' content='﻿{!!$info->meta_description!!}'/>
+@endsection
+
 @section('content')
 
 <div class="row">

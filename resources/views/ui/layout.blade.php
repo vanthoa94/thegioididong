@@ -4,6 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     @yield('meta')
+    <meta property='og:locale' content='vi_VN' />
+    <meta property='og:site_name' content='{!!$base_data['website']['title']!!}'/>
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="noodp,index,follow" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>

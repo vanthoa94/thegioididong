@@ -6,6 +6,11 @@
 <link href="{{Asset("public/css/docsach.css")}}" rel="stylesheet" />
 @endsection
 
+@section('meta')
+	<meta property='og:title' content='{!!$info->title!!}'/>
+@endsection
+
+
 @section('content')
 
 <div class="row">

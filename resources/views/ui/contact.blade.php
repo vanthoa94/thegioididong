@@ -2,6 +2,12 @@
 
 @section('title','Liên hệ')
 
+@section('meta')
+	<meta name="description" content="{!!$base_data['website']['meta_description']!!}" />
+	<meta name="keywords" content="{!!$base_data['website']['meta_keywords']!!}" />
+	<meta property='og:title' content='Liên hệ'/>
+	<meta property='og:description' content='﻿{!!$base_data['website']['meta_description']!!}'/>
+@endsection
 
 @section('content')
 

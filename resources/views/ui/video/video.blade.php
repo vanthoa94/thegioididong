@@ -1,11 +1,18 @@
 @extends('ui.layout')
 
-@section('title','Tìm kiếm')
+@section('title','Video')
 
 @section('css')
 <link href="{{Asset("public/css/index.css")}}" rel="stylesheet" />
 <link href="{{Asset("public/css/paginate.css")}}" rel="stylesheet" />
 <link href="{{Asset("public/css/videos.css")}}" rel="stylesheet" />
+@endsection
+
+@section('meta')
+	<meta name="description" content="Video {!!$base_data['website']['meta_description']!!}" />
+	<meta name="keywords" content="video {!!$base_data['website']['meta_keywords']!!}" />
+	<meta property='og:title' content='Video'/>
+	<meta property='og:description' content='﻿{!!$base_data['website']['meta_description']!!}'/>
 @endsection
 
 @section('content')

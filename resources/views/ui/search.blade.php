@@ -8,6 +8,13 @@
 <link href="{{Asset("public/css/videos.css")}}" rel="stylesheet" />
 @endsection
 
+@section('meta')
+	<meta name="description" content="{!!$base_data['website']['meta_description']!!}" />
+	<meta name="keywords" content="{!!$base_data['website']['meta_keywords']!!}" />
+	<meta property='og:title' content='Tìm kiếm'/>
+	<meta property='og:description' content='﻿{!!$base_data['website']['meta_description']!!}'/>
+@endsection
+
 @section('content')
 
 
