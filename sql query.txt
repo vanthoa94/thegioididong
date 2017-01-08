@@ -14,7 +14,7 @@ create table mua_sach
     viewer int default 0,
     viewer_day int default 0,
     viewer_date varchar(8),
-    ip_mua varchar(12),
+    ip_mua varchar(15),
     ip_doc text,
 	da_xem tinyint(1) default 0,
 	gia_mua int(10),
@@ -41,3 +41,9 @@ MODIFY COLUMN price INT NOT NULL
 
 ALTER TABLE books
 MODIFY COLUMN price_pro INT NOT NULL
+
+ALTER TABLE menus
+DROP INDEX `menus_url_unique`
+
+ALTER TABLE mua_sach
+MODIFY COLUMN ip_mua varchar(15)

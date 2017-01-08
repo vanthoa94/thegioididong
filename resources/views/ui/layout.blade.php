@@ -32,10 +32,10 @@
         body,#headermenu .danhmuc ul{
             background-color: {{$base_data['website']['background_color']}}
         }
-        #navbartop{
+        #navbartop,#menufooter{
             background-color: {{$base_data['website']['background_menutop']}}
         }
-        #navbartop .pull-right a {
+        #navbartop .pull-right a,#menufooter a {
             color: {{$base_data['website']['text_color_menutop']}};
         }
         #banner{
@@ -255,8 +255,20 @@
                                 <a href="{{$qctop['url']==''?'#':showUrlPage($qcbottom['url'])}}" title="{{$qcbottom['title']}}"><div style="background-image:url({{\App\Product::showImage($qcbottom['image'])}})"></div></a>
                              <?php } ?>
     </div>
+     <div id="menufooter">
+            <div class="container">
+                <a href="{{url('/')}}">Trang chủ</a>
+                <a href="{{url('lien-he.html')}}">Liên hệ</a>
+                <a href="{{url('video.html')}}">Video</a>
+                <a href="{{url('page/huong-dan-dang-sach.html')}}">Hướng dẫn đăng sách</a>
 
+                @foreach($base_data['menu'] as $value)
+                    <a href="{{showUrlPage($value['url'])}}">{{$value['name']}}</a>
+                @endforeach
+            </div>
+        </div>
     <footer id="footer" style="background-color:{{$base_data['website']['background_footer']}}">
+
         <div class="container">
             {!!$base_data['website']['copyright']!!}<br />
             Địa chỉ: {!!$base_data['website']['address']!!}<br />

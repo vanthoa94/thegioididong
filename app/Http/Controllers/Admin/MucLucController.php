@@ -61,7 +61,25 @@ class MucLucController extends BaseController
 
 		$mucluc->image=trim($request->image);
 
+
+
 		$mucluc->audio=trim($request->audio);
+
+		if(strpos($mucluc->audio, "google.com")){
+			$idAudio=explode("/d/", $mucluc->audio);
+
+			if(count($idAudio)>1){
+				$idAudio=$idAudio[1];
+
+				$idAudio=explode("/", $idAudio);
+
+				$idAudio=$idAudio[0];
+
+				$mucluc->audio="https://drive.google.com/uc?id=".$idAudio."&export=download";
+			}else{
+				return redirect()->to('admin/muc-luc/create/'.$request->idsach)->with(['message'=>'Audio không hợp lệ','message_type'=>'danger'])->withInput($request->all());
+			}
+		}
 
 		$mucluc->content=$request->content;
 
@@ -147,6 +165,27 @@ class MucLucController extends BaseController
 		$mucluc->image=trim($request->image);
 
 		$mucluc->audio=trim($request->audio);
+
+		if(strpos($mucluc->audio, "google.com")){
+
+			if(strpos($mucluc->audio,"uc?id=")){
+			}else{
+
+				$idAudio=explode("/d/", $mucluc->audio);
+
+				if(count($idAudio)>1){
+					$idAudio=$idAudio[1];
+
+					$idAudio=explode("/", $idAudio);
+
+					$idAudio=$idAudio[0];
+
+					$mucluc->audio="https://drive.google.com/uc?id=".$idAudio."&export=download";
+				}else{
+					return redirect()->to('admin/muc-luc/update/'.$request->id)->with(['message'=>'Audio không hợp lệ','message_type'=>'danger'])->withInput($request->all());
+				}
+			}
+		}
 
 		$mucluc->content=$request->content;
 

@@ -98,6 +98,13 @@ class BaseController extends Controller
 
         $base_data['islogin']=$this->isLogin();
 
+        if(Cache::has('c_a_menu')){
+            $base_data['menu']=Cache::get('c_a_menu');
+        }else{
+            $base_data['menu']=\App\Menu::orderBy('id','desc')->orderBy('index')->get();
+            Cache::forever('c_a_menu', $base_data['menu']);
+        }
+
 		view()->share('base_data',$base_data);
 
 	}

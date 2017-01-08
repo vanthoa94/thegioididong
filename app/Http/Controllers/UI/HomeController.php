@@ -41,7 +41,7 @@ class HomeController extends BaseController
 		$listBookNew=array();
 
 		foreach ($listCateInHome as $value) {
-			$listBookNew[$value->id]=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->where('cate_id',$value->id)->orderBy('index_home')->orderBy('id','desc')->limit(12)->get();
+			$listBookNew[$value->id]=Product::select('name','url','image','author','price','price_pro')->where('display',1)->where('show_home',1)->where('cate_id',$value->id)->orderBy('index_home')->orderBy('id','desc')->limit(6)->get();
 		}
 
 		$data=array();

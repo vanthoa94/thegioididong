@@ -621,6 +621,19 @@ body, h1, h2, h4, h5, h6, ul {
     display: none;
 }
 
+#menufooter{
+    padding:7px 0px;
+    margin-top:15px;
+    color:white;
+    font-size:14px;
+    font-family: arial;
+    text-align: center;
+}
+
+#menufooter a{
+    padding:0px 10px;
+}
+
 
 @media(max-width: 1200px){
 	#headermenu .ssearch{

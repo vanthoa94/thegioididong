@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Menu;
 use App\Http\Requests\MenuRequest;
+use Cache;
 
 
 class MenuController extends BaseController
@@ -13,7 +14,12 @@ class MenuController extends BaseController
 			return $this->ErrorPermission('Menu');
 		}
 
-		$data=Menu::orderBy('id','desc')->get();
+		if(Cache::has('c_a_menu')){
+			$data=Cache::get('c_a_menu');
+		}else{
+			$data=Menu::orderBy('id','desc')->orderBy('index')->get();
+			Cache::forever('c_a_menu',$data);
+		}
 		
 		return view("backend.menu.index",array('data'=>$data));
 	}
@@ -38,11 +44,8 @@ class MenuController extends BaseController
 		$menu=new Menu();
 
 		$menu->parent_id=$request->parent_id;
-		$menu->url=$this->formatToUrl(trim($request->url));
-		if(Menu::select('id')->where('url',$menu->url)->count()>0){
-			return redirect()->to('admin/menu/create')->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
-		}
-
+		$menu->url=trim($request->url);
+		
 		
 		$menu->name=trim($request->name);
 		$menu->index=0;
@@ -50,6 +53,8 @@ class MenuController extends BaseController
 		$menu->show_footer=1;
 
 		if($menu->save()){
+			if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 			return redirect()->to('admin/menu/create')->with('message','Thêm thành công.');
 		}
 		return redirect()->to('admin/menu/create')->with(['message'=>'Có lỗi. Thêm thất bại','message_type'=>'danger']);
@@ -80,16 +85,16 @@ class MenuController extends BaseController
 			return redirect()->to('admin/menu')->with(['message'=>'Menu không tồn tại.','message_type'=>'danger']);
 		
 		$menu->parent_id=$request->parent_id;
-		$menu->url=$this->formatToUrl(trim($request->url));
-		if(Menu::select('id')->where('id','<>',(int)$request->id)->where('url',$menu->url)->count()>0){
-			return redirect()->to('admin/menu/'.$request->id)->with(['message'=>'Url đã tồn tại.','message_type'=>'danger'])->withInput($request->all());
-		}
+		$menu->url=trim($request->url);
+		
 
 		
 		$menu->name=trim($request->name);
 		$menu->show_menu_top=($request->show_menu_top=='on')?1:0;
 		
 		if($menu->save()){
+			if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 			return redirect()->to('admin/menu/'.$request->id)->with('message','Cập nhật thành công.');
 		}
 		return redirect()->to('admin/menu/'.$request->id)->with(['message'=>'Có lỗi. Cập nhật thất bại','message_type'=>'danger']);
@@ -108,6 +113,8 @@ class MenuController extends BaseController
 		}
 
 		if(Menu::destroy($id)){
+			if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 			return json_encode(["success"=>true,"message"=>"Xóa thành công menu {name}"]);
 		}
 		return json_encode(["success"=>false,"message"=>"Xóa menu {name} thất bại"]);
@@ -123,6 +130,8 @@ class MenuController extends BaseController
 		$show_menu_top=($show_menu_top=='true')?1:0;
 
 		if(Menu::where('id',$id)->update(['show_menu_top'=>$show_menu_top])){
+			if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 			return json_encode(["success"=>true,"message"=>"Cập nhật thành công"]);
 		}
 
@@ -139,6 +148,8 @@ class MenuController extends BaseController
 		$show_footer=($show_footer=='true')?1:0;
 
 		if(Menu::where('id',$id)->update(['show_footer'=>$show_footer])){
+			if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 			return json_encode(["success"=>true,"message"=>"Cập nhật thành công"]);
 		}
 
@@ -153,7 +164,8 @@ class MenuController extends BaseController
 		foreach(\Input::get('id') as $key=>$value){
 			Menu::where('id',$value)->update(['index'=>$data[$key]]);
 		}
-
+		if(Cache::has('c_a_menu'))
+				Cache::forget('c_a_menu');
 		return json_encode(["success"=>true]);
 	}
 }

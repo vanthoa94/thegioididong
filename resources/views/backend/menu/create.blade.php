@@ -37,7 +37,7 @@
                 <span class="red">*</span>
                 <input type="text" name="url" id="urlc" value="{{old('url')}}" class="form-control" />
                 <span class="desc">
-                  Url truy cập vào trang menu. Không dấu và mỗi từ cách nhau 1 dấu '-'. VD: gioi-thieu
+                  Url khi click vào menu sẽ chuyển đến. <a href="#" id="showviewpage">Chọn từ trang</a>
                 </span>
               </div>
             </div>
@@ -111,6 +111,28 @@
 
     </form>
 
+    <div id="pagelist" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Trang</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="" width="100%" height="500px" style="border:0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="choose">Chọn</button>
+          <button type="button" class="btn btn-success" id="refresh">Tải lại</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
   @endsection
 
 @section('script')
@@ -169,6 +191,46 @@
           'trong':true
         }
       ]);
+
+  });
+
+    var base_url_admin="{{url('admin')}}/";
+
+   $(document).ready(function(){
+
+    $("#pagelist").on('shown.bs.modal',function(){
+      if($(this).find("iframe:eq(0)").attr("src")==""){
+        $(this).find("iframe:eq(0)").attr("src",base_url_admin+"page/iframe");
+
+        $("#choose").click(function(){
+          var contentmodal=$("#pagelist iframe:eq(0)").contents();
+          var tb=contentmodal.find("#ttable table:eq(0) tbody:eq(0) tr.checkboxcheck:eq(0)");
+          if(!tb.length){
+            getAlert('Vui lòng chọn 1 trang');
+            return false;
+          }
+
+
+          $("#urlc").val(tb.find(".ascheckbox:eq(0)").attr('data-value'));
+
+          $("#pagelist").modal('hide');
+        });
+
+        $("#refresh").click(function(){
+$("#pagelist").find("iframe:eq(0)").attr("src",base_url_admin+"page/iframe");
+        });
+
+      }
+    });
+
+    $("#showviewpage").click(function(){
+
+
+$("#pagelist").modal('show');
+
+
+    });
+
 
   });
 
