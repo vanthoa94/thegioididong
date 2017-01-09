@@ -458,6 +458,59 @@ submit: function (e) {
 });
 nicEditors.registerPlugin(nicPlugin,nicYoutubeOptions);
 
+var nicIframeOptions = {
+buttons : {
+    'Iframe' : {name : 'Document PDF', type : 'nicIFrameButton'}
+},
+iconFiles: {
+    'Iframe': asset_path+'images/pdf_icon.gif'
+}
+};
+
+var nicIFrameButton = nicEditorAdvancedButton.extend({
+width: '350px',
+
+addPane: function () {
+    this.addForm({
+        '': { type: 'title', txt: 'Add Google Driver URL' },
+        'driverUrl': { type: 'text', txt: 'URL', value: '', style: { width: '150px'} },
+        'height': { type: 'text', txt: 'Height', value: '560', style: { width: '150px'} },
+        'width': { type: 'text', txt: 'Width', value: '315', style: { width: '150px'} }
+    });
+
+},
+
+submit: function (e) {
+    var code = this.inputs['driverUrl'].value;
+    var width = this.inputs['height'].value;
+    var height = this.inputs['width'].value;
+
+    if (code.indexOf('open?id=') > 0) {
+        code = code.split('open?id=')[1];
+        code=code.split('&')[0];
+        code=code.split('#')[0];
+    }else{
+        if(code.indexOf("/file/d/")>0){
+            code = code.split('/file/d/')[1];
+            code=code.split('/')[0];
+            code=code.split('&')[0];
+            code=code.split('#')[0];
+        }else{
+            alert("Link Google Driver không hợp lệ");
+            return false;
+        }
+    }
+    
+    code="https://docs.google.com/viewer?srcid="+code+"&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
+    
+    var youTubeCode = '<iframe width="' + width + '" height="' + height + '" src="' + code + '" frameborder="0" allowfullscreen></iframe>';
+
+    this.removePane();
+    this.ne.nicCommand('insertHTML', youTubeCode);
+}
+});
+nicEditors.registerPlugin(nicPlugin,nicIframeOptions);
+
 var nicColorOptions = {
     buttons: {
         'forecolor': { name: __('Đổi Màu Chữ'), type: 'nicEditorColorButton', noClose: true },
