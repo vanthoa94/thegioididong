@@ -474,8 +474,8 @@ addPane: function () {
     this.addForm({
         '': { type: 'title', txt: 'Add Google Driver URL' },
         'driverUrl': { type: 'text', txt: 'URL', value: '', style: { width: '150px'} },
-        'height': { type: 'text', txt: 'Height', value: '560', style: { width: '150px'} },
-        'width': { type: 'text', txt: 'Width', value: '315', style: { width: '150px'} }
+        'height': { type: 'text', txt: 'Height', value: '100%', style: { width: '150px'} },
+        'width': { type: 'text', txt: 'Width', value: '500', style: { width: '150px'} }
     });
 
 },

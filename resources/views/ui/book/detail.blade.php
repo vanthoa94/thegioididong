@@ -227,7 +227,7 @@
 		</div>
 
 
-
+		@if(count($muclucmoi)>0)
 		<div class="boxchuong">
 
 			<h2 class="titleboxx">{{count($muclucmoi)}} mục mới nhất</h2>
@@ -240,6 +240,7 @@
 				@endforeach
 			</div>
 		</div>
+		@endif
 
 		<div id="qcbv">
 			@if($qc!=null)
@@ -254,7 +255,7 @@
 			@endif
 		</div>
 
-
+		@if(count($muclucs)>0)
 		<div class="boxchuong" id="listcccc">
 
 			<h2 class="titleboxx">Danh sách mục "{{$info->name}}"</h2>
@@ -270,6 +271,7 @@
 			</div>
 			
 		</div>
+		@endif
 
 		<div class="phantrang pull-right clearfix">
 				{!! $muclucs->render() !!}
